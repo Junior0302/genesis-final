@@ -121,10 +121,10 @@ export default function ContactPage() {
                                 hello@<br className="hidden md:block"/>genesisconnectstudio.com
                             </a>
                             <a 
-                                href="tel:+33123456789" 
+                                href="tel:+33776103157" 
                                 className="text-2xl md:text-3xl font-serif text-[#FAF9F6]/80 hover:text-[#FAF9F6] transition-colors duration-300"
                             >
-                                +33 1 23 45 67 89
+                                +33776103157
                             </a>
                         </div>
                     </div>

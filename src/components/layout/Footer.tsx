@@ -28,7 +28,7 @@ export default function Footer() {
         <div className="flex flex-col gap-2">
              <h4 className="text-[10px] uppercase tracking-[0.2em] text-[#FAF9F6]/40 mb-1">{t('contact')}</h4>
              <a href="mailto:hello@genesisconnectstudio.com" className="text-base font-serif hover:text-[#D4AF37] transition-colors">hello@genesisconnectstudio.com</a>
-             <p className="text-xs text-[#FAF9F6]/60 font-light">+33 1 23 45 67 89</p>
+             <p className="text-xs text-[#FAF9F6]/60 font-light">+33776103157</p>
         </div>
 
         {/* COL 3: SOCIALS & LEGAL */}
