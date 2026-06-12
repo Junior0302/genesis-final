@@ -16,6 +16,7 @@ import Logo from "@/components/ui/Logo";
     const t = useTranslations('Navigation');
     
     const navItems = useMemo(() => ([
+      { name: t('formation'), href: "/formation" },
       { name: t('studio'), href: "/studio" },
       { name: t('expertise'), href: "/expertise" },
       { name: t('work'), href: "/work" },

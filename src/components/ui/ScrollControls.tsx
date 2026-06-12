@@ -8,7 +8,6 @@ import { ArrowUp } from "lucide-react";
 export default function ScrollControls() {
   const pathname = usePathname();
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [isAtBottom, setIsAtBottom] = useState(false);
   const backToTopRef = useRef<HTMLButtonElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
@@ -20,9 +19,6 @@ export default function ScrollControls() {
       const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       
       if (windowHeight > 0) {
-        const scroll = totalScroll / windowHeight;
-        setScrollProgress(Number(scroll));
-
         // Check if at bottom (more generous threshold)
         if (windowHeight - totalScroll < 100) {
             setIsAtBottom(true);
@@ -47,9 +43,12 @@ export default function ScrollControls() {
 
   // Back to Top Animation (Appearance + Pulse)
   useEffect(() => {
+    const backToTopElement = backToTopRef.current;
+    if (!backToTopElement) return;
+
     if (showBackToTop) {
         // Appear
-        gsap.to(backToTopRef.current, {
+        gsap.to(backToTopElement, {
             scale: 1,
             opacity: 1,
             duration: 0.6,
@@ -57,7 +56,7 @@ export default function ScrollControls() {
         });
 
         // Pulse Animation Loop
-        const pulseAnim = gsap.to(backToTopRef.current, {
+        const pulseAnim = gsap.to(backToTopElement, {
             boxShadow: "0 0 15px rgba(250, 249, 246, 0.3)",
             scale: 1.1,
             duration: 1,
@@ -68,7 +67,7 @@ export default function ScrollControls() {
 
         return () => {
             pulseAnim.kill();
-            gsap.to(backToTopRef.current, {
+            gsap.to(backToTopElement, {
                 scale: 1,
                 boxShadow: "none",
                 duration: 0.3
@@ -76,7 +75,7 @@ export default function ScrollControls() {
         };
 
     } else {
-        gsap.to(backToTopRef.current, {
+        gsap.to(backToTopElement, {
             scale: 0.5,
             opacity: 0,
             duration: 0.4,

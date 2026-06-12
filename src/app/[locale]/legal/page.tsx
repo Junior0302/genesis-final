@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useSoundContext } from "@/context/SoundContext";
 
 // Register ScrollTrigger
 if (typeof window !== "undefined") {
@@ -14,7 +13,6 @@ if (typeof window !== "undefined") {
 export default function LegalPage() {
   const t = useTranslations('LegalPage');
   const containerRef = useRef<HTMLDivElement>(null);
-  // const { playSound } = useSoundContext();
 
   useEffect(() => {
     const ctx = gsap.context(() => {

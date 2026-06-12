@@ -303,6 +303,7 @@
   },
   "Navigation": {
     "home": "Home",
+    "formation": "Training",
     "work": "Work",
     "studio": "Studio",
     "expertise": "Expertise",
@@ -322,6 +323,7 @@
     "enter": "Enter",
     "narrative": {
       "home_about": "Discover our studio",
+      "home_training": "Explore our trainings",
       "home_work": "Explore our work",
       "home_vision": "Understand our vision",
       "home_contact": "Get in touch",
