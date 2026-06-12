@@ -10,6 +10,7 @@ interface TransitionLinkProps extends Omit<IntlLinkProps, "children" | "onClick"
   children: ReactNode;
   className?: string;
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  beforeNavigate?: () => void | Promise<void>;
 }
 
 export default function TransitionLink({ 
@@ -17,6 +18,7 @@ export default function TransitionLink({
   href, 
   className, 
   onClick,
+  beforeNavigate,
   ...props 
 }: TransitionLinkProps) {
   const { navigate } = useTransition();
@@ -28,8 +30,12 @@ export default function TransitionLink({
     // Call any optional onClick handler passed as prop
     if (onClick) onClick(e);
 
-    // Trigger our custom transition navigation
-    navigate(href.toString());
+    void (async () => {
+      if (beforeNavigate) {
+        await beforeNavigate();
+      }
+      navigate(href.toString());
+    })();
   };
 
   return (

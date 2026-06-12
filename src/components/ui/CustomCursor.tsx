@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useTransition } from "@/context/TransitionContext";
@@ -13,10 +13,15 @@ export default function CustomCursor() {
 
   // Hide cursor during loading/intro text phases
   const isHidden = currentState === 'LOADING_ASSETS' || currentState === 'INTRO_TEXT';
+  const isTouchDevice = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    if (typeof navigator !== "undefined" && navigator.maxTouchPoints > 0) return true;
+    return window.matchMedia?.("(pointer: coarse)").matches ?? false;
+  }, []);
 
   useGSAP(() => {
     const cursor = cursorRef.current;
-    if (!cursor) return;
+    if (!cursor || isTouchDevice) return;
 
     // Center the cursor on the mouse point
     gsap.set(cursor, { xPercent: -50, yPercent: -50, opacity: hasMoved ? 1 : 0 });
@@ -41,9 +46,10 @@ export default function CustomCursor() {
     return () => {
       window.removeEventListener("mousemove", moveCursor);
     };
-  }, [hasMoved, isHidden]);
+  }, [hasMoved, isHidden, isTouchDevice]);
 
   useEffect(() => {
+    if (isTouchDevice) return;
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       
@@ -66,7 +72,7 @@ export default function CustomCursor() {
     return () => {
       window.removeEventListener("mouseover", handleMouseOver);
     };
-  }, []);
+  }, [isTouchDevice]);
 
   useEffect(() => {
     const cursor = cursorRef.current;
@@ -89,7 +95,7 @@ export default function CustomCursor() {
     }
   }, [isHovering]);
 
-  if (isHidden) return null;
+  if (isHidden || isTouchDevice) return null;
 
   return (
     <div

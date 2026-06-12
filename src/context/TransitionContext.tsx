@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useRef, useEffect, ReactNode } from "react";
+import React, { createContext, useContext, useMemo, useState, useRef, useEffect, ReactNode } from "react";
 import { useRouter, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import gsap from "gsap";
@@ -32,6 +32,12 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const { playSound, initAudio, isInitialized: isAudioInitialized } = useSoundContext();
   const t = useTranslations('Transition');
+  const isTouchDevice = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    if (typeof navigator !== "undefined" && navigator.maxTouchPoints > 0) return true;
+    return window.matchMedia?.("(pointer: coarse)").matches ?? false;
+  }, []);
+  const hasPrefetchedRef = useRef(false);
   
   // PAGE TRANSITION STATE
   const [isAnimating, setIsAnimating] = useState(false);
@@ -112,6 +118,18 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     }
   }, [currentState]);
 
+  useEffect(() => {
+    if (pathname !== "/") return;
+    if (hasPrefetchedRef.current) return;
+    const r = router as unknown as { prefetch?: (href: string) => void | Promise<void> };
+    if (typeof r.prefetch !== "function") return;
+    hasPrefetchedRef.current = true;
+    void r.prefetch("/work");
+    void r.prefetch("/studio");
+    void r.prefetch("/expertise");
+    void r.prefetch("/contact");
+  }, [pathname, router]);
+
   // Surveiller assetsLoaded
   useEffect(() => {
     // Wait for BOTH assetsLoaded AND isAudioInitialized
@@ -167,7 +185,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
 
     // STATE 2: INTRO_READY
     if (currentState === 'INTRO_READY') {
-        document.body.style.cursor = 'none';
+        document.body.style.cursor = isTouchDevice ? 'default' : 'none';
         
         // Button Reveal (Slide Up + Fade)
         gsap.to(".intro-button-anim", { 
@@ -185,11 +203,12 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     // STATE 4: EXPERIENCE_RUNNING
     if (currentState === 'EXPERIENCE_RUNNING') {
         document.body.style.overflow = '';
+        document.body.style.cursor = isTouchDevice ? 'default' : 'none';
         gsap.set(introOverlayRef.current, { display: "none" });
         sessionStorage.setItem("hasEntered", "true");
     }
 
-  }, [currentState]);
+  }, [currentState, isTouchDevice]);
 
   // 3. EVENT HANDLERS
   const handleEnter = () => {
@@ -200,6 +219,14 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
 
     // 1. Play Sound IMMEDIATELY (Before any state updates/repaints)
     playSound("click");
+
+    const r = router as unknown as { prefetch?: (href: string) => void | Promise<void> };
+    if (typeof r.prefetch === "function") {
+      void r.prefetch("/work");
+      void r.prefetch("/studio");
+      void r.prefetch("/expertise");
+      void r.prefetch("/contact");
+    }
 
     // 2. Trigger Exit Animations
     setIsExiting(true);
@@ -273,6 +300,11 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
 
     // Ensure audio is initialized on navigation click
     initAudio();
+
+    const r = router as unknown as { prefetch?: (href: string) => void | Promise<void> };
+    if (typeof r.prefetch === "function") {
+      void r.prefetch(href);
+    }
 
     const text = getTransitionText(pathname, href);
     setTransitionText(text);
@@ -475,7 +507,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
                             <button
                                 onClick={handleEnter}
                                 onPointerDown={() => initAudio()}
-                                className={`intro-element intro-button-anim group relative mt-8 py-4 px-8 text-xs uppercase tracking-[0.3em] text-[#4E2A2A]/60 hover:text-[#4E2A2A] transition-colors duration-500 font-medium cursor-none ${
+                                className={`intro-element intro-button-anim group relative mt-8 py-4 px-8 text-xs uppercase tracking-[0.3em] text-[#4E2A2A]/60 hover:text-[#4E2A2A] transition-colors duration-500 font-medium ${
                                     currentState === 'INTRO_READY' ? 'opacity-100' : 'opacity-0'
                                 }`}
                                 style={{ pointerEvents: currentState === 'INTRO_READY' ? 'auto' : 'none' }}

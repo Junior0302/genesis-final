@@ -17,7 +17,18 @@ export default function WorkPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { playSound } = useSoundContext();
 
-  const projects = [
+  type Project = {
+    id: string;
+    title: string;
+    category: string;
+    industry: string;
+    desc: string;
+    color: string;
+    imageSrc?: string;
+    url?: string;
+  };
+
+  const projects: Project[] = [
     {
       id: "01",
       title: t('Projects.Project1.title'),
@@ -56,7 +67,8 @@ export default function WorkPage() {
       category: t('Projects.Project5.category'),
       industry: t('Projects.Project5.industry'),
       desc: t('Projects.Project5.desc'),
-      imageSrc: "/images/tns-website.png",
+      imageSrc: "/images/tnsprojetimg.png",
+      url: "https://tnsdigitalefrance.fr",
       color: "bg-[#2B2E36]"
     }
   ];
@@ -190,6 +202,21 @@ export default function WorkPage() {
                             <p className="text-[#FAF9F6]/70 font-light leading-relaxed text-base">
                                 {project.desc}
                             </p>
+                            {project.url ? (
+                              <a
+                                href={project.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center mt-8 px-6 py-3 text-xs uppercase tracking-[0.2em] border border-[#FAF9F6]/20 text-[#FAF9F6]/80 hover:text-[#FAF9F6] hover:border-[#FAF9F6]/40 transition-colors"
+                                onMouseEnter={() => {
+                                  if (window.matchMedia('(hover: hover)').matches) {
+                                    playSound('focus_grain');
+                                  }
+                                }}
+                              >
+                                {t('Projects.viewProject')}
+                              </a>
+                            ) : null}
                         </div>
                         
                         {/* Hover Details (Optional) */}

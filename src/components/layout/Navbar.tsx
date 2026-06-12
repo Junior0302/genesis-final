@@ -1,8 +1,8 @@
 "use client";
 
-import { usePathname } from "@/i18n/routing";
+import { usePathname, useRouter } from "@/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
-import { useState, useEffect, useRef } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { Menu as MenuIcon, X } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -10,20 +10,22 @@ import TransitionLink from "@/components/ui/TransitionLink";
 import Logo from "@/components/ui/Logo";
 
   export default function Navbar() {
+    const router = useRouter();
     const pathname = usePathname();
     const locale = useLocale();
     const t = useTranslations('Navigation');
     
-    const navItems = [
+    const navItems = useMemo(() => ([
       { name: t('studio'), href: "/studio" },
       { name: t('expertise'), href: "/expertise" },
       { name: t('work'), href: "/work" },
       { name: t('contact'), href: "/contact" },
-    ];
+    ]), [t]);
 
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const navRef = useRef<HTMLElement>(null);
+    const menuTimelineRef = useRef<gsap.core.Timeline | null>(null);
 
     const switchLocale = (newLocale: string) => {
       const path = pathname === '/' ? '' : pathname;
@@ -38,6 +40,15 @@ import Logo from "@/components/ui/Logo";
       }
     }, [pathname, isOpen]);
   
+    useEffect(() => {
+      if (!isOpen) return;
+      const r = router as unknown as { prefetch?: (href: string) => void | Promise<void> };
+      if (typeof r.prefetch !== "function") return;
+      for (const item of navItems) {
+        void r.prefetch(item.href);
+      }
+    }, [isOpen, navItems, router]);
+
     // Handle Scroll Effect
     useEffect(() => {
       const handleScroll = () => {
@@ -52,50 +63,76 @@ import Logo from "@/components/ui/Logo";
       return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-  // Mobile menu animation
-  useGSAP(() => {
-    // Logo entrance animation (Removed to prevent visibility issues)
-    /*
-    gsap.from(".nav-logo", {
-      y: -20,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out",
-      delay: 0.2
-    });
-    */
+    const closeMenu = () => {
+      if (!isOpen) return Promise.resolve();
 
-    if (isOpen) {
-      // Open animation
-      const tl = gsap.timeline();
-      
+      return new Promise<void>((resolve) => {
+        const tl = menuTimelineRef.current;
+        if (!tl) {
+          setIsOpen(false);
+          resolve();
+          return;
+        }
+
+        const previous = tl.eventCallback("onReverseComplete");
+        tl.eventCallback("onReverseComplete", () => {
+          if (typeof previous === "function") previous();
+          tl.eventCallback("onReverseComplete", previous);
+          resolve();
+        });
+
+        setIsOpen(false);
+      });
+    };
+
+    useGSAP(() => {
+      gsap.set(".mobile-menu", { opacity: 0, pointerEvents: "none" });
+      gsap.set(".mobile-menu-bg", { scaleY: 0, transformOrigin: "top" });
+      gsap.set(".mobile-link", { y: 40, opacity: 0 });
+
+      const tl = gsap.timeline({
+        paused: true,
+        onReverseComplete: () => {
+          gsap.set(".mobile-menu", { pointerEvents: "none" });
+        }
+      });
+
       tl.to(".mobile-menu", {
         opacity: 1,
-        pointerEvents: "auto",
-        duration: 0.5,
+        duration: 0.35,
         ease: "power2.out",
+        onStart: () => {
+          gsap.set(".mobile-menu", { pointerEvents: "auto" });
+        }
       })
-      .fromTo(".mobile-menu-bg", 
-        { scaleY: 0, transformOrigin: "top" },
-        { scaleY: 1, duration: 0.6, ease: "circ.out" },
-        "-=0.5"
-      )
-      .fromTo(
-        ".mobile-link",
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: "power3.out" },
-        "-=0.3"
-      );
-    } else {
-      // Close animation
-      gsap.to(".mobile-menu", {
-        opacity: 0,
-        pointerEvents: "none",
-        duration: 0.4,
-        ease: "power2.in",
-      });
-    }
-  }, [isOpen]);
+        .to(
+          ".mobile-menu-bg",
+          { scaleY: 1, duration: 0.55, ease: "circ.out" },
+          "-=0.25"
+        )
+        .to(
+          ".mobile-link",
+          { y: 0, opacity: 1, stagger: 0.08, duration: 0.7, ease: "power3.out" },
+          "-=0.25"
+        );
+
+      menuTimelineRef.current = tl;
+
+      return () => {
+        tl.kill();
+        menuTimelineRef.current = null;
+      };
+    }, []);
+
+    useEffect(() => {
+      const tl = menuTimelineRef.current;
+      if (!tl) return;
+      if (isOpen) {
+        tl.play(0);
+      } else {
+        tl.reverse();
+      }
+    }, [isOpen]);
 
   return (
     <>
@@ -121,6 +158,7 @@ import Logo from "@/components/ui/Logo";
             isOpen ? "text-[#FAF9F6] opacity-100" : "text-[#FAF9F6] opacity-100"
           }`}
           aria-label="Genesis Connect Home"
+          beforeNavigate={closeMenu}
         >
           {/* Mobile specific sizing/positioning if needed */}
           <Logo className={`transition-all duration-500 text-xl`} />
@@ -195,7 +233,7 @@ import Logo from "@/components/ui/Logo";
         className="mobile-menu fixed inset-0 z-40 flex flex-col items-center justify-center opacity-0 pointer-events-none"
       >
         {/* Background Layer with Blur and Noise */}
-        <div className="mobile-menu-bg absolute inset-0 bg-[#2A1C15]/95 backdrop-blur-xl w-full h-full">
+        <div className="mobile-menu-bg absolute inset-0 bg-[#2A1C15] w-full h-full">
             <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay" 
                  style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
             ></div>
@@ -208,6 +246,7 @@ import Logo from "@/components/ui/Logo";
               key={item.href}
               href={item.href}
               className="mobile-link group relative text-[#FAF9F6] text-4xl md:text-5xl font-serif tracking-tight opacity-0 hover:text-[#FAF9F6]/80 transition-colors"
+              beforeNavigate={closeMenu}
             >
               <span className="relative z-10">{item.name}</span>
               {/* Subtle line through on hover for editorial feel */}
