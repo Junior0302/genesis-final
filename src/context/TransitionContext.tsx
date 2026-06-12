@@ -251,6 +251,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     // HOME -> PAGES
     if (curr === "/") {
         if (next === "/formation") return t('narrative.home_training');
+        if (next === "/abonnement") return t('narrative.home_subscription');
         if (next === "/about" || next === "/studio") return t('narrative.home_about');
         if (next === "/work") return t('narrative.home_work');
         if (next === "/vision" || next === "/expertise") return t('narrative.home_vision');
@@ -260,6 +261,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     // PAGES -> HOME
     if (next === "/") {
         if (curr === "/formation") return t('narrative.back_home');
+        if (curr === "/abonnement") return t('narrative.back_home');
         if (curr === "/about" || curr === "/studio") return t('narrative.back_home');
         if (curr === "/work") return t('narrative.back_home'); // Or specific if available
         if (curr === "/vision" || curr === "/expertise") return t('narrative.back_home');
@@ -270,6 +272,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     // FROM ABOUT
     if (curr === "/studio" || curr === "/about") {
         if (next === "/formation") return t('narrative.home_training');
+        if (next === "/abonnement") return t('narrative.home_subscription');
         if (next === "/work") return t('narrative.home_work'); // Fallback to generic or add specific keys later
         if (next === "/expertise" || next === "/vision") return t('narrative.home_vision');
         if (next === "/contact") return t('narrative.home_contact');
@@ -278,6 +281,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     // FROM WORK
     if (curr === "/work") {
         if (next === "/formation") return t('narrative.home_training');
+        if (next === "/abonnement") return t('narrative.home_subscription');
         if (next === "/studio" || next === "/about") return t('narrative.home_about');
         if (next === "/expertise" || next === "/vision") return t('narrative.home_vision');
         if (next === "/contact") return t('narrative.home_contact');
@@ -286,6 +290,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     // FROM VISION
     if (curr === "/expertise" || curr === "/vision") {
         if (next === "/formation") return t('narrative.home_training');
+        if (next === "/abonnement") return t('narrative.home_subscription');
         if (next === "/work") return t('narrative.home_work');
         if (next === "/studio" || next === "/about") return t('narrative.home_about');
         if (next === "/contact") return t('narrative.home_contact');
@@ -294,12 +299,21 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     // FROM CONTACT
     if (curr === "/contact") {
         if (next === "/formation") return t('narrative.home_training');
+        if (next === "/abonnement") return t('narrative.home_subscription');
         if (next === "/studio" || next === "/about") return t('narrative.home_about');
         if (next === "/work") return t('narrative.home_work');
         if (next === "/expertise" || next === "/vision") return t('narrative.home_vision');
     }
 
     if (curr === "/formation") {
+        if (next === "/studio" || next === "/about") return t('narrative.home_about');
+        if (next === "/work") return t('narrative.home_work');
+        if (next === "/expertise" || next === "/vision") return t('narrative.home_vision');
+        if (next === "/contact") return t('narrative.home_contact');
+    }
+
+    if (curr === "/abonnement") {
+        if (next === "/formation") return t('narrative.home_training');
         if (next === "/studio" || next === "/about") return t('narrative.home_about');
         if (next === "/work") return t('narrative.home_work');
         if (next === "/expertise" || next === "/vision") return t('narrative.home_vision');

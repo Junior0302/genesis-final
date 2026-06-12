@@ -304,6 +304,7 @@
   "Navigation": {
     "home": "Home",
     "formation": "Training",
+    "subscription": "Subscription",
     "work": "Work",
     "studio": "Studio",
     "expertise": "Expertise",
@@ -324,6 +325,7 @@
     "narrative": {
       "home_about": "Discover our studio",
       "home_training": "Explore our trainings",
+      "home_subscription": "Subscribe to Web Pro",
       "home_work": "Explore our work",
       "home_vision": "Understand our vision",
       "home_contact": "Get in touch",

@@ -304,6 +304,7 @@
   "Navigation": {
     "home": "首页",
     "formation": "培训",
+    "subscription": "订阅",
     "work": "项目",
     "studio": "工作室",
     "expertise": "专业知识",
@@ -324,6 +325,7 @@
     "narrative": {
       "home_about": "发现我们的工作室",
       "home_training": "探索我们的培训",
+      "home_subscription": "订阅网站专业版",
       "home_work": "探索我们的作品",
       "home_vision": "了解我们的愿景",
       "home_contact": "取得联系",

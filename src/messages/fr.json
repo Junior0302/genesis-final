@@ -304,6 +304,7 @@
   "Navigation": {
     "home": "Accueil",
     "formation": "Formation",
+    "subscription": "Abonnement",
     "work": "Projets",
     "studio": "Studio",
     "expertise": "Expertise",
@@ -324,6 +325,7 @@
     "narrative": {
       "home_about": "Découvrez notre studio",
       "home_training": "Explorer nos formations",
+      "home_subscription": "S'abonner au site pro",
       "home_work": "Explorez nos projets",
       "home_vision": "Comprendre notre vision",
       "home_contact": "Prendre contact",
