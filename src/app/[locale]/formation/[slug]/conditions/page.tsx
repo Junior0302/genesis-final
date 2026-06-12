@@ -108,12 +108,6 @@ export default async function FormationConditionsPage({
             labels={{
               proceed: ui.conditions.proceed[safeLocale],
               processing: ui.conditions.processing[safeLocale],
-              proceedPayPal:
-                safeLocale === "fr"
-                  ? "Payer avec PayPal"
-                  : safeLocale === "en"
-                  ? "Pay with PayPal"
-                  : "使用 PayPal 支付",
               checks: [
                 safeLocale === "fr"
                   ? "J'ai lu et accepte les conditions d'utilisation."

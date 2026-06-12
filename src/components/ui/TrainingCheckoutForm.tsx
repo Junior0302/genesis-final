@@ -13,7 +13,6 @@ export default function TrainingCheckoutForm({
   labels: {
     proceed: string;
     processing: string;
-    proceedPayPal: string;
     checks: string[];
     errorTitle: string;
     errorFallback: string;
@@ -75,41 +74,6 @@ export default function TrainingCheckoutForm({
     }
   };
 
-  const handlePayPal = async () => {
-    if (!canProceed) return;
-
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const response = await fetch("/api/paypal/checkout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ slug, locale }),
-      });
-
-      const contentType = response.headers.get("content-type") ?? "";
-      const raw = await response.text();
-      const payload =
-        contentType.includes("application/json") && raw
-          ? (JSON.parse(raw) as { url?: string; error?: string })
-          : ({} as { url?: string; error?: string });
-
-      if (!response.ok || !payload.url) {
-        throw new Error(payload.error || labels.errorFallback);
-      }
-
-      window.location.href = payload.url;
-    } catch (checkoutError) {
-      setIsLoading(false);
-      setError(
-        checkoutError instanceof Error ? checkoutError.message : labels.errorFallback
-      );
-    }
-  };
-
   return (
     <div className="rounded-[28px] border border-[#FAF9F6]/10 bg-[#2A1C15]/70 p-8 md:p-10">
       <div className="flex flex-col gap-5">
@@ -136,15 +100,6 @@ export default function TrainingCheckoutForm({
         className="mt-8 inline-flex w-full items-center justify-center rounded-full border border-[#FAF9F6]/20 px-6 py-4 text-xs uppercase tracking-[0.24em] text-[#FAF9F6] transition-colors disabled:cursor-not-allowed disabled:opacity-35 hover:border-[#FAF9F6]/40 hover:bg-[#FAF9F6]/5"
       >
         {isLoading ? labels.processing : labels.proceed}
-      </button>
-
-      <button
-        type="button"
-        onClick={handlePayPal}
-        disabled={!canProceed}
-        className="mt-4 inline-flex w-full items-center justify-center rounded-full border border-[#FAF9F6]/10 px-6 py-4 text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/80 transition-colors disabled:cursor-not-allowed disabled:opacity-35 hover:border-[#FAF9F6]/30 hover:text-[#FAF9F6]"
-      >
-        {labels.proceedPayPal}
       </button>
 
       {error ? (

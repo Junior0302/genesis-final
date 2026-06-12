@@ -1,0 +1,24 @@
+CONFIGURATION STRIPE (SANS CLES DANS LE CODE)
+
+1) Créer le produit/price dans Stripe
+- Produit : "Site Web Pro"
+- Prix : 30 EUR / mois (recurring monthly)
+- Récupérer l'ID du Price (ex: price_XXXX) -> STRIPE_WEB_PRO_PRICE_ID
+
+2) Ajouter les variables dans Vercel (Project -> Settings -> Environment Variables)
+- STRIPE_SECRET_KEY = (ta clé secrète Stripe)
+- NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY = (ta clé publiable Stripe)
+- STRIPE_WEB_PRO_PRICE_ID = (price_... du plan 30€/mo)
+- NEXT_PUBLIC_APP_URL = https://ton-domaine.com
+
+3) Redéployer
+- Après ajout des variables, faire un redeploy Vercel.
+
+4) Test rapide
+- Ouvrir /fr/abonnement
+- Cliquer "S'abonner avec carte (Stripe)"
+
+Remarque
+- Engagement : 12 mois
+- Résiliation anticipée : frais fixes 100€ (affiché côté UX + metadata Stripe)
+

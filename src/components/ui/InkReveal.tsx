@@ -86,11 +86,11 @@ export default function InkReveal({ onComplete, reveal, children }: InkRevealPro
   }, [reveal, onComplete]);
 
   return (
-    <div className="fixed left-0 bottom-0 w-full h-full overflow-hidden z-50">
+    <div className="fixed inset-0 w-full h-full overflow-hidden z-50 bg-[#F0EAE0]">
         {/* Background Layer (The Ink) */}
         <div 
                 ref={bgRef}
-                className="absolute inset-0 w-full h-full -z-10 pointer-events-none"
+                className="absolute inset-0 w-full h-full z-0 pointer-events-none"
                 style={{ transformOrigin: 'bottom center' }}
             >
                 <svg 

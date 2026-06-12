@@ -53,12 +53,16 @@ export async function POST(request: NextRequest) {
         metadata: {
           orderNumber,
           plan: "web_pro_30_month",
+          commitmentMonths: "12",
+          earlyCancelFeeEUR: "100",
           locale,
         },
       },
       metadata: {
         orderNumber,
         plan: "web_pro_30_month",
+        commitmentMonths: "12",
+        earlyCancelFeeEUR: "100",
         locale,
       },
     });
@@ -70,4 +74,3 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
-

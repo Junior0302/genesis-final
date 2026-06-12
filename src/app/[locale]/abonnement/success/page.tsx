@@ -7,15 +7,11 @@ export default async function AbonnementSuccessPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ order?: string; session_id?: string; provider?: string; subscription?: string; demo?: string }>;
+  searchParams: Promise<{ order?: string; session_id?: string; demo?: string }>;
 }) {
   const { locale } = await params;
   const safeLocale = locale as SupportedLocale;
   const query = await searchParams;
-
-  const provider =
-    query.provider ??
-    (query.subscription ? "paypal" : query.session_id ? "stripe" : "payment");
 
   return (
     <div className="w-full min-h-screen bg-[#2A1C15] text-[#FAF9F6]">
@@ -37,10 +33,10 @@ export default async function AbonnementSuccessPage({
           </h1>
           <p className="mt-6 text-base md:text-lg leading-relaxed text-[#FAF9F6]/70">
             {safeLocale === "fr"
-              ? "Un recu est emis par le moyen de paiement selectionne. Vous pouvez resilier a tout moment."
+              ? "Un recu est emis automatiquement. Engagement 12 mois. Resiliation anticipee : frais fixes de 100€."
               : safeLocale === "en"
-              ? "A receipt is issued by your payment method. You can cancel anytime."
-              : "收据将由所选支付方式提供。你可以随时取消订阅。"}
+              ? "A receipt is issued automatically. 12-month commitment. Early cancellation: fixed fee of €100."
+              : "收据将自动提供。12个月承诺期。提前取消：固定费用€100。"}
           </p>
 
           <div className="mt-10 grid gap-5 md:grid-cols-3">
@@ -48,7 +44,7 @@ export default async function AbonnementSuccessPage({
               <p className="text-[11px] uppercase tracking-[0.22em] text-[#FAF9F6]/40">
                 Provider
               </p>
-              <p className="mt-3 text-lg font-serif text-[#FAF9F6]">{provider}</p>
+              <p className="mt-3 text-lg font-serif text-[#FAF9F6]">stripe</p>
             </div>
             <div className="rounded-[24px] border border-[#FAF9F6]/8 bg-[#2A1C15]/70 p-5">
               <p className="text-[11px] uppercase tracking-[0.22em] text-[#FAF9F6]/40">
@@ -95,4 +91,3 @@ export default async function AbonnementSuccessPage({
     </div>
   );
 }
-

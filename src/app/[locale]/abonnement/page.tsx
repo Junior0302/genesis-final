@@ -31,10 +31,10 @@ export default async function AbonnementPage({
             </h1>
             <p className="mt-6 max-w-2xl text-base md:text-lg leading-relaxed text-[#FAF9F6]/70">
               {safeLocale === "fr"
-                ? "Facturation recurrente. Vous pouvez resilier a tout moment depuis votre espace de paiement (Stripe/PayPal)."
+                ? "Facturation recurrente. Engagement 12 mois. Resiliation anticipee : frais fixes de 100€."
                 : safeLocale === "en"
-                ? "Recurring billing. You can cancel anytime from your payment portal (Stripe/PayPal)."
-                : "循环扣费。你可以随时在支付平台（Stripe/PayPal）取消订阅。"}
+                ? "Recurring billing. 12-month commitment. Early cancellation: fixed fee of €100."
+                : "循环扣费。12个月承诺期。提前取消：固定费用€100。"}
             </p>
           </div>
 
@@ -57,4 +57,3 @@ export default async function AbonnementPage({
     </div>
   );
 }
-

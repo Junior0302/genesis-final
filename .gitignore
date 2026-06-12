@@ -33,6 +33,9 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# local secret scratchpad
+CODES_A_COLLER.txt
+
 # vercel
 .vercel
 
