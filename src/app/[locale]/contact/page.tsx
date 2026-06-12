@@ -109,7 +109,7 @@ export default function ContactPage() {
                 {/* RIGHT COLUMN: CONTACT INFO */}
                 <div className="flex flex-col gap-16 reveal-text md:pt-4">
                     
-                    {/* EMAIL & PHONE */}
+                    {/* EMAIL */}
                     <div>
                         <h3 className="text-xs uppercase tracking-[0.2em] text-[#FAF9F6]/40 mb-8">{t('DirectContact.title')}</h3>
                         <div className="flex flex-col gap-6">
@@ -119,12 +119,6 @@ export default function ContactPage() {
                                 onMouseEnter={() => playSound('focus_grain')}
                             >
                                 hello@<br className="hidden md:block"/>genesisconnectstudio.com
-                            </a>
-                            <a 
-                                href="tel:+33776103157" 
-                                className="text-2xl md:text-3xl font-serif text-[#FAF9F6]/80 hover:text-[#FAF9F6] transition-colors duration-300"
-                            >
-                                +33776103157
                             </a>
                         </div>
                     </div>

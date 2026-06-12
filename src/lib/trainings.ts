@@ -48,9 +48,9 @@ export const trainingProtectionNotice: LocalizedText = {
 };
 
 export const trainingSupport: LocalizedText = {
-  fr: "Support : hello@genesisconnectstudio.com | +33776103157",
-  en: "Support: hello@genesisconnectstudio.com | +33776103157",
-  zh: "支持：hello@genesisconnectstudio.com | +33776103157"
+  fr: "Support : hello@genesisconnectstudio.com",
+  en: "Support: hello@genesisconnectstudio.com",
+  zh: "支持：hello@genesisconnectstudio.com"
 };
 
 export const trainings: TrainingItem[] = [
