@@ -35,8 +35,8 @@ export default function Navbar() {
     () => [
       { name: t("academy"), href: externalSites.academy.href, external: true },
       { name: t("market"), href: externalSites.market.href, external: true },
+      { name: t("aid"), href: externalSites.aide.href, external: true },
       { name: t("blog"), href: "/blog" },
-      { name: t("support"), href: "/accompagnement-auto-entrepreneur" },
     ],
     [t]
   );

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { externalSites } from "@/lib/externalSites";
 
 type SupportedLocale = "fr" | "en" | "zh";
 
@@ -17,7 +18,10 @@ const content = {
       "Conseils pour le lancement administratif et commercial",
       "Base de presence digitale coherente et rassurante",
     ],
-    cta: "Prendre contact",
+    cta: "Acceder au site Aide",
+    processTitle: "Processus",
+    processText:
+      "Le site principal ne gere pas de paiement pour cet accompagnement. Si votre candidature est validee sur Genesis Aide, un lien de paiement vous sera envoye par e-mail avec les informations a confirmer avant demarrage.",
   },
   en: {
     title: "Self-employed launch support",
@@ -33,7 +37,10 @@ const content = {
       "Guidance for administrative and commercial launch",
       "A coherent and trustworthy digital presence baseline",
     ],
-    cta: "Get in touch",
+    cta: "Open Aide website",
+    processTitle: "Process",
+    processText:
+      "The main website does not handle payments for this support service. If your application is approved on Genesis Aide, a payment link will be sent by email together with the information to confirm before the mission starts.",
   },
   zh: {
     title: "个体创业支持",
@@ -49,7 +56,10 @@ const content = {
       "提供行政与商业启动建议",
       "建立一致且可信的数字形象基础",
     ],
-    cta: "联系我们",
+    cta: "前往 Aide 网站",
+    processTitle: "流程",
+    processText:
+      "主站不处理此类支持服务的付款。如果你在 Genesis Aide 上的申请被确认，我们会通过电子邮件发送付款链接以及启动前需要确认的信息。",
   },
 } as const;
 
@@ -101,7 +111,9 @@ export default async function AutoEntrepreneurSupportPage({
             {page.intro}
           </p>
           <a
-            href="mailto:hello@genesisconnectstudio.com"
+            href={externalSites.aide.href}
+            target="_blank"
+            rel="noreferrer"
             className="mt-10 inline-flex rounded-full border border-[#D4AF37]/40 px-7 py-4 text-xs uppercase tracking-[0.24em] text-[#D4AF37] transition-colors hover:border-[#D4AF37]/70 hover:bg-[#D4AF37]/8"
           >
             {page.cta}
@@ -121,6 +133,14 @@ export default async function AutoEntrepreneurSupportPage({
                 {point}
               </div>
             ))}
+          </div>
+          <div className="mt-8 rounded-2xl border border-[#FAF9F6]/10 bg-[#2A1C15] px-5 py-4">
+            <p className="text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/42">
+              {page.processTitle}
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-[#FAF9F6]/74">
+              {page.processText}
+            </p>
           </div>
         </div>
       </div>

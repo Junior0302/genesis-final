@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import TrainingCheckoutForm from "@/components/ui/TrainingCheckoutForm";
 import TrainingProtectionNotice from "@/components/ui/TrainingProtectionNotice";
+import { externalSites } from "@/lib/externalSites";
 import {
   formatPrice,
   getLocalizedValue,
@@ -102,43 +102,30 @@ export default async function FormationConditionsPage({
             </p>
           </div>
 
-          <TrainingCheckoutForm
-            slug={training.slug}
-            locale={safeLocale}
-            labels={{
-              proceed: ui.conditions.proceed[safeLocale],
-              processing: ui.conditions.processing[safeLocale],
-              checks: [
-                safeLocale === "fr"
-                  ? "J'ai lu et accepte les conditions d'utilisation."
-                  : safeLocale === "en"
-                  ? "I have read and accepted the terms of use."
-                  : "我已阅读并接受使用条款。",
-                safeLocale === "fr"
-                  ? "Je comprends que les contenus restent la propriete exclusive de Genesis Connect."
-                  : safeLocale === "en"
-                  ? "I understand that the content remains the exclusive property of Genesis Connect."
-                  : "我理解所有内容仍归 Genesis Connect 独家所有。",
-                safeLocale === "fr"
-                  ? "Je comprends que toute revente ou redistribution est strictement interdite."
-                  : safeLocale === "en"
-                  ? "I understand that any resale or redistribution is strictly prohibited."
-                  : "我理解任何转售或再次分发都被严格禁止。"
-              ],
-              errorTitle:
-                safeLocale === "fr"
-                  ? "Paiement indisponible :"
-                  : safeLocale === "en"
-                  ? "Payment unavailable:"
-                  : "支付暂不可用：",
-              errorFallback:
-                safeLocale === "fr"
-                  ? "Impossible de lancer la session Stripe pour le moment."
-                  : safeLocale === "en"
-                  ? "Unable to start the Stripe session right now."
-                  : "暂时无法启动 Stripe 支付会话。"
-            }}
-          />
+          <div className="rounded-[28px] border border-[#FAF9F6]/10 bg-[#2A1C15]/70 p-8 md:p-10">
+            <p className="text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/40">
+              Genesis Academy
+            </p>
+            <p className="mt-5 text-sm leading-relaxed text-[#FAF9F6]/78 md:text-base">
+              {safeLocale === "fr"
+                ? "Cette etape de validation et tout paiement formation sont maintenant geres sur Genesis Academy. Le site principal ne lance plus de session de paiement."
+                : safeLocale === "en"
+                ? "This validation step and all training payments are now handled on Genesis Academy. The main website no longer starts checkout sessions."
+                : "此验证步骤及所有培训支付现已由 Genesis Academy 处理，主站不再发起支付会话。"}
+            </p>
+            <a
+              href={externalSites.academy.href}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-8 inline-flex w-full items-center justify-center rounded-full border border-[#D4AF37]/30 px-6 py-4 text-xs uppercase tracking-[0.24em] text-[#D4AF37] transition-colors hover:border-[#D4AF37]/60 hover:bg-[#D4AF37]/8"
+            >
+              {safeLocale === "fr"
+                ? "Ouvrir Genesis Academy"
+                : safeLocale === "en"
+                ? "Open Genesis Academy"
+                : "打开 Genesis Academy"}
+            </a>
+          </div>
         </div>
       </section>
 

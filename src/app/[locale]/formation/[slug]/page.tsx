@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
-import TransitionLink from "@/components/ui/TransitionLink";
 import TrainingCover from "@/components/ui/TrainingCover";
 import TrainingProtectionNotice from "@/components/ui/TrainingProtectionNotice";
+import { externalSites } from "@/lib/externalSites";
 import {
   formatPrice,
   getLevelLabel,
@@ -56,12 +56,30 @@ export default async function FormationDetailPage({
               </span>
             </div>
 
-            <TransitionLink
-              href={`/formation/${training.slug}/conditions`}
-              className="mt-10 inline-flex items-center justify-center rounded-full border border-[#FAF9F6]/20 px-7 py-4 text-xs uppercase tracking-[0.24em] text-[#FAF9F6] hover:border-[#FAF9F6]/40 hover:bg-[#FAF9F6]/5 transition-colors"
-            >
-              {ui.detail.cta[safeLocale]}
-            </TransitionLink>
+            <div className="mt-10 rounded-[26px] border border-[#FAF9F6]/10 bg-[#251812] p-6">
+              <p className="text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/40">
+                Genesis Academy
+              </p>
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#FAF9F6]/72 md:text-base">
+                {safeLocale === "fr"
+                  ? "L'inscription et le paiement de cette formation sont maintenant centralises sur Genesis Academy. Le site principal reste une vitrine d'information."
+                  : safeLocale === "en"
+                  ? "Enrollment and payment for this training are now centralized on Genesis Academy. The main website remains an informational showcase."
+                  : "该培训的报名与支付现已集中在 Genesis Academy，主站仅保留信息展示。"}
+              </p>
+              <a
+                href={externalSites.academy.href}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-6 inline-flex items-center justify-center rounded-full border border-[#D4AF37]/30 px-7 py-4 text-xs uppercase tracking-[0.24em] text-[#D4AF37] transition-colors hover:border-[#D4AF37]/60 hover:bg-[#D4AF37]/8"
+              >
+                {safeLocale === "fr"
+                  ? "Continuer sur Genesis Academy"
+                  : safeLocale === "en"
+                  ? "Continue on Genesis Academy"
+                  : "前往 Genesis Academy"}
+              </a>
+            </div>
           </div>
 
           <TrainingCover

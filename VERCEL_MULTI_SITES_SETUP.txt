@@ -1,0 +1,53 @@
+CONFIGURATION VERCEL MULTI-SITES
+
+Objectif
+- 1 site principal : www.genesisconnectstudio.com
+- 1 site formations : academy.genesisconnectstudio.com
+- 1 site achats / abonnements : market.genesisconnectstudio.com
+- 1 site aide : aide.genesisconnectstudio.com
+
+Important
+- Ne pas mettre la cle Vercel Connect dans le code du front.
+- Ne pas committer la cle connector ou un token dans GitHub.
+- Le connector Vercel Connect sert aux echanges de tokens entre apps, pas a relier simplement plusieurs sites entre eux.
+- Pour relier les 4 sites, il faut surtout configurer les domaines Vercel et les variables d'environnement.
+
+Variables conseillees sur le site principal
+- NEXT_PUBLIC_GENESIS_ACADEMY_URL=https://academy.genesisconnectstudio.com
+- NEXT_PUBLIC_GENESIS_MARKET_URL=https://market.genesisconnectstudio.com
+- NEXT_PUBLIC_GENESIS_AIDE_URL=https://aide.genesisconnectstudio.com
+
+Repartition des paiements
+- Site principal : aucun paiement direct
+- Genesis Academy : paiements lies aux formations
+- Genesis Market : abonnements, achats et offres commerciales
+- Genesis Aide : aucun paiement direct sur site ; si le dossier est valide, le lien de paiement est envoye par e-mail
+
+Variables conseillees sur les mini-sites
+- NEXT_PUBLIC_MAIN_SITE_URL=https://www.genesisconnectstudio.com/fr
+- NEXT_PUBLIC_GENESIS_ACADEMY_URL=https://academy.genesisconnectstudio.com
+- NEXT_PUBLIC_GENESIS_MARKET_URL=https://market.genesisconnectstudio.com
+- NEXT_PUBLIC_GENESIS_AIDE_URL=https://aide.genesisconnectstudio.com
+
+En local pour les tests
+- Site principal : http://localhost:3000/fr
+- Genesis Academy : http://localhost:3001
+- Genesis Market : http://localhost:3002
+- Genesis Aide : http://localhost:3003
+
+Mapping Vercel conseille
+- Repo principal -> projet Vercel `genesisconnect`
+- Repo Academy -> projet Vercel dedie
+- Repo Market -> projet Vercel dedie
+- Repo Aide -> projet Vercel dedie
+
+Sous-domaines a brancher
+- www.genesisconnectstudio.com -> projet principal
+- academy.genesisconnectstudio.com -> projet Academy
+- market.genesisconnectstudio.com -> projet Market
+- aide.genesisconnectstudio.com -> projet Aide
+
+Note sur Vercel Connect
+- Le snippet `getToken()` ne doit etre utilise que si tu connectes un service externe qui a besoin d'un token Vercel Connect.
+- Pour la navigation entre les sites, ce n'est pas necessaire.
+- Pour ce besoin, les liens de navigation doivent simplement lire les bonnes URLs via les variables NEXT_PUBLIC.

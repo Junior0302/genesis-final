@@ -2,7 +2,15 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Geist_Mono, Geist } from "next/font/google";
 import "../globals.css";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import CustomCursor from "@/components/ui/CustomCursor";
+import SmoothScroll from "@/components/ui/SmoothScroll";
+import ScrollControls from "@/components/ui/ScrollControls";
 import { defaultSEO } from "@/lib/seo";
+import { TransitionProvider } from "@/context/TransitionContext";
+import { SoundProvider } from "@/context/SoundContext";
+import SceneWrapper from "@/components/three/SceneWrapper";
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages, getTranslations} from 'next-intl/server';
 import {notFound} from 'next/navigation';
@@ -92,11 +100,20 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body
-        data-maintenance="true"
-        className={`${surgena.variable} ${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen`}
+        className={`${surgena.variable} ${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground flex min-h-screen flex-col`}
       >
         <NextIntlClientProvider messages={messages}>
-          <main>{children}</main>
+          <SoundProvider>
+            <TransitionProvider>
+              <SceneWrapper />
+              <SmoothScroll />
+              <ScrollControls />
+              <CustomCursor />
+              <Navbar />
+              <main className="content-offset flex-grow">{children}</main>
+              <Footer />
+            </TransitionProvider>
+          </SoundProvider>
         </NextIntlClientProvider>
       </body>
     </html>
