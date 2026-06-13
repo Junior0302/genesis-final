@@ -35,6 +35,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const menuTimelineRef = useRef<gsap.core.Timeline | null>(null);
+  const previousPathnameRef = useRef(pathname);
 
   const switchLocale = (newLocale: string) => {
     const path = pathname === "/" ? "" : pathname;
@@ -42,11 +43,11 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    if (isOpen) {
-      const timer = setTimeout(() => setIsOpen(false), 0);
-      return () => clearTimeout(timer);
+    if (previousPathnameRef.current !== pathname) {
+      setIsOpen(false);
+      previousPathnameRef.current = pathname;
     }
-  }, [pathname, isOpen]);
+  }, [pathname]);
 
   useEffect(() => {
     const r = router as unknown as { prefetch?: (href: string) => void | Promise<void> };
@@ -65,28 +66,6 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const closeMenu = () => {
-    if (!isOpen) return Promise.resolve();
-
-    return new Promise<void>((resolve) => {
-      const tl = menuTimelineRef.current;
-      if (!tl) {
-        setIsOpen(false);
-        resolve();
-        return;
-      }
-
-      const previous = tl.eventCallback("onReverseComplete");
-      tl.eventCallback("onReverseComplete", () => {
-        if (typeof previous === "function") previous();
-        tl.eventCallback("onReverseComplete", previous);
-        resolve();
-      });
-
-      setIsOpen(false);
-    });
-  };
 
   useGSAP(() => {
     gsap.set(".mobile-menu", { opacity: 0, pointerEvents: "none" });
@@ -125,7 +104,7 @@ export default function Navbar() {
       tl.kill();
       menuTimelineRef.current = null;
     };
-  }, []);
+  }, [locale, pathname]);
 
   useEffect(() => {
     const tl = menuTimelineRef.current;
@@ -135,13 +114,24 @@ export default function Navbar() {
     } else {
       tl.reverse();
     }
+  }, [isOpen, locale, pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isOpen]);
+
+  const handleMenuToggle = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <>
       <header
         ref={navRef}
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) border-b content-offset ${
+        className={`fixed top-0 left-0 w-full z-[80] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) border-b content-offset ${
           isScrolled
             ? "py-4 px-6 md:px-12 bg-[#2A1C15]/60 backdrop-blur-2xl backdrop-saturate-150 border-[#FAF9F6]/5 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]"
             : "py-6 px-6 md:py-8 md:px-12 bg-transparent border-transparent"
@@ -163,7 +153,7 @@ export default function Navbar() {
             isOpen ? "text-[#FAF9F6] opacity-100" : "text-[#FAF9F6] opacity-100"
           }`}
           aria-label="Genesis Connect Home"
-          beforeNavigate={closeMenu}
+          onClick={() => setIsOpen(false)}
         >
           <Logo className="transition-all duration-500 text-xl" />
         </TransitionLink>
@@ -214,7 +204,7 @@ export default function Navbar() {
           className={`md:hidden pointer-events-auto transition-all duration-300 z-50 relative group p-2 -mr-2 ${
             isOpen ? "text-[#FAF9F6]" : "text-[#FAF9F6]"
           }`}
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={handleMenuToggle}
           aria-label="Toggle menu"
         >
           <div className="relative w-8 h-8 flex items-center justify-center">
@@ -236,7 +226,12 @@ export default function Navbar() {
         </button>
       </header>
 
-      <div className="mobile-menu fixed inset-0 z-40 flex flex-col items-center justify-center opacity-0 pointer-events-none">
+      <div
+        className={`mobile-menu fixed inset-0 z-[70] flex flex-col items-center justify-center transition-opacity duration-300 ${
+          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        aria-hidden={!isOpen}
+      >
         <div className="mobile-menu-bg absolute inset-0 bg-[#2A1C15] w-full h-full">
           <div
             className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay"
@@ -253,7 +248,7 @@ export default function Navbar() {
               key={item.href}
               href={item.href}
               className="mobile-link group relative text-[#FAF9F6] text-4xl md:text-5xl font-serif tracking-tight opacity-0 hover:text-[#FAF9F6]/80 transition-colors"
-              beforeNavigate={closeMenu}
+              onClick={() => setIsOpen(false)}
             >
               <span className="relative z-10">{item.name}</span>
               <span className="absolute left-0 top-1/2 w-full h-[1px] bg-[#FAF9F6]/30 -translate-y-1/2 scale-x-0 group-hover:scale-x-110 transition-transform duration-500 ease-expo" />

@@ -8,7 +8,7 @@ export const MODEL_CONFIG = {
   
   // Mobile Settings
   scaleMobile: 8.5,      // Significantly reduced for mobile
-  positionMobile: [0, -15, 0], // Adjusted for mobile scale
+  positionMobile: [0, -11, 0], // Raised slightly for better mobile framing
   
   rotation: [0, 0, 0],   
 } as const;

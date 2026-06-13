@@ -12,17 +12,47 @@ export default function SceneWrapper() {
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
-    const update = () => setEnabled(mq.matches);
+    const reducedMotionMq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    // #region debug-point C:scene-wrapper-gate
+    const reportDebug = (hypothesisId: string, msg: string, extra?: Record<string, unknown>) => {
+      void fetch(process.env.NEXT_PUBLIC_DEBUG_SERVER_URL ?? "http://127.0.0.1:7777/event", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sessionId: "mobile-nav-3d",
+          runId: "post-fix",
+          hypothesisId,
+          msg,
+          extra,
+        }),
+      }).catch(() => {});
+    };
+    // #endregion debug-point C:scene-wrapper-gate
+    const update = () => {
+      const nextEnabled = !reducedMotionMq.matches;
+      setEnabled(nextEnabled);
+      reportDebug("C", "[DEBUG] scene wrapper media gate evaluated", {
+        enabled: nextEnabled,
+        minWidthMatch: window.innerWidth >= 768,
+        reducedMotion: reducedMotionMq.matches,
+        width: window.innerWidth,
+        height: window.innerHeight,
+        userAgent: navigator.userAgent,
+      });
+    };
     update();
 
-    if (typeof mq.addEventListener === "function") {
-      mq.addEventListener("change", update);
-      return () => mq.removeEventListener("change", update);
+    if (typeof reducedMotionMq.addEventListener === "function") {
+      reducedMotionMq.addEventListener("change", update);
+      return () => {
+        reducedMotionMq.removeEventListener("change", update);
+      };
     }
 
-    mq.addListener(update);
-    return () => mq.removeListener(update);
+    reducedMotionMq.addListener(update);
+    return () => {
+      reducedMotionMq.removeListener(update);
+    };
   }, []);
 
   if (!enabled) {

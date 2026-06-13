@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { Link as IntlLink } from "@/i18n/routing";
+import { externalSites } from "@/lib/externalSites";
 
 type Locale = "fr" | "en" | "zh";
 
@@ -22,30 +24,34 @@ export default async function OtherPage({
       cards: [
         {
           title: "Genesis Academy",
-          text: "Retrouver les formations et contenus d'apprentissage directement sur le site principal.",
-          cta: "Voir les formations",
-          href: "/formation",
-          status: "Interne",
+          text: "La plateforme formation dispose maintenant de son propre domaine public.",
+          cta: "Ouvrir Academy",
+          href: externalSites.academy.href,
+          external: true,
+          status: "En ligne",
         },
         {
           title: "Genesis Market",
-          text: "Les offres, abonnements et services commerciaux restent centralises ici pour le moment.",
-          cta: "Voir les offres",
-          href: "/abonnement",
-          status: "Interne",
+          text: "Les offres et prestations sont maintenant reliees a leur domaine dedie.",
+          cta: "Ouvrir Market",
+          href: externalSites.market.href,
+          external: true,
+          status: "En ligne",
         },
         {
-          title: "Genesis Aide",
-          text: "L'accompagnement et l'aide a la structuration sont disponibles sur le domaine principal.",
-          cta: "Voir l'accompagnement",
-          href: "/accompagnement-auto-entrepreneur",
-          status: "Interne",
+          title: "Genesis Help",
+          text: "L'espace d'accompagnement public est maintenant disponible sur son domaine dedie.",
+          cta: "Ouvrir Help",
+          href: externalSites.aide.href,
+          external: true,
+          status: "En ligne",
         },
         {
           title: "Blog",
           text: "Retrouver les contenus editoriaux et analyses du studio.",
           cta: "Voir le blog",
           href: "/blog",
+          external: false,
           status: "Interne",
         },
       ],
@@ -59,30 +65,34 @@ export default async function OtherPage({
       cards: [
         {
           title: "Genesis Academy",
-          text: "Find the learning offers and training content directly on the main website.",
-          cta: "View training",
-          href: "/formation",
-          status: "Internal",
+          text: "The training platform now has its own public domain.",
+          cta: "Open Academy",
+          href: externalSites.academy.href,
+          external: true,
+          status: "Live",
         },
         {
           title: "Genesis Market",
-          text: "Offers, subscriptions and commercial services stay centralized here for now.",
-          cta: "View offers",
-          href: "/abonnement",
-          status: "Internal",
+          text: "Offers and services are now connected to their dedicated public domain.",
+          cta: "Open Market",
+          href: externalSites.market.href,
+          external: true,
+          status: "Live",
         },
         {
-          title: "Genesis Aide",
-          text: "Support and business guidance remain available on the main domain for now.",
-          cta: "View support",
-          href: "/accompagnement-auto-entrepreneur",
-          status: "Internal",
+          title: "Genesis Help",
+          text: "The support space is now available on its own public domain.",
+          cta: "Open Help",
+          href: externalSites.aide.href,
+          external: true,
+          status: "Live",
         },
         {
           title: "Blog",
           text: "Explore the studio editorial content and insights.",
           cta: "Open blog",
           href: "/blog",
+          external: false,
           status: "Internal",
         },
       ],
@@ -96,30 +106,34 @@ export default async function OtherPage({
       cards: [
         {
           title: "Genesis Academy",
-          text: "培训与学习内容暂时直接放在主站内。",
-          cta: "查看培训",
-          href: "/formation",
-          status: "站内",
+          text: "培训平台现在已经拥有独立公开域名。",
+          cta: "打开 Academy",
+          href: externalSites.academy.href,
+          external: true,
+          status: "已上线",
         },
         {
           title: "Genesis Market",
-          text: "产品、订阅和商业服务目前统一保留在主域名内。",
-          cta: "查看服务",
-          href: "/abonnement",
-          status: "站内",
+          text: "产品与服务现在已经连接到独立公开域名。",
+          cta: "打开 Market",
+          href: externalSites.market.href,
+          external: true,
+          status: "已上线",
         },
         {
-          title: "Genesis Aide",
-          text: "创业支持与陪跑服务目前也保留在主站内。",
-          cta: "查看支持",
-          href: "/accompagnement-auto-entrepreneur",
-          status: "站内",
+          title: "Genesis Help",
+          text: "创业支持空间现在也有自己的公开域名。",
+          cta: "打开 Help",
+          href: externalSites.aide.href,
+          external: true,
+          status: "已上线",
         },
         {
           title: "Blog",
           text: "查看工作室的内容与分析。",
           cta: "打开博客",
           href: "/blog",
+          external: false,
           status: "站内",
         },
       ],
@@ -167,6 +181,20 @@ export default async function OtherPage({
                 </div>
               </div>
             );
+
+            if (card.external) {
+              return (
+                <Link
+                  key={card.title}
+                  href={card.href}
+                  className="block"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {cardBody}
+                </Link>
+              );
+            }
 
             return (
               <IntlLink key={card.title} href={card.href} className="block">
