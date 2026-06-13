@@ -92,6 +92,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body
+        data-maintenance="true"
         className={`${surgena.variable} ${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen`}
       >
         <NextIntlClientProvider messages={messages}>

@@ -1,5 +1,3 @@
-import { externalSites } from "@/lib/externalSites";
-
 export default async function Home({
   params,
 }: {
@@ -12,48 +10,40 @@ export default async function Home({
       eyebrow: "Genesis Connect Studio",
       title: "Site en cours de developpement",
       subtitle:
-        "Nous preparons un ecosysteme plus clair avec un site principal allege, Genesis Academy pour les formations et Genesis Market pour les offres, achats et abonnements.",
+        "Nous preparons actuellement une mise a jour premium du site. L'experience complete sera bientot de retour.",
       availability: "Lancement prochain",
       contactLabel: "Contact",
       contactValue: "hello@genesisconnectstudio.com",
       contactCta: "Nous ecrire",
-      academyCta: "Genesis Academy",
-      marketCta: "Genesis Market",
     },
     en: {
       eyebrow: "Genesis Connect Studio",
       title: "Website under development",
       subtitle:
-        "We are building a clearer ecosystem with a lighter flagship site, Genesis Academy for training and Genesis Market for offers, purchases and subscriptions.",
+        "We are currently preparing a premium update of the website. The full experience will be back soon.",
       availability: "Launching soon",
       contactLabel: "Contact",
       contactValue: "hello@genesisconnectstudio.com",
       contactCta: "Email us",
-      academyCta: "Genesis Academy",
-      marketCta: "Genesis Market",
     },
     zh: {
       eyebrow: "Genesis Connect Studio",
       title: "网站开发中",
-      subtitle: "我们正在构建更清晰的生态体系，包括主站、Genesis Academy 培训站，以及 Genesis Market 购买与订阅站。",
+      subtitle: "我们正在准备网站的高端更新版本，完整体验即将回归。",
       availability: "即将上线",
       contactLabel: "联系",
       contactValue: "hello@genesisconnectstudio.com",
       contactCta: "发送邮件",
-      academyCta: "Genesis Academy",
-      marketCta: "Genesis Market",
     },
   }[locale as "fr" | "en" | "zh"] ?? {
     eyebrow: "Genesis Connect Studio",
     title: "Site en cours de developpement",
     subtitle:
-      "Nous preparons un ecosysteme plus clair avec un site principal allege, Genesis Academy pour les formations et Genesis Market pour les offres, achats et abonnements.",
+      "Nous preparons actuellement une mise a jour premium du site. L'experience complete sera bientot de retour.",
     availability: "Lancement prochain",
     contactLabel: "Contact",
     contactValue: "hello@genesisconnectstudio.com",
     contactCta: "Nous ecrire",
-    academyCta: "Genesis Academy",
-    marketCta: "Genesis Market",
   };
 
   return (
@@ -81,22 +71,6 @@ export default async function Home({
               >
                 {content.contactCta}
               </a>
-                    <a
-                      href={externalSites.academy.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center justify-center rounded-full border border-[#FAF9F6]/10 px-7 py-4 text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/72 transition-colors hover:border-[#FAF9F6]/30 hover:text-[#FAF9F6]"
-                    >
-                      {content.academyCta}
-                    </a>
-                    <a
-                      href={externalSites.market.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center justify-center rounded-full border border-[#D4AF37]/30 px-7 py-4 text-xs uppercase tracking-[0.24em] text-[#D4AF37] transition-colors hover:border-[#D4AF37]/60 hover:bg-[#D4AF37]/8"
-                    >
-                      {content.marketCta}
-                    </a>
             </div>
           </div>
 

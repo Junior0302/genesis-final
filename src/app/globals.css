@@ -118,6 +118,18 @@ a, button, input, textarea, [role="button"] {
   cursor: none; /* Ensure interactive elements don't show cursor */
 }
 
+body[data-maintenance="true"] {
+  cursor: auto;
+}
+
+body[data-maintenance="true"] a,
+body[data-maintenance="true"] button,
+body[data-maintenance="true"] input,
+body[data-maintenance="true"] textarea,
+body[data-maintenance="true"] [role="button"] {
+  cursor: auto;
+}
+
 ::selection {
   background: rgba(250, 249, 246, 0.9); /* #FAF9F6 */
   color: #2A1C15;
