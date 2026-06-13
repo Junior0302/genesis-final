@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# local multi-sites (pushed to their own repos)
+/sites/
+
 # production
 /build
 

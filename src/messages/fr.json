@@ -303,12 +303,14 @@
   },
   "Navigation": {
     "home": "Accueil",
-    "formation": "Formation",
-    "subscription": "Abonnement",
     "work": "Projets",
-    "studio": "Studio",
     "expertise": "Expertise",
-    "contact": "Contact"
+    "contact": "Contact",
+    "other": "Autre",
+    "academy": "Genesis Academy",
+    "market": "Genesis Market",
+    "blog": "Blog",
+    "support": "Auto-entrepreneur"
   },
   "Footer": {
     "location": "Localisation",

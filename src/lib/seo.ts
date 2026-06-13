@@ -1,23 +1,37 @@
 import { Metadata } from "next";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_APP_URL ?? "https://genesisconnect.studio";
+
 export const defaultSEO: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Genesis Connect | From Idea to Impact",
     template: "%s | Genesis Connect",
   },
-  description: "Genesis Connect is a premium digital studio specializing in immersive web experiences, high-end websites, and digital performance.",
-  keywords: ["Digital Studio", "Web Design", "3D Web", "Immersive Experience", "Luxury Web Design", "Genesis Connect"],
+  description:
+    "Genesis Connect is a premium digital studio focused on high-end websites, digital strategy, SEO structure, premium branding and conversion-driven online experiences.",
+  keywords: [
+    "Digital Studio",
+    "Premium Web Design",
+    "SEO Strategy",
+    "Brand Positioning",
+    "Conversion Design",
+    "Luxury Web Design",
+    "Genesis Connect",
+  ],
   authors: [{ name: "Genesis Connect" }],
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://genesisconnect.studio",
+    url: siteUrl,
     siteName: "Genesis Connect",
     title: "Genesis Connect | From Idea to Impact",
-    description: "Genesis Connect is a premium digital studio specializing in immersive web experiences, high-end websites, and digital performance.",
+    description:
+      "Genesis Connect is a premium digital studio focused on high-end websites, digital strategy, SEO structure, premium branding and conversion-driven online experiences.",
     images: [
       {
-        url: "https://genesisconnect.studio/og-image.jpg",
+        url: `${siteUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: "Genesis Connect Studio",
@@ -27,8 +41,9 @@ export const defaultSEO: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Genesis Connect | From Idea to Impact",
-    description: "Genesis Connect is a premium digital studio specializing in immersive web experiences, high-end websites, and digital performance.",
-    images: ["https://genesisconnect.studio/og-image.jpg"],
+    description:
+      "Genesis Connect is a premium digital studio focused on high-end websites, digital strategy, SEO structure, premium branding and conversion-driven online experiences.",
+    images: [`${siteUrl}/og-image.jpg`],
   },
   robots: {
     index: true,

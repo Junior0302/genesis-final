@@ -76,6 +76,14 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
         return;
     }
 
+    // Mobile gets straight to the experience to avoid blocking the main CTA.
+    if (isTouchDevice) {
+        document.body.style.overflow = '';
+        setAssetsLoaded(true);
+        setCurrentState('EXPERIENCE_RUNNING');
+        return;
+    }
+
     document.body.style.overflow = 'hidden';
 
     // Strict Text Requirement
@@ -92,7 +100,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
 
     return () => clearTimeout(timer);
 
-  }, []);
+  }, [isTouchDevice, pathname]);
 
   // Bypass asset loading on non-home pages
   useEffect(() => {
