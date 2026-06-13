@@ -29,6 +29,17 @@ Variables conseillees sur les mini-sites
 - NEXT_PUBLIC_GENESIS_MARKET_URL=https://market.genesisconnectstudio.com
 - NEXT_PUBLIC_GENESIS_AIDE_URL=https://aide.genesisconnectstudio.com
 
+Variables de domaine par mini-site
+- Academy : NEXT_PUBLIC_SITE_URL=https://academy.genesisconnectstudio.com
+- Market : NEXT_PUBLIC_SITE_URL=https://market.genesisconnectstudio.com
+- Aide : NEXT_PUBLIC_SITE_URL=https://aide.genesisconnectstudio.com
+
+Variables conseillees pour Genesis Aide
+- POSTGRES_URL=...
+- POSTGRES_PRISMA_URL=...
+- DATABASE_URL=...
+- Ne jamais exposer ces variables en NEXT_PUBLIC
+
 En local pour les tests
 - Site principal : http://localhost:3000/fr
 - Genesis Academy : http://localhost:3001
@@ -46,6 +57,13 @@ Sous-domaines a brancher
 - academy.genesisconnectstudio.com -> projet Academy
 - market.genesisconnectstudio.com -> projet Market
 - aide.genesisconnectstudio.com -> projet Aide
+
+Verification avant mise en ligne
+- Chaque projet doit avoir son domaine Vercel propre
+- Chaque mini-site doit garder un fond clair distinct du site principal
+- Academy gere les formations et leurs futurs paiements
+- Market gere les produits, abonnements et offres commerciales
+- Aide gere uniquement la candidature et l'etude du besoin, sans paiement direct sur site
 
 Note sur Vercel Connect
 - Le snippet `getToken()` ne doit etre utilise que si tu connectes un service externe qui a besoin d'un token Vercel Connect.
