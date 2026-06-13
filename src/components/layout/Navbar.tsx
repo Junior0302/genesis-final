@@ -3,17 +3,15 @@
 import { usePathname, useRouter } from "@/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
 import { useMemo, useState, useEffect, useRef } from "react";
-import { ChevronDown, Menu as MenuIcon, X } from "lucide-react";
+import { Menu as MenuIcon, X } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import TransitionLink from "@/components/ui/TransitionLink";
 import Logo from "@/components/ui/Logo";
-import { externalSites } from "@/lib/externalSites";
 
 type MenuItem = {
   name: string;
   href: string;
-  external?: boolean;
 };
 
 export default function Navbar() {
@@ -24,25 +22,16 @@ export default function Navbar() {
 
   const navItems = useMemo<MenuItem[]>(
     () => [
+      { name: t("studio"), href: "/studio" },
       { name: t("expertise"), href: "/expertise" },
       { name: t("work"), href: "/work" },
       { name: t("contact"), href: "/contact" },
-    ],
-    [t]
-  );
-
-  const otherItems = useMemo<MenuItem[]>(
-    () => [
-      { name: t("academy"), href: externalSites.academy.href, external: true },
-      { name: t("market"), href: externalSites.market.href, external: true },
-      { name: t("aid"), href: externalSites.aide.href, external: true },
-      { name: t("blog"), href: "/blog" },
+      { name: t("other"), href: "/other" },
     ],
     [t]
   );
 
   const [isOpen, setIsOpen] = useState(false);
-  const [isOtherOpen, setIsOtherOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const menuTimelineRef = useRef<gsap.core.Timeline | null>(null);
@@ -63,12 +52,10 @@ export default function Navbar() {
     const r = router as unknown as { prefetch?: (href: string) => void | Promise<void> };
     if (typeof r.prefetch !== "function") return;
 
-    for (const item of [...navItems, ...otherItems]) {
-      if (!item.external) {
-        void r.prefetch(item.href);
-      }
+    for (const item of navItems) {
+      void r.prefetch(item.href);
     }
-  }, [navItems, otherItems, router]);
+  }, [navItems, router]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -86,7 +73,6 @@ export default function Navbar() {
       const tl = menuTimelineRef.current;
       if (!tl) {
         setIsOpen(false);
-        setIsOtherOpen(false);
         resolve();
         return;
       }
@@ -99,7 +85,6 @@ export default function Navbar() {
       });
 
       setIsOpen(false);
-      setIsOtherOpen(false);
     });
   };
 
@@ -152,65 +137,6 @@ export default function Navbar() {
     }
   }, [isOpen]);
 
-  const isOtherActive = pathname === "/blog" || pathname === "/accompagnement-auto-entrepreneur";
-
-  const renderDesktopItem = (item: MenuItem) => {
-    if (item.external) {
-      return (
-        <a
-          key={item.href}
-          href={item.href}
-          target="_blank"
-          rel="noreferrer"
-          className="block rounded-2xl border border-[#FAF9F6]/10 bg-[#241710]/96 px-4 py-3 text-sm text-[#FAF9F6]/78 transition-colors hover:border-[#FAF9F6]/25 hover:text-[#FAF9F6]"
-        >
-          {item.name}
-        </a>
-      );
-    }
-
-    return (
-      <TransitionLink
-        key={item.href}
-        href={item.href}
-        className="block rounded-2xl border border-[#FAF9F6]/10 bg-[#241710]/96 px-4 py-3 text-sm text-[#FAF9F6]/78 transition-colors hover:border-[#FAF9F6]/25 hover:text-[#FAF9F6]"
-      >
-        {item.name}
-      </TransitionLink>
-    );
-  };
-
-  const renderMobileItem = (item: MenuItem) => {
-    if (item.external) {
-      return (
-        <a
-          key={item.href}
-          href={item.href}
-          target="_blank"
-          rel="noreferrer"
-          onClick={() => {
-            setIsOtherOpen(false);
-            setIsOpen(false);
-          }}
-          className="mobile-link text-lg text-[#FAF9F6]/72 transition-colors hover:text-[#FAF9F6]"
-        >
-          {item.name}
-        </a>
-      );
-    }
-
-    return (
-      <TransitionLink
-        key={item.href}
-        href={item.href}
-        beforeNavigate={closeMenu}
-        className="mobile-link text-lg text-[#FAF9F6]/72 transition-colors hover:text-[#FAF9F6]"
-      >
-        {item.name}
-      </TransitionLink>
-    );
-  };
-
   return (
     <>
       <header
@@ -221,7 +147,7 @@ export default function Navbar() {
             : "py-6 px-6 md:py-8 md:px-12 bg-transparent border-transparent"
         } flex justify-between items-center pointer-events-none`}
       >
-        {isScrolled ? (
+        {isScrolled && (
           <div
             className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay z-[-1]"
             style={{
@@ -229,11 +155,13 @@ export default function Navbar() {
                 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
             }}
           />
-        ) : null}
+        )}
 
         <TransitionLink
           href="/"
-          className="md:hidden nav-logo pointer-events-auto transition-all duration-300 relative z-[60] block text-[#FAF9F6] opacity-100"
+          className={`md:hidden nav-logo pointer-events-auto transition-all duration-300 relative z-[60] block ${
+            isOpen ? "text-[#FAF9F6] opacity-100" : "text-[#FAF9F6] opacity-100"
+          }`}
           aria-label="Genesis Connect Home"
           beforeNavigate={closeMenu}
         >
@@ -267,38 +195,6 @@ export default function Navbar() {
             </TransitionLink>
           ))}
 
-          <div
-            className="relative"
-            onMouseEnter={() => setIsOtherOpen(true)}
-            onMouseLeave={() => setIsOtherOpen(false)}
-          >
-            <button
-              type="button"
-              onClick={() => setIsOtherOpen((prev) => !prev)}
-              className={`group relative inline-flex items-center gap-2 text-[#FAF9F6] text-[0.8rem] tracking-[0.2em] uppercase transition-all duration-300 ease-out ${
-                isOtherActive || isOtherOpen ? "opacity-100 font-medium" : "opacity-70 hover:opacity-100"
-              }`}
-            >
-              {t("other")}
-              <ChevronDown className={`h-4 w-4 transition-transform ${isOtherOpen ? "rotate-180" : ""}`} strokeWidth={1.5} />
-              <span
-                className={`absolute -bottom-2 left-0 h-[1px] bg-[#FAF9F6] origin-left transform transition-transform duration-300 ease-out ${
-                  isOtherActive || isOtherOpen ? "w-full scale-x-100" : "w-full scale-x-0 group-hover:scale-x-100"
-                }`}
-              />
-            </button>
-
-            <div
-              className={`absolute right-0 top-full mt-5 w-72 rounded-[28px] border border-[#FAF9F6]/10 bg-[#1E130E]/95 p-3 shadow-[0_24px_80px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 ${
-                isOtherOpen
-                  ? "pointer-events-auto translate-y-0 opacity-100"
-                  : "pointer-events-none -translate-y-2 opacity-0"
-              }`}
-            >
-              <div className="grid gap-2">{otherItems.map(renderDesktopItem)}</div>
-            </div>
-          </div>
-
           <div className="flex gap-3 border-l border-[#FAF9F6]/20 pl-6 ml-2">
             {["fr", "en", "zh"].map((l) => (
               <button
@@ -315,8 +211,10 @@ export default function Navbar() {
         </nav>
 
         <button
-          className="md:hidden pointer-events-auto transition-all duration-300 z-50 relative group p-2 -mr-2 text-[#FAF9F6]"
-          onClick={() => setIsOpen((prev) => !prev)}
+          className={`md:hidden pointer-events-auto transition-all duration-300 z-50 relative group p-2 -mr-2 ${
+            isOpen ? "text-[#FAF9F6]" : "text-[#FAF9F6]"
+          }`}
+          onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
           <div className="relative w-8 h-8 flex items-center justify-center">
@@ -349,7 +247,7 @@ export default function Navbar() {
           />
         </div>
 
-        <nav className="relative z-10 flex flex-col items-center gap-10 px-8">
+        <nav className="relative z-10 flex flex-col items-center gap-12">
           {navItems.map((item) => (
             <TransitionLink
               key={item.href}
@@ -362,31 +260,15 @@ export default function Navbar() {
             </TransitionLink>
           ))}
 
-          <div className="mobile-link flex w-full max-w-sm flex-col items-center gap-4 opacity-0">
-            <button
-              type="button"
-              onClick={() => setIsOtherOpen((prev) => !prev)}
-              className="inline-flex items-center gap-3 text-4xl font-serif tracking-tight text-[#FAF9F6]"
-            >
-              {t("other")}
-              <ChevronDown className={`h-6 w-6 transition-transform ${isOtherOpen ? "rotate-180" : ""}`} strokeWidth={1.5} />
-            </button>
-            <div
-              className={`w-full rounded-[24px] border border-[#FAF9F6]/10 bg-[#241710]/85 px-6 py-5 transition-all duration-300 ${
-                isOtherOpen ? "max-h-[420px] opacity-100" : "max-h-0 overflow-hidden border-transparent px-6 py-0 opacity-0"
-              }`}
-            >
-              <div className="flex flex-col gap-4 items-center">{otherItems.map(renderMobileItem)}</div>
-            </div>
-          </div>
-
           <div className="flex gap-6 mt-4">
             {["fr", "en", "zh"].map((l) => (
               <button
                 key={l}
                 onClick={() => switchLocale(l)}
                 className={`text-sm uppercase tracking-widest transition-colors ${
-                  locale === l ? "text-[#FAF9F6] font-bold border-b border-[#FAF9F6]" : "text-[#FAF9F6]/50 hover:text-[#FAF9F6]"
+                  locale === l
+                    ? "text-[#FAF9F6] font-bold border-b border-[#FAF9F6]"
+                    : "text-[#FAF9F6]/50 hover:text-[#FAF9F6]"
                 }`}
               >
                 {l === "zh" ? "中文" : l}
@@ -398,7 +280,7 @@ export default function Navbar() {
         <div className="mobile-link absolute bottom-12 flex flex-col items-center gap-2 text-[#FAF9F6]/40 text-[10px] tracking-[0.3em] uppercase opacity-0 font-medium">
           <span>Genesis Connect</span>
           <span className="w-8 h-[1px] bg-[#FAF9F6]/20" />
-          <span>© 2026</span>
+          <span>© 2024</span>
         </div>
       </div>
     </>

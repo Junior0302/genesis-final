@@ -76,8 +76,12 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
         return;
     }
 
-    // Mobile gets straight to the experience to avoid blocking the main CTA.
-    if (isTouchDevice) {
+    // Mobile and small viewports go straight to the experience.
+    const shouldSkipIntro =
+      isTouchDevice ||
+      (typeof window !== "undefined" && window.innerWidth < 768);
+
+    if (shouldSkipIntro) {
         document.body.style.overflow = '';
         setAssetsLoaded(true);
         setCurrentState('EXPERIENCE_RUNNING');

@@ -303,6 +303,7 @@
   },
   "Navigation": {
     "home": "Accueil",
+    "studio": "Studio",
     "work": "Projets",
     "expertise": "Expertise",
     "contact": "Contact",

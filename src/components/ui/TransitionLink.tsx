@@ -2,7 +2,7 @@
 
 import { Link } from "@/i18n/routing";
 import { ReactNode, ComponentProps } from "react";
-import { useTransition } from "@/context/TransitionContext";
+import { useRouter } from "@/i18n/routing";
 
 type IntlLinkProps = ComponentProps<typeof Link>;
 
@@ -21,20 +21,20 @@ export default function TransitionLink({
   beforeNavigate,
   ...props 
 }: TransitionLinkProps) {
-  const { navigate } = useTransition();
+  const router = useRouter();
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    // Prevent default next/link behavior
-    e.preventDefault();
-    
-    // Call any optional onClick handler passed as prop
     if (onClick) onClick(e);
 
+    if (!beforeNavigate) {
+      return;
+    }
+
+    e.preventDefault();
+
     void (async () => {
-      if (beforeNavigate) {
-        await beforeNavigate();
-      }
-      navigate(href.toString());
+      await beforeNavigate();
+      router.push(href.toString());
     })();
   };
 
