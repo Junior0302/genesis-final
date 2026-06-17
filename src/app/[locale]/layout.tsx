@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Geist_Mono, Geist } from "next/font/google";
+import Script from "next/script";
 import "../globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CustomCursor from "@/components/ui/CustomCursor";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import ScrollControls from "@/components/ui/ScrollControls";
-import { defaultSEO } from "@/lib/seo";
+import StructuredData from "@/components/seo/StructuredData";
+import { defaultSEO, pageSeo, type SeoLocale } from "@/lib/seo";
 import { TransitionProvider } from "@/context/TransitionContext";
 import { SoundProvider } from "@/context/SoundContext";
 import SceneWrapper from "@/components/three/SceneWrapper";
@@ -59,21 +61,25 @@ export async function generateMetadata({
   params: Promise<{locale: string}>;
 }): Promise<Metadata> {
   const {locale} = await params;
-  const t = await getTranslations({locale, namespace: 'Metadata'});
+  const safeLocale = (["fr", "en", "zh"].includes(locale) ? locale : "fr") as SeoLocale;
+  const localizedHomeSeo = pageSeo["/"][safeLocale];
+  const t = await getTranslations({locale, namespace: "Metadata"});
 
   return {
+    ...defaultSEO,
     title: t('title'),
     description: t('description'),
+    keywords: defaultSEO.keywords,
     openGraph: {
       ...defaultSEO.openGraph,
-      title: t('title'),
-      description: t('description'),
+      title: localizedHomeSeo.title,
+      description: localizedHomeSeo.description,
       locale: locale,
     },
     twitter: {
       ...defaultSEO.twitter,
-      title: t('title'),
-      description: t('description'),
+      title: localizedHomeSeo.title,
+      description: localizedHomeSeo.description,
     },
   };
 }
@@ -90,6 +96,7 @@ export default async function LocaleLayout({
   params: Promise<{locale: string}>;
 }) {
   const {locale} = await params;
+  const gaId = "G-01QV0Z58V8";
 
   if (!routing.locales.includes(locale as AppLocale)) {
     notFound();
@@ -102,9 +109,20 @@ export default async function LocaleLayout({
       <body
         className={`${surgena.variable} ${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground flex min-h-screen flex-col`}
       >
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${gaId}', { page_path: window.location.pathname });`}
+        </Script>
         <NextIntlClientProvider messages={messages}>
           <SoundProvider>
             <TransitionProvider>
+              <StructuredData />
               <SceneWrapper />
               <SmoothScroll />
               <ScrollControls />
