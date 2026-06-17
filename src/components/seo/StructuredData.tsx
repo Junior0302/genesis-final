@@ -23,6 +23,15 @@ const pageLabels: Record<SeoLocale, Record<string, string>> = {
     "/": "Accueil",
     "/studio": "Studio",
     "/expertise": "Expertise",
+    "/expertise/creation-sites-internet": "Création de Sites Internet",
+    "/expertise/developpement-web-applications": "Développement Web & Applications",
+    "/expertise/depannage-informatique": "Dépannage Informatique",
+    "/expertise/maintenance-informatique": "Maintenance Informatique",
+    "/expertise/cybersecurite": "Cybersécurité",
+    "/expertise/reseaux-wifi": "Réseaux & Wi‑Fi",
+    "/expertise/seo-visibilite-locale": "SEO & Visibilité Locale",
+    "/expertise/solutions-cloud": "Solutions Cloud",
+    "/expertise/experiences-3d": "Expériences 3D",
     "/work": "Projets",
     "/contact": "Contact",
     "/help": "Help",
@@ -30,12 +39,20 @@ const pageLabels: Record<SeoLocale, Record<string, string>> = {
     "/abonnement": "Abonnement",
     "/legal": "Mentions legales",
     "/blog": "Blog",
-    "/other": "Other",
   },
   en: {
     "/": "Home",
     "/studio": "Studio",
     "/expertise": "Expertise",
+    "/expertise/creation-sites-internet": "Website Creation",
+    "/expertise/developpement-web-applications": "Web Development & Apps",
+    "/expertise/depannage-informatique": "IT Troubleshooting",
+    "/expertise/maintenance-informatique": "IT Maintenance",
+    "/expertise/cybersecurite": "Cybersecurity",
+    "/expertise/reseaux-wifi": "Networks & Wi‑Fi",
+    "/expertise/seo-visibilite-locale": "SEO & Local Visibility",
+    "/expertise/solutions-cloud": "Cloud Solutions",
+    "/expertise/experiences-3d": "3D Experiences",
     "/work": "Work",
     "/contact": "Contact",
     "/help": "Help",
@@ -43,12 +60,20 @@ const pageLabels: Record<SeoLocale, Record<string, string>> = {
     "/abonnement": "Subscription",
     "/legal": "Legal",
     "/blog": "Blog",
-    "/other": "Other",
   },
   zh: {
     "/": "首页",
     "/studio": "Studio",
     "/expertise": "专业服务",
+    "/expertise/creation-sites-internet": "网站建设",
+    "/expertise/developpement-web-applications": "Web 开发与应用",
+    "/expertise/depannage-informatique": "IT 故障处理",
+    "/expertise/maintenance-informatique": "IT 维护",
+    "/expertise/cybersecurite": "网络安全",
+    "/expertise/reseaux-wifi": "网络与 Wi‑Fi",
+    "/expertise/seo-visibilite-locale": "SEO 与本地可见度",
+    "/expertise/solutions-cloud": "云解决方案",
+    "/expertise/experiences-3d": "3D 沉浸式体验",
     "/work": "项目",
     "/contact": "联系",
     "/help": "帮助",
@@ -56,7 +81,6 @@ const pageLabels: Record<SeoLocale, Record<string, string>> = {
     "/abonnement": "订阅",
     "/legal": "法律信息",
     "/blog": "博客",
-    "/other": "其他",
   },
 };
 
@@ -94,6 +118,74 @@ const faqByPage: Record<SeoLocale, Partial<Record<string, FaqItem[]>>> = {
         question: "Faites-vous du SEO local et du SEO pour l'IA ?",
         answer:
           "Oui. Nous travaillons les contenus, les donnees structurees, Google Business Profile, le SEO local et les signaux utiles aux moteurs de recherche bases sur l'IA.",
+      },
+    ],
+    "/expertise/creation-sites-internet": [
+      {
+        question: "Le SEO est-il inclus dans la création de site ?",
+        answer:
+          "Oui. Nous intégrons une base SEO technique, un contenu structuré, et des données structurées schema.org. Le SEO local peut être renforcé selon vos villes cibles.",
+      },
+      {
+        question: "Pouvez-vous gérer la maintenance et l’hébergement ?",
+        answer:
+          "Oui. Nous assurons les mises à jour, la sécurité et le suivi pour garder un site stable, rapide et durable.",
+      },
+    ],
+    "/expertise/developpement-web-applications": [
+      {
+        question: "Pouvez-vous créer une application web sur mesure ?",
+        answer:
+          "Oui. Nous cadrons le besoin métier, les rôles, les données, puis nous livrons par itérations.",
+      },
+    ],
+    "/expertise/depannage-informatique": [
+      {
+        question: "Proposez-vous une assistance informatique à distance ?",
+        answer:
+          "Oui. L’assistance à distance permet de résoudre rapidement de nombreux incidents logiciels.",
+      },
+    ],
+    "/expertise/maintenance-informatique": [
+      {
+        question: "La maintenance informatique est-elle utile pour une TPE ?",
+        answer:
+          "Oui. Elle réduit les pannes, améliore la sécurité et protège la continuité d’activité.",
+      },
+    ],
+    "/expertise/cybersecurite": [
+      {
+        question: "Quelles priorités cybersécurité pour une petite structure ?",
+        answer:
+          "Accès (MFA), mises à jour, sauvegardes, hygiène numérique et sensibilisation.",
+      },
+    ],
+    "/expertise/reseaux-wifi": [
+      {
+        question: "Pouvez-vous optimiser un Wi‑Fi existant ?",
+        answer:
+          "Oui. Nous auditons la couverture et la configuration, puis nous optimisons les points d’accès et les réglages.",
+      },
+    ],
+    "/expertise/seo-visibilite-locale": [
+      {
+        question: "Améliorez-vous la visibilité Google Maps ?",
+        answer:
+          "Oui. Nous travaillons Google Business Profile, contenu local, cohérence des informations et signaux de confiance.",
+      },
+    ],
+    "/expertise/solutions-cloud": [
+      {
+        question: "Microsoft 365 ou Google Workspace ?",
+        answer:
+          "Nous vous conseillons selon vos usages et contraintes, puis nous mettons en place une configuration propre.",
+      },
+    ],
+    "/expertise/experiences-3d": [
+      {
+        question: "La 3D empêche-t-elle le SEO ?",
+        answer:
+          "Non. Le SEO repose sur la structure, le contenu et les données. La 3D sert l’identité sans bloquer l’indexation si elle est bien intégrée.",
       },
     ],
     "/help": [
@@ -203,6 +295,15 @@ export default function StructuredData() {
   const locale = useLocale() as SeoLocale;
   const pathname = usePathname() || "/";
 
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteUrl}#website`,
+    name: siteName,
+    url: siteUrl,
+    publisher: { "@id": `${siteUrl}#organization` },
+  };
+
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -284,33 +385,23 @@ export default function StructuredData() {
       : null;
 
   const pageServiceSchema =
-    pathname === "/expertise" || pathname === "/help"
+    pathname === "/help" || pathname.startsWith("/expertise")
       ? {
           "@context": "https://schema.org",
           "@type": "Service",
-          name:
-            pathname === "/help"
-              ? locale === "fr"
-                ? "Accompagnement numerique accessible"
-                : locale === "en"
-                  ? "Accessible digital support"
-                  : "普惠数字支持"
-              : locale === "fr"
-                ? "Services informatiques, web et SEO local"
-                : locale === "en"
-                  ? "IT, web and local SEO services"
-                  : "IT、网站与本地 SEO 服务",
+          name: pageLabels[locale][pathname] ?? pageLabels[locale]["/expertise"],
           provider: { "@id": `${siteUrl}#organization` },
           areaServed: targetCities,
           serviceType: serviceCatalog.map((service) => service.name),
           description:
             pathname === "/help"
-              ? "Accompagnement des entrepreneurs, petites entreprises, associations et structures a faible budget."
-              : "Depannage informatique, maintenance, installation reseau, cloud, creation de site internet et referencement SEO local.",
+              ? "Soutien et accompagnement numerique pour entrepreneurs, associations et petites structures."
+              : "Services informatiques, creation de site internet, developpement web, SEO local, cybersécurité, reseaux, cloud et experiences 3D premium.",
         }
       : null;
 
   const schemas = [
+    websiteSchema,
     organizationSchema,
     localBusinessSchema,
     professionalServiceSchema,

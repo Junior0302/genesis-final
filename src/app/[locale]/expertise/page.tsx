@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLocale, useTranslations } from "next-intl";
+import TransitionLink from "@/components/ui/TransitionLink";
 import { targetCities } from "@/lib/seo";
 
 // Register ScrollTrigger
@@ -15,6 +16,79 @@ export default function ExpertisePage() {
   const t = useTranslations('ExpertisePage');
   const locale = useLocale();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const hubCards =
+    locale === "fr"
+      ? [
+          {
+            title: "Création de Sites Internet",
+            href: "/expertise/creation-sites-internet",
+            desc: "Sites vitrines, sites professionnels, e-commerce, refonte, maintenance, hebergement et optimisation SEO.",
+          },
+          {
+            title: "Développement Web & Applications",
+            href: "/expertise/developpement-web-applications",
+            desc: "Solutions sur mesure, outils metier, automatisation et plateformes professionnelles modernes.",
+          },
+          {
+            title: "Dépannage Informatique",
+            href: "/expertise/depannage-informatique",
+            desc: "Reparation PC, suppression de virus, assistance a distance, sauvegarde, installation materiel et intervention sur site.",
+          },
+          {
+            title: "Maintenance Informatique",
+            href: "/expertise/maintenance-informatique",
+            desc: "Maintenance preventive, corrective, mises a jour, supervision legere et securite.",
+          },
+          {
+            title: "Cybersécurité",
+            href: "/expertise/cybersecurite",
+            desc: "Audit, protection des postes, gestion des acces, sauvegardes et sensibilisation utilisateurs.",
+          },
+          {
+            title: "Réseaux & Wi‑Fi",
+            href: "/expertise/reseaux-wifi",
+            desc: "Installation reseau, configuration Wi‑Fi, securisation, deploiement materiel et optimisation.",
+          },
+          {
+            title: "SEO & Visibilité Locale",
+            href: "/expertise/seo-visibilite-locale",
+            desc: "SEO local, Google Business Profile, Google Maps, optimisation technique et optimisation IA.",
+          },
+          {
+            title: "Solutions Cloud",
+            href: "/expertise/solutions-cloud",
+            desc: "Microsoft 365, Google Workspace, sauvegarde cloud, collaboration et migration.",
+          },
+          {
+            title: "Expériences 3D",
+            href: "/expertise/experiences-3d",
+            desc: "Univers interactifs premium, narration immersive et experiences numeriques haut de gamme.",
+          },
+        ]
+      : locale === "en"
+        ? [
+            { title: "Website Creation", href: "/expertise/creation-sites-internet", desc: "Showcase sites, business sites, e-commerce, redesign, maintenance, hosting and SEO optimization." },
+            { title: "Web Development & Apps", href: "/expertise/developpement-web-applications", desc: "Custom solutions, internal tools, automation and modern professional platforms." },
+            { title: "IT Troubleshooting", href: "/expertise/depannage-informatique", desc: "PC repair, malware cleanup, remote support, backup and on-site help." },
+            { title: "IT Maintenance", href: "/expertise/maintenance-informatique", desc: "Preventive and corrective maintenance, updates, light monitoring and security." },
+            { title: "Cybersecurity", href: "/expertise/cybersecurite", desc: "Security audit, endpoint protection, access management, backups and user awareness." },
+            { title: "Networks & Wi‑Fi", href: "/expertise/reseaux-wifi", desc: "Network setup, Wi‑Fi configuration, hardening and connectivity optimization." },
+            { title: "SEO & Local Visibility", href: "/expertise/seo-visibilite-locale", desc: "Local SEO, Google Business Profile, Google Maps, technical optimization and AI optimization." },
+            { title: "Cloud Solutions", href: "/expertise/solutions-cloud", desc: "Microsoft 365, Google Workspace, cloud backup, collaboration and migration." },
+            { title: "3D Experiences", href: "/expertise/experiences-3d", desc: "Premium interactive worlds, immersive storytelling and high-end digital experiences." },
+          ]
+        : [
+            { title: "网站建设", href: "/expertise/creation-sites-internet", desc: "企业网站、电商、改版、维护、托管与 SEO 优化。" },
+            { title: "Web 开发与应用", href: "/expertise/developpement-web-applications", desc: "定制化解决方案、内部工具、自动化与专业平台。" },
+            { title: "IT 故障处理", href: "/expertise/depannage-informatique", desc: "PC 维修、病毒清理、远程支持、备份与上门服务。" },
+            { title: "IT 维护", href: "/expertise/maintenance-informatique", desc: "预防/纠正性维护、更新、轻量监控与安全。" },
+            { title: "网络安全", href: "/expertise/cybersecurite", desc: "安全审计、终端防护、访问管理、备份与培训。" },
+            { title: "网络与 Wi‑Fi", href: "/expertise/reseaux-wifi", desc: "网络部署、Wi‑Fi 配置、安全加固与连接优化。" },
+            { title: "SEO 与本地可见度", href: "/expertise/seo-visibilite-locale", desc: "本地 SEO、Google 商家、地图可见度、技术优化与 AI 优化。" },
+            { title: "云解决方案", href: "/expertise/solutions-cloud", desc: "Microsoft 365、Google Workspace、云备份与协作迁移。" },
+            { title: "3D 沉浸式体验", href: "/expertise/experiences-3d", desc: "高端互动世界、沉浸叙事与品牌级数字体验。" },
+          ];
 
   const serviceDetails =
     locale === "fr"
@@ -227,6 +301,44 @@ export default function ExpertisePage() {
              <p className="text-lg font-light text-[#FAF9F6]/70 max-w-2xl mx-auto leading-relaxed">
                 {t('Intro.text')}
              </p>
+        </div>
+      </section>
+
+      <section className="min-h-screen px-8 md:px-24 py-24">
+        <div className="reveal-text mx-auto max-w-7xl">
+          <h2 className="text-xs uppercase tracking-[0.2em] text-[#FAF9F6]/40 mb-12 border-b border-[#FAF9F6]/10 pb-4 inline-block">
+            {locale === "fr" ? "Expertise" : locale === "en" ? "Expertise" : "专业服务"}
+          </h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            {hubCards.map((card) => (
+              <TransitionLink
+                key={card.href}
+                href={card.href}
+                className="group relative block overflow-hidden rounded-[28px] border border-[#FAF9F6]/10 bg-[#241710]/70 p-8 shadow-[0_20px_70px_rgba(0,0,0,0.18)] transition-transform duration-300 hover:-translate-y-1"
+              >
+                <div className="absolute inset-0 opacity-[0.06] pointer-events-none mix-blend-overlay" />
+                <div className="flex h-full min-h-[260px] flex-col justify-between">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.24em] text-[#D4AF37]">
+                      Genesis Connect
+                    </p>
+                    <h3 className="mt-6 font-serif text-2xl leading-tight text-[#FAF9F6]">
+                      {card.title}
+                    </h3>
+                    <p className="mt-4 text-sm leading-7 text-[#FAF9F6]/70">
+                      {card.desc}
+                    </p>
+                  </div>
+                  <div className="mt-10 inline-flex items-center text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/70">
+                    {locale === "fr" ? "Découvrir" : locale === "en" ? "Explore" : "了解更多"}
+                    <span className="ml-3 inline-block transition-transform duration-300 group-hover:translate-x-1">
+                      →
+                    </span>
+                  </div>
+                </div>
+              </TransitionLink>
+            ))}
+          </div>
         </div>
       </section>
 

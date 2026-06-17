@@ -177,6 +177,159 @@ export const pageSeo: Record<
         "涵盖 IT 支持、维护、远程协助、Wi-Fi 部署、网络安全、备份、云解决方案、网站建设、Web 开发与本地 SEO。",
     },
   },
+  "/expertise/creation-sites-internet": {
+    fr: {
+      title: "Création de site internet, vitrine, e-commerce | Genesis Connect",
+      description:
+        "Création de sites internet premium : site vitrine, site professionnel, e-commerce, refonte, maintenance, hébergement et optimisation SEO à Strasbourg, Colmar, Mulhouse, Paris et à distance.",
+    },
+    en: {
+      title: "Website creation, showcase, e-commerce | Genesis Connect",
+      description:
+        "Premium website creation: showcase sites, business sites, e-commerce, redesign, maintenance, hosting and SEO optimization for Strasbourg, Colmar, Mulhouse, Paris and remote teams.",
+    },
+    zh: {
+      title: "网站建设、企业官网与电商 | Genesis Connect",
+      description:
+        "高端网站建设：企业官网、电商、改版、维护、托管与 SEO 优化，支持本地与远程协作。",
+    },
+  },
+  "/expertise/developpement-web-applications": {
+    fr: {
+      title: "Développement web & applications sur mesure | Genesis Connect",
+      description:
+        "Développement web, application web, plateforme métier, automatisation et solutions sur mesure pour entreprises, indépendants et associations.",
+    },
+    en: {
+      title: "Custom web development & apps | Genesis Connect",
+      description:
+        "Custom web development, web apps, business platforms, automation and tailored solutions for companies, founders and associations.",
+    },
+    zh: {
+      title: "Web 开发与定制应用 | Genesis Connect",
+      description:
+        "定制 Web 开发、业务平台与自动化方案，面向企业、创业者与组织。",
+    },
+  },
+  "/expertise/depannage-informatique": {
+    fr: {
+      title: "Dépannage informatique, réparation PC | Genesis Connect",
+      description:
+        "Dépannage informatique : réparation PC, suppression de virus, assistance à distance, installation matériel, sauvegarde et intervention sur site.",
+    },
+    en: {
+      title: "IT troubleshooting, PC repair | Genesis Connect",
+      description:
+        "IT troubleshooting: PC repair, malware cleanup, remote support, hardware setup, backup and on-site intervention.",
+    },
+    zh: {
+      title: "IT 故障处理与 PC 维修 | Genesis Connect",
+      description:
+        "PC 维修、病毒清理、远程支持、设备安装与备份支持。",
+    },
+  },
+  "/expertise/maintenance-informatique": {
+    fr: {
+      title: "Maintenance informatique & infogérance | Genesis Connect",
+      description:
+        "Maintenance informatique préventive et corrective, mises à jour, supervision légère et sécurité pour petites entreprises et associations.",
+    },
+    en: {
+      title: "IT maintenance | Genesis Connect",
+      description:
+        "Preventive and corrective maintenance, updates, light monitoring and security for small organizations.",
+    },
+    zh: {
+      title: "IT 维护与运维支持 | Genesis Connect",
+      description:
+        "预防/纠正性维护、更新与基础安全加固，面向小团队。",
+    },
+  },
+  "/expertise/cybersecurite": {
+    fr: {
+      title: "Cybersécurité, protection des données | Genesis Connect",
+      description:
+        "Cybersécurité pour petites structures : audit, protection des postes, gestion des accès, sauvegardes et sensibilisation utilisateurs.",
+    },
+    en: {
+      title: "Cybersecurity, data protection | Genesis Connect",
+      description:
+        "Pragmatic cybersecurity: audit, endpoint protection, access management, backups and awareness for small organizations.",
+    },
+    zh: {
+      title: "网络安全与数据保护 | Genesis Connect",
+      description:
+        "务实网络安全：审计、终端防护、访问管理、备份与培训。",
+    },
+  },
+  "/expertise/reseaux-wifi": {
+    fr: {
+      title: "Réseaux & Wi‑Fi, installation réseau | Genesis Connect",
+      description:
+        "Installation réseau et Wi‑Fi : configuration, sécurisation, optimisation de couverture et performances stables pour professionnels.",
+    },
+    en: {
+      title: "Networks & Wi‑Fi setup | Genesis Connect",
+      description:
+        "Network and Wi‑Fi setup: configuration, hardening, coverage optimization and stable daily performance.",
+    },
+    zh: {
+      title: "网络与 Wi‑Fi 部署 | Genesis Connect",
+      description:
+        "网络与 Wi‑Fi 部署：配置、安全加固与覆盖优化。",
+    },
+  },
+  "/expertise/seo-visibilite-locale": {
+    fr: {
+      title: "SEO & visibilité locale, Google Maps | Genesis Connect",
+      description:
+        "SEO, SEO local, Google Business Profile, Google Maps, données structurées et optimisation IA (LLM SEO, GEO SEO) pour entreprises et entrepreneurs.",
+    },
+    en: {
+      title: "SEO & local visibility, Google Maps | Genesis Connect",
+      description:
+        "SEO, local SEO, Google Business Profile, Google Maps, structured data and AI search optimization for modern search engines.",
+    },
+    zh: {
+      title: "SEO 与本地可见度（Google Maps） | Genesis Connect",
+      description:
+        "SEO、本地 SEO、Google 商家与地图可见度、结构化数据与 AI 搜索优化。",
+    },
+  },
+  "/expertise/solutions-cloud": {
+    fr: {
+      title: "Solutions cloud, Microsoft 365, Google Workspace | Genesis Connect",
+      description:
+        "Solutions cloud : Microsoft 365, Google Workspace, sauvegarde cloud, collaboration et messagerie professionnelle.",
+    },
+    en: {
+      title: "Cloud solutions, Microsoft 365, Google Workspace | Genesis Connect",
+      description:
+        "Cloud solutions: Microsoft 365, Google Workspace, cloud backup, collaboration and professional email.",
+    },
+    zh: {
+      title: "云解决方案（Microsoft 365 / Google Workspace） | Genesis Connect",
+      description:
+        "云协作、备份与企业邮箱配置：Microsoft 365、Google Workspace。",
+    },
+  },
+  "/expertise/experiences-3d": {
+    fr: {
+      title: "Expériences 3D immersives premium | Genesis Connect",
+      description:
+        "Expériences 3D immersives : univers interactifs, narration premium, optimisation performance mobile et desktop, gestion des couches et profondeurs.",
+    },
+    en: {
+      title: "Premium immersive 3D experiences | Genesis Connect",
+      description:
+        "Immersive 3D experiences: interactive worlds, premium storytelling, performance optimization and layer/depth control.",
+    },
+    zh: {
+      title: "高端沉浸式 3D 体验 | Genesis Connect",
+      description:
+        "互动世界与沉浸叙事：性能优化与层级/深度控制。",
+    },
+  },
   "/help": {
     fr: {
       title:

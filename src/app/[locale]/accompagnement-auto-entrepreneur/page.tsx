@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { externalSites } from "@/lib/externalSites";
+import { siteUrl } from "@/lib/seo";
 
 type SupportedLocale = "fr" | "en" | "zh";
 
@@ -76,6 +77,7 @@ export async function generateMetadata({
   const page = getContent(locale);
 
   return {
+    metadataBase: new URL(siteUrl),
     title: page.title,
     description: page.description,
     keywords: [

@@ -345,6 +345,17 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="relative z-0 min-h-[60vh] flex flex-col justify-center items-center text-center px-8 py-24 bg-[#251812]">
+          <div className="reveal-text max-w-5xl">
+            <h2 className="text-3xl md:text-5xl font-serif text-[#FAF9F6] leading-tight mb-10">
+              {t("SeoSection.title")}
+            </h2>
+            <p className="text-base md:text-lg font-light text-[#FAF9F6]/70 max-w-4xl mx-auto leading-relaxed whitespace-pre-line">
+              {t("SeoSection.text")}
+            </p>
+          </div>
+        </section>
+
         {/* 8. CTA (FRONT -> z-20) */}
         <section className="relative z-20 h-screen flex flex-col justify-center items-center text-center px-8">
           <div className="reveal-text max-w-4xl">

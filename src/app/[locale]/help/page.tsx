@@ -13,7 +13,7 @@ export default function HelpPage() {
   const content = {
     fr: {
       eyebrow: "Help",
-      title: "Rendre la technologie utile, accessible et soutenable.",
+      title: "Soutenir les projets qui méritent d'exister.",
       description:
         "Genesis Connect souhaite aider les nouveaux entrepreneurs, petites entreprises, associations et structures a faible budget avec un accompagnement numerique clair, humain et realiste.",
       visionTitle: "Notre vision",
@@ -262,7 +262,7 @@ export default function HelpPage() {
   const page = content[safeLocale];
   const mailSubject =
     safeLocale === "fr"
-      ? "Demande d'accompagnement Genesis Connect"
+      ? "Demande de soutien - Programme Help"
       : safeLocale === "en"
         ? "Genesis Connect support request"
         : "Genesis Connect 支持申请";

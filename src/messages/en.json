@@ -59,6 +59,10 @@
       "text1": "Rooted in French design culture, Genesis Connect works internationally.",
       "text2": "Our perspective is global. Our standards are uncompromising."
     },
+    "SeoSection": {
+      "title": "IT and digital solutions for individuals and professionals",
+      "text": "Genesis Connect supports individuals, founders, artisans, retailers, associations and companies with their digital needs.\n\nWebsite creation, web development, IT maintenance, cybersecurity, local SEO, networking, cloud solutions and immersive 3D experiences: we build solutions that are performant, elegant and durable.\n\nOur approach combines technology, design and strategy to create digital experiences that generate visibility, trust and growth."
+    },
     "Complementary": {
       "title": "Complementary craft",
       "items": {
@@ -307,8 +311,9 @@
     "work": "Work",
     "expertise": "Expertise",
     "contact": "Contact",
-    "other": "Other",
     "help": "Help",
+    "projects": "Projects",
+    "about": "About",
     "academy": "Genesis Academy",
     "market": "Genesis Market",
     "aid": "Genesis Aide",
