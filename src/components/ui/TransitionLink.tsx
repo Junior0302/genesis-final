@@ -12,6 +12,7 @@ interface TransitionLinkProps extends Omit<IntlLinkProps, "children" | "onClick"
   className?: string;
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   beforeNavigate?: () => void | Promise<void>;
+  transitionPreset?: "default" | "fast";
 }
 
 export default function TransitionLink({ 
@@ -20,6 +21,7 @@ export default function TransitionLink({
   className, 
   onClick,
   beforeNavigate,
+  transitionPreset = "default",
   ...props 
 }: TransitionLinkProps) {
   const router = useRouter();
@@ -45,7 +47,7 @@ export default function TransitionLink({
       if (transition) {
         if (hrefPath === currentPath) return;
         e.preventDefault();
-        transition.navigate(hrefString);
+        transition.navigate(hrefString, { preset: transitionPreset });
       }
       return;
     }

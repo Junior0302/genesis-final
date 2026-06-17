@@ -19,8 +19,14 @@ type IntroState =
   | 'INK_MORPH_REVEAL'    // State 3: Transition vers le site (Ink Morph + Son + FadeOut Text)
   | 'EXPERIENCE_RUNNING'; // State 4: Site actif
 
+type NavigatePreset = "default" | "fast";
+
+type NavigateOptions = {
+  preset?: NavigatePreset;
+};
+
 interface TransitionContextType {
-  navigate: (href: string) => void;
+  navigate: (href: string, options?: NavigateOptions) => void;
   currentState: IntroState;
   setAssetsLoaded: (loaded: boolean) => void;
   isNavigating: boolean;
@@ -47,6 +53,15 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   const textRef = useRef<HTMLParagraphElement>(null);
   const navigateTimeoutRef = useRef<number | null>(null);
   const pendingTargetPathRef = useRef<string | null>(null);
+  const navigateConfigRef = useRef({
+    delayMs: 0,
+    enterDuration: 1.1,
+    textDuration: 0.6,
+    holdDuration: 0.35,
+    exitTextDuration: 0.45,
+    exitDuration: 1.1,
+    imageTimeoutMs: 1200,
+  });
 
   // INTRO STATE MACHINE
   const [currentState, setCurrentState] = useState<IntroState>('LOADING_ASSETS');
@@ -363,9 +378,31 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     return base === "" ? "/" : base;
   };
 
-  const navigate = (href: string) => {
+  const navigate = (href: string, options?: NavigateOptions) => {
     const targetPath = normalizePath(href);
     if (isAnimating || targetPath === normalizePath(pathname)) return;
+
+    const preset: NavigatePreset = options?.preset ?? (isTouchDevice ? "fast" : "default");
+    navigateConfigRef.current =
+      preset === "fast"
+        ? {
+            delayMs: 0,
+            enterDuration: 0.85,
+            textDuration: 0.45,
+            holdDuration: 0.1,
+            exitTextDuration: 0.35,
+            exitDuration: 0.85,
+            imageTimeoutMs: 600,
+          }
+        : {
+            delayMs: 0,
+            enterDuration: 1.05,
+            textDuration: 0.55,
+            holdDuration: 0.25,
+            exitTextDuration: 0.45,
+            exitDuration: 1.05,
+            imageTimeoutMs: 900,
+          };
 
     // Ensure audio is initialized on navigation click
     initAudio();
@@ -391,6 +428,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
 
     // DELAY BEFORE TRANSITION STARTS (For calm effect)
     navigateTimeoutRef.current = window.setTimeout(() => {
+        const cfg = navigateConfigRef.current;
         const tl = gsap.timeline({
         onComplete: () => {
             router.push(href);
@@ -403,20 +441,21 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
             { clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)" }, 
             { 
             clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", 
-            duration: 1.5, // Slower (was 0.8)
-            ease: "power2.inOut" // Smoother ease
+            duration: cfg.enterDuration,
+            ease: "power2.inOut"
             }
         )
         .fromTo(textRef.current,
             { y: 15, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }, // Slower text (was 0.4)
-            "-=0.8"
+            { y: 0, opacity: 1, duration: cfg.textDuration, ease: "power2.out" },
+            "-=0.5"
         )
-        .to({}, { duration: 1.0 }); // Stay longer on text (was 1.4, but total time is longer now)
-    }, 800); // 0.8s delay after sound
+        .to({}, { duration: cfg.holdDuration });
+    }, navigateConfigRef.current.delayMs);
   };
 
   function animateOut() {
+    const cfg = navigateConfigRef.current;
     const tl = gsap.timeline({
       onComplete: () => {
         setIsAnimating(false);
@@ -428,14 +467,14 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     tl.to(textRef.current, { 
         y: -10, 
         opacity: 0, 
-        duration: 0.6, // Slower fade out (was 0.4)
+        duration: cfg.exitTextDuration,
         ease: "power2.in" 
       })
       .to(overlayRef.current, 
         { 
           clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)", 
-          duration: 1.5, // Slower exit (was 0.8)
-          ease: "power2.inOut" // Smoother ease
+          duration: cfg.exitDuration,
+          ease: "power2.inOut"
         },
         "-=0.2"
       );
@@ -491,7 +530,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
           await document.fonts.ready;
         } catch {}
       }
-      await waitForCriticalImages(1800);
+      await waitForCriticalImages(navigateConfigRef.current.imageTimeoutMs);
       animateOut();
     })();
   }, [isAnimating, pathname]);

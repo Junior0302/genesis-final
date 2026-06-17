@@ -61,5 +61,10 @@ export default function SceneWrapper() {
     return <div className="fixed inset-0 z-[-1] bg-[#2A1C15]" />;
   }
 
-  return <Scene />;
+  return (
+    <>
+      <div className="fixed inset-0 z-[-1] bg-[#2A1C15]" />
+      <Scene />
+    </>
+  );
 }

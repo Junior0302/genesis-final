@@ -187,8 +187,8 @@ export default function Home() {
         </section>
 
         {/* 3. WHAT WE CRAFT (FRONT -> z-20) */}
-        <section className="relative z-20 min-h-screen flex flex-col justify-center items-end content-offset px-8 md:px-32 pointer-events-none py-32 md:py-48">
-          <div className="reveal-text text-right pointer-events-auto max-w-3xl">
+        <section className="relative z-20 min-h-screen flex flex-col justify-center items-center md:items-end content-offset px-6 md:px-32 pointer-events-none py-32 md:py-48">
+          <div className="reveal-text text-center md:text-right pointer-events-auto max-w-3xl">
             <h2 className="text-4xl md:text-7xl font-serif text-[#FAF9F6] mb-16 tracking-tighter">
               {t('WhatWeCraft.title')}
             </h2>
@@ -218,8 +218,8 @@ export default function Home() {
         </section>
 
         {/* 5. CORE EXPERTISE (FRONT -> z-20) */}
-        <section className="relative z-20 min-h-screen flex flex-col justify-center items-start px-8 md:px-24 py-24">
-          <div className="max-w-5xl w-full">
+        <section className="relative z-20 min-h-screen flex flex-col justify-center items-center md:items-start px-6 md:px-24 py-24">
+          <div className="max-w-5xl w-full mx-auto text-center md:text-left">
             <h2 className="reveal-text text-xs uppercase tracking-[0.2em] text-[#FAF9F6]/50 mb-16 border-b border-[#FAF9F6]/10 pb-4 inline-block">
               {t('Expertise.label')}
             </h2>

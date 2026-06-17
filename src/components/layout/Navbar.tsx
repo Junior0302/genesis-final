@@ -37,7 +37,6 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const menuTimelineRef = useRef<gsap.core.Timeline | null>(null);
-  const closeOnTransitionEndRef = useRef(false);
   const previousPathnameRef = useRef(pathname);
   const isOpenRef = useRef(isOpen);
 
@@ -59,20 +58,12 @@ export default function Navbar() {
     return () => window.cancelAnimationFrame(id);
   }, [isNavigating, pathname]);
 
-  useEffect(() => {
-    if (isNavigating) return;
-    if (!closeOnTransitionEndRef.current) return;
-    closeOnTransitionEndRef.current = false;
-    const id = window.requestAnimationFrame(() => setIsOpen(false));
-    return () => window.cancelAnimationFrame(id);
-  }, [isNavigating]);
-
-  const markCloseAfterTransition = (href: string) => {
+  const handleMobileNavigate = (href: string) => {
     if (href === pathname) {
       setIsOpen(false);
       return;
     }
-    closeOnTransitionEndRef.current = true;
+    setIsOpen(false);
   };
 
   useEffect(() => {
@@ -179,7 +170,8 @@ export default function Navbar() {
             isOpen ? "text-[#FAF9F6] opacity-100" : "text-[#FAF9F6] opacity-100"
           }`}
           aria-label="Genesis Connect Home"
-          onClick={() => markCloseAfterTransition("/")}
+          transitionPreset="fast"
+          onClick={() => handleMobileNavigate("/")}
         >
           <Logo className="transition-all duration-500 text-xl" />
         </TransitionLink>
@@ -253,7 +245,7 @@ export default function Navbar() {
       </header>
 
       <div
-        className={`mobile-menu fixed inset-0 z-[70] flex flex-col items-center justify-center transition-opacity duration-300 ${
+        className={`mobile-menu fixed inset-0 z-[70] transition-opacity duration-300 ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         aria-hidden={!isOpen}
@@ -268,20 +260,23 @@ export default function Navbar() {
           />
         </div>
 
-        <nav className="relative z-10 flex flex-col items-center gap-12">
-          {navItems.map((item) => (
-            <TransitionLink
-              key={item.href}
-              href={item.href}
-              className="mobile-link group relative text-[#FAF9F6] text-4xl md:text-5xl font-serif tracking-tight opacity-0 hover:text-[#FAF9F6]/80 transition-colors"
-              onClick={() => markCloseAfterTransition(item.href)}
-            >
-              <span className="relative z-10">{item.name}</span>
-              <span className="absolute left-0 top-1/2 w-full h-[1px] bg-[#FAF9F6]/30 -translate-y-1/2 scale-x-0 group-hover:scale-x-110 transition-transform duration-500 ease-expo" />
-            </TransitionLink>
-          ))}
+        <div className="relative z-10 flex h-full w-full flex-col px-6 pt-28 pb-10">
+          <nav className="flex flex-1 flex-col items-center justify-center gap-10 overflow-y-auto">
+            {navItems.map((item) => (
+              <TransitionLink
+                key={item.href}
+                href={item.href}
+                transitionPreset="fast"
+                className="mobile-link group relative text-[#FAF9F6] text-4xl md:text-5xl font-serif tracking-tight opacity-0 hover:text-[#FAF9F6]/80 transition-colors"
+                onClick={() => handleMobileNavigate(item.href)}
+              >
+                <span className="relative z-10">{item.name}</span>
+                <span className="absolute left-0 top-1/2 w-full h-[1px] bg-[#FAF9F6]/30 -translate-y-1/2 scale-x-0 group-hover:scale-x-110 transition-transform duration-500 ease-expo" />
+              </TransitionLink>
+            ))}
+          </nav>
 
-          <div className="flex gap-6 mt-4">
+          <div className="mobile-link mt-10 flex items-center justify-center gap-6 opacity-0">
             {["fr", "en", "zh"].map((l) => (
               <button
                 key={l}
@@ -296,12 +291,12 @@ export default function Navbar() {
               </button>
             ))}
           </div>
-        </nav>
 
-        <div className="mobile-link absolute bottom-12 flex flex-col items-center gap-2 text-[#FAF9F6]/40 text-[10px] tracking-[0.3em] uppercase opacity-0 font-medium">
-          <span>Genesis Connect</span>
-          <span className="w-8 h-[1px] bg-[#FAF9F6]/20" />
-          <span>© 2024</span>
+          <div className="mobile-link mt-8 flex flex-col items-center gap-2 text-[#FAF9F6]/40 text-[10px] tracking-[0.3em] uppercase opacity-0 font-medium">
+            <span>Genesis Connect</span>
+            <span className="w-8 h-[1px] bg-[#FAF9F6]/20" />
+            <span>© 2024</span>
+          </div>
         </div>
       </div>
     </>

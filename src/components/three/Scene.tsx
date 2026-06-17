@@ -49,17 +49,16 @@ export default function Scene() {
     // #endregion debug-point D:scene-progress
   }, [pathname, progress, reportDebug, setAssetsLoaded]);
 
-  // Only render Scene on Home Page (checking all locales)
-  const isHome = pathname === "/" || ["/fr", "/en", "/zh"].includes(pathname);
+  const isContact = /\/contact$/.test(pathname);
   useEffect(() => {
     // #region debug-point C:scene-home-gate
     reportDebug("C", "[DEBUG] scene home gate evaluated", {
-      isHome,
+      isContact,
       pathname,
     });
     // #endregion debug-point C:scene-home-gate
-  }, [isHome, pathname, reportDebug]);
-  if (!isHome) return null;
+  }, [isContact, pathname, reportDebug]);
+  if (isContact) return null;
 
   return (
     <Canvas
