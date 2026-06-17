@@ -8,16 +8,96 @@ export const siteName = "Genesis Connect";
 export const businessEmail = "hello@genesisconnectstudio.com";
 export const businessPhone = "+33 0 00 00 00 00";
 
-export const targetCities = [
-  "Strasbourg",
-  "Schiltigheim",
-  "Illkirch-Graffenstaden",
-  "Haguenau",
-  "Obernai",
-  "Colmar",
-  "Mulhouse",
-  "Paris",
+export type ServedLocation = {
+  name: string;
+  type: "City" | "AdministrativeArea";
+  countryCode: "FR" | "CH" | "US";
+};
+
+export const aiSearchPlatforms = [
+  "ChatGPT",
+  "Gemini",
+  "Claude",
+  "Perplexity",
+  "Bing AI",
 ] as const;
+
+export const franceCities: ServedLocation[] = [
+  { name: "Paris", type: "City", countryCode: "FR" },
+  { name: "Strasbourg", type: "City", countryCode: "FR" },
+  { name: "Schiltigheim", type: "City", countryCode: "FR" },
+  { name: "Illkirch-Graffenstaden", type: "City", countryCode: "FR" },
+  { name: "Lingolsheim", type: "City", countryCode: "FR" },
+  { name: "Bischheim", type: "City", countryCode: "FR" },
+  { name: "Ostwald", type: "City", countryCode: "FR" },
+  { name: "Haguenau", type: "City", countryCode: "FR" },
+  { name: "Obernai", type: "City", countryCode: "FR" },
+  { name: "Selestat", type: "City", countryCode: "FR" },
+  { name: "Colmar", type: "City", countryCode: "FR" },
+  { name: "Mulhouse", type: "City", countryCode: "FR" },
+  { name: "Lyon", type: "City", countryCode: "FR" },
+  { name: "Marseille", type: "City", countryCode: "FR" },
+  { name: "Toulouse", type: "City", countryCode: "FR" },
+  { name: "Bordeaux", type: "City", countryCode: "FR" },
+  { name: "Nantes", type: "City", countryCode: "FR" },
+  { name: "Lille", type: "City", countryCode: "FR" },
+  { name: "Nice", type: "City", countryCode: "FR" },
+  { name: "Montpellier", type: "City", countryCode: "FR" },
+];
+
+export const parisDistricts: ServedLocation[] = [
+  { name: "Champs-Elysees", type: "AdministrativeArea", countryCode: "FR" },
+  { name: "Madeleine", type: "AdministrativeArea", countryCode: "FR" },
+  { name: "Opera", type: "AdministrativeArea", countryCode: "FR" },
+  { name: "Saint-Lazare", type: "AdministrativeArea", countryCode: "FR" },
+  { name: "Le Marais", type: "AdministrativeArea", countryCode: "FR" },
+  { name: "La Defense", type: "AdministrativeArea", countryCode: "FR" },
+  { name: "Bastille", type: "AdministrativeArea", countryCode: "FR" },
+  { name: "Montparnasse", type: "AdministrativeArea", countryCode: "FR" },
+  { name: "Saint-Germain-des-Pres", type: "AdministrativeArea", countryCode: "FR" },
+  { name: "Trocadero", type: "AdministrativeArea", countryCode: "FR" },
+  { name: "Passy", type: "AdministrativeArea", countryCode: "FR" },
+  { name: "Auteuil", type: "AdministrativeArea", countryCode: "FR" },
+  { name: "Batignolles", type: "AdministrativeArea", countryCode: "FR" },
+  { name: "Republique", type: "AdministrativeArea", countryCode: "FR" },
+  { name: "Nation", type: "AdministrativeArea", countryCode: "FR" },
+];
+
+export const swissCities: ServedLocation[] = [
+  { name: "Geneve", type: "City", countryCode: "CH" },
+  { name: "Lausanne", type: "City", countryCode: "CH" },
+  { name: "Zurich", type: "City", countryCode: "CH" },
+  { name: "Bale", type: "City", countryCode: "CH" },
+  { name: "Montreux", type: "City", countryCode: "CH" },
+  { name: "Fribourg", type: "City", countryCode: "CH" },
+  { name: "Neuchatel", type: "City", countryCode: "CH" },
+  { name: "Sion", type: "City", countryCode: "CH" },
+  { name: "Lugano", type: "City", countryCode: "CH" },
+];
+
+export const usCities: ServedLocation[] = [
+  { name: "New York", type: "City", countryCode: "US" },
+  { name: "Miami", type: "City", countryCode: "US" },
+  { name: "Los Angeles", type: "City", countryCode: "US" },
+  { name: "San Francisco", type: "City", countryCode: "US" },
+  { name: "Las Vegas", type: "City", countryCode: "US" },
+  { name: "Chicago", type: "City", countryCode: "US" },
+  { name: "Dallas", type: "City", countryCode: "US" },
+  { name: "Austin", type: "City", countryCode: "US" },
+  { name: "Seattle", type: "City", countryCode: "US" },
+  { name: "Boston", type: "City", countryCode: "US" },
+  { name: "Washington D.C.", type: "City", countryCode: "US" },
+];
+
+// Shared SEO coverage map reused by metadata, schema and AI-oriented FAQs.
+export const servedLocations: ServedLocation[] = [
+  ...franceCities,
+  ...parisDistricts,
+  ...swissCities,
+  ...usCities,
+];
+
+export const targetCities = servedLocations.map((location) => location.name);
 
 export const localServiceKeywords = [
   "Dépannage informatique",
@@ -45,10 +125,27 @@ export const localServiceKeywords = [
   "LLM SEO",
   "AI Search Optimization",
   "GEO SEO",
+  "Developpement web",
+  "Cybersécurité premium",
+  "Solutions cloud",
+  "Experiences numeriques premium",
 ];
 
-export const geoKeywordVariants = targetCities.flatMap((city) =>
-  localServiceKeywords.map((keyword) => `${keyword} ${city}`)
+export const geoSearchThemes = [
+  "informatique",
+  "developpement web",
+  "SEO local",
+  "cybersecurite",
+  "solutions cloud",
+  "experience numerique premium",
+];
+
+export const geoKeywordVariants = Array.from(
+  new Set(
+    servedLocations.flatMap((location) =>
+      geoSearchThemes.map((theme) => `${theme} ${location.name}`)
+    )
+  )
 );
 
 export const serviceCatalog = [
@@ -381,7 +478,7 @@ export const defaultSEO: Metadata = {
     template: "%s | Genesis Connect",
   },
   description:
-    "Genesis Connect accompagne les entreprises, independants et associations avec des services de depannage informatique, maintenance, cybersécurité, sauvegarde, cloud, creation de site internet, developpement web, SEO local, GEO SEO et AI Search Optimization.",
+    "Genesis Connect accompagne les entreprises, independants et associations avec des services de depannage informatique, maintenance, cybersécurité, sauvegarde, cloud, creation de site internet, developpement web, SEO local, GEO SEO et AI Search Optimization en France, en Suisse, aux Etats-Unis et a distance.",
   keywords: [
     siteName,
     ...localServiceKeywords,
@@ -392,7 +489,9 @@ export const defaultSEO: Metadata = {
     "referencement local Strasbourg",
     "ChatGPT SEO",
     "Gemini SEO",
+    "Claude SEO",
     "Perplexity SEO",
+    "Bing AI SEO",
   ],
   authors: [{ name: siteName }],
   creator: siteName,
@@ -424,7 +523,7 @@ export const defaultSEO: Metadata = {
     title:
       "Genesis Connect | Depannage informatique, maintenance, site internet et SEO local",
     description:
-      "Support informatique, maintenance, cybersécurité, cloud, creation de site internet, developpement web, SEO local et optimisation pour les moteurs de recherche IA.",
+      "Support informatique, maintenance, cybersécurité, cloud, creation de site internet, developpement web, SEO local et optimisation pour les moteurs de recherche IA en France, Suisse et Etats-Unis.",
     images: [
       {
         url: absoluteUrl("/opengraph-image"),
@@ -439,7 +538,7 @@ export const defaultSEO: Metadata = {
     title:
       "Genesis Connect | Depannage informatique, maintenance, site internet et SEO local",
     description:
-      "Genesis Connect aide les entreprises avec support informatique, web, SEO local, cloud et transformation numerique.",
+      "Genesis Connect aide les entreprises avec support informatique, web, SEO local, cloud, cybersécurité et AI search optimization.",
     images: [absoluteUrl("/twitter-image")],
   },
   robots: {

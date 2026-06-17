@@ -4,12 +4,13 @@ import { useLocale } from "next-intl";
 import { usePathname } from "@/i18n/routing";
 import {
   absoluteUrl,
+  aiSearchPlatforms,
   businessEmail,
   businessPhone,
   serviceCatalog,
+  servedLocations,
   siteName,
   siteUrl,
-  targetCities,
   type SeoLocale,
 } from "@/lib/seo";
 
@@ -108,6 +109,11 @@ const faqByPage: Record<SeoLocale, Partial<Record<string, FaqItem[]>>> = {
         answer:
           "Oui. Nous integrons schema.org, contenu structure, SEO local, GEO SEO et AI Search Optimization pour mieux ressortir dans Google, Bing, ChatGPT, Gemini et Perplexity.",
       },
+      {
+        question: "Dans quelles zones Genesis Connect intervient-il ?",
+        answer:
+          "Genesis Connect accompagne des projets a Paris, Strasbourg, Schiltigheim, Illkirch-Graffenstaden, Lingolsheim, Bischheim, Ostwald, Haguenau, Obernai, Selestat, Colmar, Mulhouse, Lyon, Marseille, Toulouse, Bordeaux, Nantes, Lille, Nice, Montpellier, ainsi qu'a Geneve, Lausanne, Zurich, Bale, New York, Miami, Los Angeles, San Francisco, Dallas, Austin, Seattle et a distance.",
+      },
     ],
     "/expertise": [
       {
@@ -124,6 +130,11 @@ const faqByPage: Record<SeoLocale, Partial<Record<string, FaqItem[]>>> = {
         question: "Faites-vous du SEO local et du SEO pour l'IA ?",
         answer:
           "Oui. Nous travaillons les contenus, les donnees structurees, Google Business Profile, le SEO local et les signaux utiles aux moteurs de recherche bases sur l'IA.",
+      },
+      {
+        question: "Pouvez-vous viser plusieurs villes sans dupliquer les pages ?",
+        answer:
+          "Oui. Nous structurons les contenus, les services, les FAQ et les donnees schema.org pour renforcer la pertinence locale sans surcharger visuellement les pages.",
       },
     ],
     "/expertise/creation-sites-internet": [
@@ -211,6 +222,18 @@ const faqByPage: Record<SeoLocale, Partial<Record<string, FaqItem[]>>> = {
           "Nom, prenom, entreprise, secteur, histoire du projet, besoin principal, objectifs, budget disponible, delais souhaites et toute information complementaire utile.",
       },
     ],
+    "/contact": [
+      {
+        question: "Comment contacter Genesis Connect ?",
+        answer:
+          "La page Contact propose un mailto pre-rempli pour accelerer la prise de contact. Il suffit de preciser le projet, les objectifs, les services recherches, le budget et le delai souhaite.",
+      },
+      {
+        question: "Quels services peuvent etre demandes ?",
+        answer:
+          "Creation de site internet, developpement web, SEO et visibilite locale, cybersécurité, maintenance informatique, depannage informatique, solutions cloud, experience 3D immersive ou autre besoin numerique premium.",
+      },
+    ],
   },
   en: {
     "/": [
@@ -224,6 +247,11 @@ const faqByPage: Record<SeoLocale, Partial<Record<string, FaqItem[]>>> = {
         answer:
           "Yes. We implement structured data, local SEO, GEO SEO and AI Search Optimization for Google, Bing, ChatGPT, Gemini and Perplexity.",
       },
+      {
+        question: "Which regions do you cover?",
+        answer:
+          "We support projects across France, Paris districts, Switzerland, the United States and remote teams through a premium service model combining IT, web, SEO, cybersecurity and cloud expertise.",
+      },
     ],
     "/expertise": [
       {
@@ -231,12 +259,24 @@ const faqByPage: Record<SeoLocale, Partial<Record<string, FaqItem[]>>> = {
         answer:
           "Yes. We support small organizations with troubleshooting, maintenance, remote support, device setup and digital organization.",
       },
+      {
+        question: "Can you target several local markets without overloading pages?",
+        answer:
+          "Yes. We combine service pages, FAQs, internal linking and structured data to build local relevance while preserving a clean premium design.",
+      },
     ],
     "/help": [
       {
         question: "Who is eligible for Help?",
         answer:
           "Founders, small businesses, associations and low-budget structures with a genuine digital need and a coherent project.",
+      },
+    ],
+    "/contact": [
+      {
+        question: "How do we start a project?",
+        answer:
+          "The contact page uses a prefilled mailto template so you can quickly share your project overview, goals, requested services, budget and timeline.",
       },
     ],
   },
@@ -247,12 +287,22 @@ const faqByPage: Record<SeoLocale, Partial<Record<string, FaqItem[]>>> = {
         answer:
           "我们提供 IT 支持、维护、远程协助、网络与 Wi-Fi 部署、网络安全、备份、云方案、网站建设、Web 开发与本地 SEO。",
       },
+      {
+        question: "服务覆盖哪些地区？",
+        answer:
+          "我们面向法国、巴黎重点区域、瑞士、美国以及远程团队提供高端数字服务。",
+      },
     ],
     "/expertise": [
       {
         question: "是否提供小企业 IT 支持？",
         answer:
           "是的，我们面向小企业、创业者与协会提供 IT 运维、维护、网络配置与数字化支持。",
+      },
+      {
+        question: "能否同时覆盖多个本地市场？",
+        answer:
+          "可以。我们通过结构化内容、FAQ、内链与 Schema 数据提升多区域相关性，同时保持页面简洁。",
       },
     ],
     "/help": [
@@ -262,8 +312,23 @@ const faqByPage: Record<SeoLocale, Partial<Record<string, FaqItem[]>>> = {
           "创业者、小企业、协会以及预算有限但项目明确的组织都可以申请。",
       },
     ],
+    "/contact": [
+      {
+        question: "如何联系 Genesis Connect？",
+        answer:
+          "联系页面提供预填充邮件模板，便于快速说明项目、目标、所需服务、预算和时间表。",
+      },
+    ],
   },
 };
+
+function buildServedAreas() {
+  return servedLocations.map((location) => ({
+    "@type": location.type,
+    name: location.name,
+    addressCountry: location.countryCode,
+  }));
+}
 
 function buildBreadcrumbs(locale: SeoLocale, pathname: string) {
   const cleanPath = pathname === "/" ? "/" : pathname.replace(/\/$/, "");
@@ -308,6 +373,7 @@ export default function StructuredData() {
     name: siteName,
     url: siteUrl,
     publisher: { "@id": `${siteUrl}#organization` },
+    about: [...serviceCatalog.map((service) => service.name), ...aiSearchPlatforms],
   };
 
   const organizationSchema = {
@@ -319,6 +385,16 @@ export default function StructuredData() {
     email: businessEmail,
     telephone: businessPhone,
     logo: absoluteUrl("/images/favicon/10.png"),
+    knowsAbout: [
+      ...serviceCatalog.map((service) => service.name),
+      "developpement web",
+      "SEO local",
+      "AI Search Optimization",
+      "cybersecurite",
+      "solutions cloud",
+      "experiences numeriques premium",
+      ...aiSearchPlatforms,
+    ],
     contactPoint: [
       {
         "@type": "ContactPoint",
@@ -345,10 +421,7 @@ export default function StructuredData() {
       postalCode: "75008",
       addressCountry: "FR",
     },
-    areaServed: targetCities.map((city) => ({
-      "@type": "City",
-      name: city,
-    })),
+    areaServed: buildServedAreas(),
   };
 
   const professionalServiceSchema = {
@@ -358,7 +431,7 @@ export default function StructuredData() {
     name: `${siteName} Professional Service`,
     provider: { "@id": `${siteUrl}#organization` },
     serviceType: serviceCatalog.map((service) => service.name),
-    areaServed: targetCities,
+    areaServed: buildServedAreas(),
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Services Genesis Connect",
@@ -397,12 +470,21 @@ export default function StructuredData() {
           "@type": "Service",
           name: pageLabels[locale][pathname] ?? pageLabels[locale]["/expertise"],
           provider: { "@id": `${siteUrl}#organization` },
-          areaServed: targetCities,
+          areaServed: buildServedAreas(),
           serviceType: serviceCatalog.map((service) => service.name),
           description:
             pathname === "/help"
               ? "Soutien et accompagnement numerique pour entrepreneurs, associations et petites structures."
               : "Services informatiques, creation de site internet, developpement web, SEO local, cybersécurité, reseaux, cloud et experiences 3D premium.",
+          audience: {
+            "@type": "Audience",
+            audienceType:
+              locale === "fr"
+                ? "Entreprises, entrepreneurs, associations et organisations"
+                : locale === "en"
+                  ? "Companies, founders, associations and organizations"
+                  : "企业、创业者、协会与组织",
+          },
         }
       : null;
 

@@ -3,11 +3,17 @@
     "title": "首页",
     "description": "欢迎来到 Genesis Connect",
     "Hero": {
+      "kicker": "高端数字工作室 | Web、SEO、网络安全、云",
       "title": "Genesis\nConnect",
-      "subtitle": "从创意到影响力。",
-      "tagline": "为高端品牌打造沉浸式数字体验。",
-      "description": "我们精心制作高端网站、沉浸式3D环境和精致的数字平台，旨在通过清晰度、情感和影响力提升品牌。",
-      "cta": "启动项目"
+      "subtitle": "让技术服务于品牌形象、可见度与业务表现。",
+      "tagline": "网站建设、Web 开发、本地 SEO、网络安全、云解决方案与高端数字体验。",
+      "description": "Genesis Connect 为企业、创业者与组织打造优雅、快速且可持续的数字体验，让访客在几秒内理解您是谁、您做什么以及为什么值得信任。",
+      "cta": "启动项目",
+      "highlights": {
+        "who": "面向企业、品牌与高要求组织的高端数字工作室。",
+        "what": "Web、SEO、IT、网络安全、云与 3D 体验。",
+        "why": "在移动端与桌面端都保持清晰、高性能与可信度。"
+      }
     },
     "Purpose": {
       "label": "目标驱动的数字体验",
@@ -95,42 +101,44 @@
   },
   "ContactPage": {
     "Hero": {
-      "title": "启动\n项目",
-      "subtitle": "告诉我们您的愿景。\n我们要清晰、精确和有影响力地打造沉浸式数字体验。",
-      "description": "每个项目都始于对话。\n让我们一起探索如何塑造您的数字形象。"
+      "title": "聊聊您的项目。",
+      "subtitle": "每个项目都始于一次对话。\n\n无论您需要沉浸式数字体验、网站、SEO 支持、IT 方案还是长期合作，我们都很乐意与您交流。",
+      "description": "清晰的首次沟通可以更快明确背景、目标、优先级以及所需支持级别。",
+      "button": "联系我们",
+      "mailLabel": "直接邮箱",
+      "mailPreview": "hello@genesisconnectstudio.com"
     },
-    "Collaboration": {
-      "title": "合作",
-      "heading": "深思熟虑的方法",
-      "text1": "Genesis Connect 基于项目工作，非常注重质量、工艺和长期价值。我们每年只合作有限的项目，以确保专注和卓越。",
-      "text2": "每次合作都根据项目的范围和雄心量身定制，确保合作伙伴关系与结果一样有意义。"
+    "Conversation": {
+      "title": "优化 mailto",
+      "heading": "用结构化首封邮件更快开始合作。",
+      "text": "主按钮会打开预填充邮件，方便您立即说明项目概况、目标、预算、时间表与所需服务。"
     },
-    "DirectContact": {
-      "title": "直接联系"
+    "MailTemplate": {
+      "subject": "新的咨询 - Genesis Connect",
+      "body": "Hello Genesis Connect,\n\nName: \nCompany: \nIndustry: \n\nProject overview: \n\nGoals: \n\nRequested services: \n\nEstimated budget: \n\nDesired timeline: \n\nAdditional information: \n\nThank you."
     },
     "Services": {
       "title": "需要的服务",
       "items": {
-        "website": "网站",
+        "website": "网站建设",
         "dev": "Web 开发",
-        "seo": "SEO",
+        "seo": "SEO 与本地可见度",
         "support": "IT 故障处理",
-        "maintenance": "维护",
+        "maintenance": "IT 维护",
         "cyber": "网络安全",
-        "network": "网络",
-        "cloud": "云",
-        "exp3d": "3D 体验"
+        "network": "云解决方案",
+        "cloud": "沉浸式 3D 体验",
+        "exp3d": "其他"
       }
     },
-    "Location": {
-      "title": "位置",
-      "address": "29 rue Tronchet,<br/>75008 Paris",
-      "description": "总部位于法国。与有远见的品牌和创始人一起在全球范围内工作。"
+    "Support": {
+      "title": "我们可支持的方向",
+      "text": "Genesis Connect 可提供 Web、SEO、IT、网络安全、云以及高端数字体验相关支持，方法克制、清晰且可长期维护。"
     },
     "Closing": {
-      "title": "结语",
-      "text": "我们重视深思熟虑的项目、清晰的雄心和长期的愿景。",
-      "subtext": "如果您相信工艺、优雅和沉浸式数字体验 —— 我们是一致的。"
+      "title": "让技术服务于人。",
+      "text": "Genesis Connect 帮助企业、创业者与组织打造优雅、高性能且可持续的数字体验。",
+      "subtext": "高端数字形象始于一次清晰的沟通。"
     }
   },
   "ExpertisePage": {

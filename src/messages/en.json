@@ -3,11 +3,17 @@
     "title": "Home",
     "description": "Welcome to Genesis Connect",
     "Hero": {
+      "kicker": "Premium digital studio | Web, SEO, cybersecurity, cloud",
       "title": "Genesis\nConnect",
-      "subtitle": "From idea to impact.",
-      "tagline": "Immersive digital experiences for premium brands.",
-      "description": "We craft high-end websites, immersive 3D environments, and refined digital platforms designed to elevate brands through clarity, emotion, and impact.",
-      "cta": "Start a project"
+      "subtitle": "Technology serving your image, visibility and performance.",
+      "tagline": "Websites, web development, local SEO, cybersecurity, cloud solutions and premium digital experiences.",
+      "description": "Genesis Connect helps companies, founders and organizations with elegant, fast and durable digital experiences designed to be understood in seconds and remembered for the long term.",
+      "cta": "Start a project",
+      "highlights": {
+        "who": "A premium studio for companies, brands and ambitious organizations.",
+        "what": "Web, SEO, IT, cybersecurity, cloud and 3D experiences.",
+        "why": "A clear, high-performance and credible presence on mobile and desktop."
+      }
     },
     "Purpose": {
       "label": "Purpose-driven digital experiences",
@@ -95,42 +101,44 @@
   },
   "ContactPage": {
     "Hero": {
-      "title": "Start a\nProject",
-      "subtitle": "Tell us about your vision.\nWe craft immersive digital experiences with clarity, precision, and impact.",
-      "description": "Every project begins with a conversation.\nLet’s explore how we can shape your digital presence together."
+      "title": "Let’s talk about your project.",
+      "subtitle": "Every project begins with a conversation.\n\nWhether you need an immersive digital experience, a website, SEO support, IT guidance or a long-term collaboration, we would be glad to discuss it with you.",
+      "description": "A clear first exchange helps define the context, goals, priorities and level of support required.",
+      "button": "Contact us",
+      "mailLabel": "Direct email",
+      "mailPreview": "hello@genesisconnectstudio.com"
     },
-    "Collaboration": {
-      "title": "Collaboration",
-      "heading": "A Thoughtful Approach",
-      "text1": "Genesis Connect works on a project basis, with a strong focus on quality, craft, and long-term value. We collaborate on a limited number of projects each year to ensure dedication and excellence.",
-      "text2": "Each collaboration is tailored to the scope and ambition of the project, ensuring a partnership that is as meaningful as the outcome."
+    "Conversation": {
+      "title": "Optimized mailto",
+      "heading": "A structured first message to move faster.",
+      "text": "The main button opens a prefilled email so the first conversation already includes the project overview, goals, budget, timeline and requested services."
     },
-    "DirectContact": {
-      "title": "Direct Contact"
+    "MailTemplate": {
+      "subject": "New inquiry - Genesis Connect",
+      "body": "Hello Genesis Connect,\n\nName: \nCompany: \nIndustry: \n\nProject overview: \n\nGoals: \n\nRequested services: \n\nEstimated budget: \n\nDesired timeline: \n\nAdditional information: \n\nThank you."
     },
     "Services": {
       "title": "Services needed",
       "items": {
-        "website": "Website",
+        "website": "Website creation",
         "dev": "Web development",
-        "seo": "SEO",
+        "seo": "SEO & local visibility",
         "support": "IT troubleshooting",
-        "maintenance": "Maintenance",
+        "maintenance": "IT maintenance",
         "cyber": "Cybersecurity",
-        "network": "Network",
-        "cloud": "Cloud",
-        "exp3d": "3D experience"
+        "network": "Cloud solutions",
+        "cloud": "Immersive 3D experience",
+        "exp3d": "Other"
       }
     },
-    "Location": {
-      "title": "Location",
-      "address": "29 rue Tronchet,<br/>75008 Paris",
-      "description": "Based in France. Working worldwide with visionary brands and founders."
+    "Support": {
+      "title": "What we can support",
+      "text": "Genesis Connect supports web, SEO, IT, cybersecurity, cloud and premium digital experience needs with a restrained, clear and durable approach."
     },
     "Closing": {
-      "title": "Closing Statement",
-      "text": "We value thoughtful projects, clear ambition, and long-term vision.",
-      "subtext": "If you believe in craft, elegance, and immersive digital experiences — we are aligned."
+      "title": "Technology serving people.",
+      "text": "Genesis Connect supports companies, founders and organizations in the creation of elegant, high-performance and durable digital experiences.",
+      "subtext": "A premium digital presence begins with a clear conversation."
     }
   },
   "ExpertisePage": {

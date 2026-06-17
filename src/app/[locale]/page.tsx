@@ -139,27 +139,45 @@ export default function Home() {
       <div className="relative w-full">
         
         {/* 1. HERO (FRONT -> z-20) */}
-        <section className="relative z-20 min-h-[100svh] flex flex-col justify-center items-center content-offset px-6 md:px-12 pt-24 pb-0">
+        <section className="relative z-20 min-h-[100svh] flex flex-col justify-center items-center content-offset px-6 md:px-12 pt-28 pb-8 md:pb-0">
           <div className="max-w-7xl w-full mx-auto flex flex-col justify-center h-full text-center md:text-left">
-            <h1 className="hero-text-1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif leading-[0.92] mb-6 text-[#FAF9F6] mix-blend-difference tracking-tight whitespace-pre-line">
+            <p className="hero-text-1 text-[10px] sm:text-xs uppercase tracking-[0.28em] text-[#FAF9F6]/70 mb-5 md:mb-6">
+              {t("Hero.kicker")}
+            </p>
+            <h1 className="hero-text-1 text-5xl sm:text-6xl md:text-6xl lg:text-7xl font-serif leading-[0.88] mb-7 text-[#FAF9F6] mix-blend-difference tracking-tight whitespace-pre-line">
                {t('Hero.title')}
              </h1>
-             <div className="hero-text-2 w-full md:w-2/3 lg:w-1/2 mx-auto md:mx-0 rounded-3xl border border-[#FAF9F6]/10 bg-[#2A1C15]/35 backdrop-blur-xl px-5 py-6 md:border-transparent md:bg-transparent md:backdrop-blur-none md:px-0 md:py-0">
-                 <p className="text-lg md:text-2xl font-serif text-[#FAF9F6] mb-3 md:mb-5 leading-tight">
+             <div className="hero-text-2 w-full md:w-2/3 lg:w-[58%] mx-auto md:mx-0 rounded-[32px] border border-[#FAF9F6]/10 bg-[#2A1C15]/40 backdrop-blur-xl px-6 py-7 md:border-transparent md:bg-transparent md:backdrop-blur-none md:px-0 md:py-0">
+                 <p className="text-xl sm:text-2xl md:text-2xl font-serif text-[#FAF9F6] mb-4 md:mb-5 leading-[1.15]">
                      {t('Hero.subtitle')}
                  </p>
-                <p className="text-base md:text-lg font-light tracking-wide max-w-xl mx-auto md:mx-0 text-[#FAF9F6]/80 mb-5 md:mb-6 leading-relaxed">
+                <p className="text-[15px] sm:text-base md:text-lg font-light tracking-wide max-w-2xl mx-auto md:mx-0 text-[#FAF9F6]/82 mb-5 md:mb-6 leading-relaxed">
                     {t('Hero.tagline')}
                 </p>
-                <div className="flex flex-col gap-6">
-                    <p className="text-sm md:text-base font-light tracking-wide max-w-2xl mx-auto md:mx-0 text-[#FAF9F6]/60 leading-relaxed">
+                <div className="flex flex-col gap-7">
+                    <p className="text-sm sm:text-[15px] md:text-base font-light tracking-wide max-w-2xl mx-auto md:mx-0 text-[#FAF9F6]/68 leading-relaxed">
                         {t('Hero.description')}
                     </p>
+                    <div className="grid grid-cols-1 gap-3 text-left">
+                        {["who", "what", "why"].map((item) => (
+                          <div
+                            key={item}
+                            className="rounded-2xl border border-[#FAF9F6]/8 bg-[#FAF9F6]/[0.03] px-4 py-3"
+                          >
+                            <p className="text-[11px] uppercase tracking-[0.22em] text-[#D4AF37] mb-1">
+                              {item}
+                            </p>
+                            <p className="text-sm sm:text-[15px] text-[#FAF9F6]/80 leading-relaxed">
+                              {t(`Hero.highlights.${item}`)}
+                            </p>
+                          </div>
+                        ))}
+                    </div>
                     {/* CTA Button */}
-                    <div className="mt-2 flex justify-center md:justify-start">
+                    <div className="mt-1 flex justify-center md:justify-start">
                         <TransitionLink 
                             href="/contact" 
-                            className="inline-flex items-center gap-3 text-[#FAF9F6] border border-[#FAF9F6]/30 px-8 py-2 rounded-full hover:bg-[#FAF9F6] hover:text-[#2A1C15] transition-all duration-500 group"
+                            className="inline-flex items-center gap-3 text-[#FAF9F6] border border-[#FAF9F6]/30 px-8 py-3 rounded-full hover:bg-[#FAF9F6] hover:text-[#2A1C15] transition-all duration-500 group"
                         >
                             <span className="uppercase tracking-widest text-xs font-medium">{t('Hero.cta')}</span>
                             <span className="w-2 h-2 rounded-full bg-[#D4AF37] group-hover:bg-[#2A1C15] transition-colors duration-500"></span>

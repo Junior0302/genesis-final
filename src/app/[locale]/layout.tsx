@@ -6,6 +6,7 @@ import "../globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CustomCursor from "@/components/ui/CustomCursor";
+import ClientProtection from "@/components/ui/ClientProtection";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import ScrollControls from "@/components/ui/ScrollControls";
 import StructuredData from "@/components/seo/StructuredData";
@@ -123,6 +124,7 @@ gtag('config', '${gaId}', { page_path: window.location.pathname });`}
           <SoundProvider>
             <TransitionProvider>
               <StructuredData />
+              <ClientProtection />
               <SceneWrapper />
               <SmoothScroll />
               <ScrollControls />
