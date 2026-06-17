@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import TransitionLink from "@/components/ui/TransitionLink";
 import Logo from "@/components/ui/Logo";
+import { useTransition } from "@/context/TransitionContext";
 
 type MenuItem = {
   name: string;
@@ -19,6 +20,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const locale = useLocale();
   const t = useTranslations("Navigation");
+  const { isNavigating } = useTransition();
 
   const navItems = useMemo<MenuItem[]>(
     () => [
@@ -35,6 +37,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const menuTimelineRef = useRef<gsap.core.Timeline | null>(null);
+  const closeOnTransitionEndRef = useRef(false);
 
   const switchLocale = (newLocale: string) => {
     const path = pathname === "/" ? "" : pathname;
@@ -42,9 +45,27 @@ export default function Navbar() {
   };
 
   useEffect(() => {
+    if (!isOpen) return;
+    if (isNavigating) return;
     const id = window.requestAnimationFrame(() => setIsOpen(false));
     return () => window.cancelAnimationFrame(id);
-  }, [pathname]);
+  }, [isOpen, isNavigating, pathname]);
+
+  useEffect(() => {
+    if (isNavigating) return;
+    if (!closeOnTransitionEndRef.current) return;
+    closeOnTransitionEndRef.current = false;
+    const id = window.requestAnimationFrame(() => setIsOpen(false));
+    return () => window.cancelAnimationFrame(id);
+  }, [isNavigating]);
+
+  const markCloseAfterTransition = (href: string) => {
+    if (href === pathname) {
+      setIsOpen(false);
+      return;
+    }
+    closeOnTransitionEndRef.current = true;
+  };
 
   useEffect(() => {
     const r = router as unknown as { prefetch?: (href: string) => void | Promise<void> };
@@ -150,7 +171,7 @@ export default function Navbar() {
             isOpen ? "text-[#FAF9F6] opacity-100" : "text-[#FAF9F6] opacity-100"
           }`}
           aria-label="Genesis Connect Home"
-          onClick={() => setIsOpen(false)}
+          onClick={() => markCloseAfterTransition("/")}
         >
           <Logo className="transition-all duration-500 text-xl" />
         </TransitionLink>
@@ -245,7 +266,7 @@ export default function Navbar() {
               key={item.href}
               href={item.href}
               className="mobile-link group relative text-[#FAF9F6] text-4xl md:text-5xl font-serif tracking-tight opacity-0 hover:text-[#FAF9F6]/80 transition-colors"
-              onClick={() => setIsOpen(false)}
+              onClick={() => markCloseAfterTransition(item.href)}
             >
               <span className="relative z-10">{item.name}</span>
               <span className="absolute left-0 top-1/2 w-full h-[1px] bg-[#FAF9F6]/30 -translate-y-1/2 scale-x-0 group-hover:scale-x-110 transition-transform duration-500 ease-expo" />

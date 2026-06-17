@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useEffect } from "react";
+import { Suspense, useCallback, useEffect } from "react";
 import { useProgress } from "@react-three/drei";
 import { useTransition } from "@/context/TransitionContext";
 import { usePathname } from "next/navigation";
@@ -14,20 +14,25 @@ export default function Scene() {
   const { setAssetsLoaded } = useTransition();
   const pathname = usePathname();
   // #region debug-point D:scene-runtime
-  const reportDebug = (hypothesisId: string, msg: string, extra?: Record<string, unknown>) => {
-    void fetch(process.env.NEXT_PUBLIC_DEBUG_SERVER_URL ?? "http://127.0.0.1:7777/event", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        sessionId: "mobile-nav-3d",
-        runId: "post-fix",
-        hypothesisId,
-        msg,
-        pathname,
-        extra,
-      }),
-    }).catch(() => {});
-  };
+  const reportDebug = useCallback(
+    (hypothesisId: string, msg: string, extra?: Record<string, unknown>) => {
+      const url = process.env.NEXT_PUBLIC_DEBUG_SERVER_URL;
+      if (!url) return;
+      void fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sessionId: "mobile-nav-3d",
+          runId: "post-fix",
+          hypothesisId,
+          msg,
+          pathname,
+          extra,
+        }),
+      }).catch(() => {});
+    },
+    [pathname]
+  );
   // #endregion debug-point D:scene-runtime
 
   useEffect(() => {

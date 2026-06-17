@@ -1,4 +1,6 @@
-import { Link } from "@/i18n/routing";
+"use client";
+
+import TransitionLink from "@/components/ui/TransitionLink";
 import { useTranslations } from "next-intl";
 
 export default function CTA() {
@@ -13,13 +15,13 @@ export default function CTA() {
       <p className="text-xl text-muted max-w-2xl mb-12 whitespace-pre-line">
         {t('text')}
       </p>
-      <Link 
+      <TransitionLink 
         href="/contact" 
         className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full border border-white/20 bg-transparent px-8 font-medium text-white transition-all duration-300 hover:bg-white hover:text-black hover:w-64 w-48"
       >
         <span className="mr-2">{t('button')}</span>
         <span className="group-hover:translate-x-1 transition-transform">→</span>
-      </Link>
+      </TransitionLink>
     </section>
   );
 }

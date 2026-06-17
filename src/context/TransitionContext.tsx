@@ -23,6 +23,7 @@ interface TransitionContextType {
   navigate: (href: string) => void;
   currentState: IntroState;
   setAssetsLoaded: (loaded: boolean) => void;
+  isNavigating: boolean;
 }
 
 const TransitionContext = createContext<TransitionContextType | undefined>(undefined);
@@ -45,7 +46,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
   const navigateTimeoutRef = useRef<number | null>(null);
-  const animateOutTimeoutRef = useRef<number | null>(null);
+  const pendingTargetPathRef = useRef<string | null>(null);
 
   // INTRO STATE MACHINE
   const [currentState, setCurrentState] = useState<IntroState>('LOADING_ASSETS');
@@ -122,12 +123,18 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
         window.clearTimeout(navigateTimeoutRef.current);
         navigateTimeoutRef.current = null;
       }
-      if (animateOutTimeoutRef.current !== null) {
-        window.clearTimeout(animateOutTimeoutRef.current);
-        animateOutTimeoutRef.current = null;
-      }
     };
   }, []);
+
+  useEffect(() => {
+    if (currentState !== "EXPERIENCE_RUNNING") return;
+    if (!isAnimating) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [currentState, isAnimating]);
 
   // 2. ORCHESTRATION DES ETATS (State Machine Logic)
   useGSAP(() => {
@@ -351,9 +358,14 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     return t('narrative.default');
   };
 
+  const normalizePath = (p: string) => {
+    const base = (p.split(/[?#]/)[0] || "/").replace(/\/$/, "");
+    return base === "" ? "/" : base;
+  };
+
   const navigate = (href: string) => {
-    const targetPath = href.split(/[?#]/)[0] || "/";
-    if (isAnimating || targetPath === pathname) return;
+    const targetPath = normalizePath(href);
+    if (isAnimating || targetPath === normalizePath(pathname)) return;
 
     // Ensure audio is initialized on navigation click
     initAudio();
@@ -366,6 +378,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     const text = getTransitionText(pathname, targetPath);
     setTransitionText(text);
     setIsAnimating(true);
+    pendingTargetPathRef.current = targetPath;
     
     // Sound Trigger (Transition Pulse)
     // Timing exact: Au moment où la phrase apparaît
@@ -375,20 +388,12 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
       window.clearTimeout(navigateTimeoutRef.current);
       navigateTimeoutRef.current = null;
     }
-    if (animateOutTimeoutRef.current !== null) {
-      window.clearTimeout(animateOutTimeoutRef.current);
-      animateOutTimeoutRef.current = null;
-    }
 
     // DELAY BEFORE TRANSITION STARTS (For calm effect)
     navigateTimeoutRef.current = window.setTimeout(() => {
         const tl = gsap.timeline({
         onComplete: () => {
             router.push(href);
-            // Wait for next page to mount before animating out
-            animateOutTimeoutRef.current = window.setTimeout(() => {
-                animateOut();
-            }, 300); // Increased mount wait (was 100)
         }
         });
 
@@ -411,7 +416,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     }, 800); // 0.8s delay after sound
   };
 
-  const animateOut = () => {
+  function animateOut() {
     const tl = gsap.timeline({
       onComplete: () => {
         setIsAnimating(false);
@@ -434,10 +439,65 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
         },
         "-=0.2"
       );
-  };
+  }
+
+  useEffect(() => {
+    if (!isAnimating) return;
+
+    const pending = pendingTargetPathRef.current;
+    if (!pending) return;
+
+    if (normalizePath(pathname) !== pending) return;
+    pendingTargetPathRef.current = null;
+
+    const waitForNextPaint = () =>
+      new Promise<void>((resolve) => {
+        window.requestAnimationFrame(() => window.requestAnimationFrame(() => resolve()));
+      });
+
+    const waitForCriticalImages = (timeoutMs: number) =>
+      new Promise<void>((resolve) => {
+        const candidates = Array.from(document.images).filter((img) => {
+          if (img.complete) return false;
+          if (img.loading === "lazy") return false;
+          const rect = img.getBoundingClientRect();
+          const inViewport = rect.bottom > 0 && rect.top < window.innerHeight;
+          return inViewport;
+        });
+
+        if (candidates.length === 0) {
+          resolve();
+          return;
+        }
+
+        let done = 0;
+        const finishOne = () => {
+          done += 1;
+          if (done >= candidates.length) resolve();
+        };
+
+        for (const img of candidates) {
+          img.addEventListener("load", finishOne, { once: true });
+          img.addEventListener("error", finishOne, { once: true });
+        }
+
+        window.setTimeout(() => resolve(), timeoutMs);
+      });
+
+    void (async () => {
+      await waitForNextPaint();
+      if (document.fonts?.status !== "loaded") {
+        try {
+          await document.fonts.ready;
+        } catch {}
+      }
+      await waitForCriticalImages(1800);
+      animateOut();
+    })();
+  }, [isAnimating, pathname]);
 
   return (
-    <TransitionContext.Provider value={{ navigate, currentState, setAssetsLoaded }}>
+    <TransitionContext.Provider value={{ navigate, currentState, setAssetsLoaded, isNavigating: isAnimating }}>
       {children}
       
       {/* --- INTRO OVERLAY (STATE DRIVEN) --- */}

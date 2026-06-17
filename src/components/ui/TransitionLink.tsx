@@ -2,7 +2,7 @@
 
 import { Link } from "@/i18n/routing";
 import { ReactNode, ComponentProps } from "react";
-import { useRouter } from "@/i18n/routing";
+import { usePathname, useRouter } from "@/i18n/routing";
 import { useOptionalTransition } from "@/context/TransitionContext";
 
 type IntlLinkProps = ComponentProps<typeof Link>;
@@ -23,6 +23,7 @@ export default function TransitionLink({
   ...props 
 }: TransitionLinkProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const transition = useOptionalTransition();
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -37,9 +38,12 @@ export default function TransitionLink({
     const hrefString = typeof href === "string" ? href : href.pathname ?? href.toString();
     const isExternal = /^https?:\/\//i.test(hrefString);
     if (isExternal) return;
+    const hrefPath = (hrefString.split(/[?#]/)[0] || "/").replace(/\/$/, "") || "/";
+    const currentPath = (pathname.replace(/\/$/, "") || "/") as string;
 
     if (!beforeNavigate) {
       if (transition) {
+        if (hrefPath === currentPath) return;
         e.preventDefault();
         transition.navigate(hrefString);
       }

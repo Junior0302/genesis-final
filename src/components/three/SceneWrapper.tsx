@@ -15,7 +15,9 @@ export default function SceneWrapper() {
     const reducedMotionMq = window.matchMedia("(prefers-reduced-motion: reduce)");
     // #region debug-point C:scene-wrapper-gate
     const reportDebug = (hypothesisId: string, msg: string, extra?: Record<string, unknown>) => {
-      void fetch(process.env.NEXT_PUBLIC_DEBUG_SERVER_URL ?? "http://127.0.0.1:7777/event", {
+      const url = process.env.NEXT_PUBLIC_DEBUG_SERVER_URL;
+      if (!url) return;
+      void fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
