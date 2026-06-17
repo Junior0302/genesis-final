@@ -139,24 +139,24 @@ export default function Home() {
       <div className="relative w-full">
         
         {/* 1. HERO (FRONT -> z-20) */}
-        <section className="relative z-20 min-h-[100svh] flex flex-col justify-center items-center content-offset pr-6 md:px-12 pt-24 pb-0">
-          <div className="max-w-7xl w-full mx-auto flex flex-col justify-center h-full">
-            <h1 className="hero-text-1 text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-serif leading-[0.9] mb-6 text-[#FAF9F6] mix-blend-difference tracking-tight whitespace-pre-line">
+        <section className="relative z-20 min-h-[100svh] flex flex-col justify-center items-center content-offset px-6 md:px-12 pt-24 pb-0">
+          <div className="max-w-7xl w-full mx-auto flex flex-col justify-center h-full text-center md:text-left">
+            <h1 className="hero-text-1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif leading-[0.92] mb-6 text-[#FAF9F6] mix-blend-difference tracking-tight whitespace-pre-line">
                {t('Hero.title')}
              </h1>
-             <div className="hero-text-2 w-full md:w-2/3 lg:w-1/2 backdrop-blur-sm md:backdrop-blur-none bg-[#2A1C15]/10 md:bg-transparent py-2">
-                 <p className="text-base md:text-2xl font-serif text-[#FAF9F6] mb-2 md:mb-5">
+             <div className="hero-text-2 w-full md:w-2/3 lg:w-1/2 mx-auto md:mx-0 rounded-3xl border border-[#FAF9F6]/10 bg-[#2A1C15]/35 backdrop-blur-xl px-5 py-6 md:border-transparent md:bg-transparent md:backdrop-blur-none md:px-0 md:py-0">
+                 <p className="text-lg md:text-2xl font-serif text-[#FAF9F6] mb-3 md:mb-5 leading-tight">
                      {t('Hero.subtitle')}
                  </p>
-                <p className="text-sm md:text-lg font-light tracking-wide max-w-xl text-[#FAF9F6]/80 mb-4 md:mb-6">
+                <p className="text-base md:text-lg font-light tracking-wide max-w-xl mx-auto md:mx-0 text-[#FAF9F6]/80 mb-5 md:mb-6 leading-relaxed">
                     {t('Hero.tagline')}
                 </p>
                 <div className="flex flex-col gap-6">
-                    <p className="text-xs md:text-base font-light tracking-wide max-w-2xl text-[#FAF9F6]/60 leading-relaxed">
+                    <p className="text-sm md:text-base font-light tracking-wide max-w-2xl mx-auto md:mx-0 text-[#FAF9F6]/60 leading-relaxed">
                         {t('Hero.description')}
                     </p>
                     {/* CTA Button */}
-                    <div className="mt-2">
+                    <div className="mt-2 flex justify-center md:justify-start">
                         <TransitionLink 
                             href="/contact" 
                             className="inline-flex items-center gap-3 text-[#FAF9F6] border border-[#FAF9F6]/30 px-8 py-2 rounded-full hover:bg-[#FAF9F6] hover:text-[#2A1C15] transition-all duration-500 group"

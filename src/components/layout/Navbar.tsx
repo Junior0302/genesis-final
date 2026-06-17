@@ -28,7 +28,7 @@ export default function Navbar() {
       { name: t("expertise"), href: "/expertise" },
       { name: t("work"), href: "/work" },
       { name: t("contact"), href: "/contact" },
-      { name: t("other"), href: "/other" },
+      { name: t("help"), href: "/help" },
     ],
     [t]
   );
@@ -38,6 +38,8 @@ export default function Navbar() {
   const navRef = useRef<HTMLElement>(null);
   const menuTimelineRef = useRef<gsap.core.Timeline | null>(null);
   const closeOnTransitionEndRef = useRef(false);
+  const previousPathnameRef = useRef(pathname);
+  const isOpenRef = useRef(isOpen);
 
   const switchLocale = (newLocale: string) => {
     const path = pathname === "/" ? "" : pathname;
@@ -45,11 +47,17 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    if (!isOpen) return;
+    isOpenRef.current = isOpen;
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (previousPathnameRef.current === pathname) return;
+    previousPathnameRef.current = pathname;
+    if (!isOpenRef.current) return;
     if (isNavigating) return;
     const id = window.requestAnimationFrame(() => setIsOpen(false));
     return () => window.cancelAnimationFrame(id);
-  }, [isOpen, isNavigating, pathname]);
+  }, [isNavigating, pathname]);
 
   useEffect(() => {
     if (isNavigating) return;
@@ -142,7 +150,7 @@ export default function Navbar() {
   }, [isOpen]);
 
   const handleMenuToggle = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prev) => !prev);
   };
 
   return (
