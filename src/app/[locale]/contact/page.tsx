@@ -108,6 +108,39 @@ export default function ContactPage() {
 
                 {/* RIGHT COLUMN: CONTACT INFO */}
                 <div className="flex flex-col gap-16 reveal-text md:pt-4">
+
+                    <div className="rounded-[28px] border border-[#FAF9F6]/10 bg-[#241710]/70 p-8">
+                        <h3 className="text-xs uppercase tracking-[0.2em] text-[#FAF9F6]/40 mb-8">
+                          {t('Services.title')}
+                        </h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          {[
+                            { key: "website", label: t("Services.items.website") },
+                            { key: "dev", label: t("Services.items.dev") },
+                            { key: "seo", label: t("Services.items.seo") },
+                            { key: "support", label: t("Services.items.support") },
+                            { key: "maintenance", label: t("Services.items.maintenance") },
+                            { key: "cyber", label: t("Services.items.cyber") },
+                            { key: "network", label: t("Services.items.network") },
+                            { key: "cloud", label: t("Services.items.cloud") },
+                            { key: "exp3d", label: t("Services.items.exp3d") },
+                          ].map((item) => (
+                            <label
+                              key={item.key}
+                              className="flex items-center gap-3 rounded-2xl border border-[#FAF9F6]/8 bg-[#2A1C15]/40 px-5 py-4 text-sm text-[#FAF9F6]/75"
+                            >
+                              <input
+                                type="checkbox"
+                                className="h-4 w-4 accent-[#D4AF37]"
+                                aria-label={item.label}
+                              />
+                              <span className="uppercase tracking-[0.18em] text-[11px] text-[#FAF9F6]/70">
+                                {item.label}
+                              </span>
+                            </label>
+                          ))}
+                        </div>
+                    </div>
                     
                     {/* EMAIL */}
                     <div>

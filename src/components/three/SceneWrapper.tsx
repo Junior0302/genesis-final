@@ -2,6 +2,8 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useTransition } from "@/context/TransitionContext";
 
 const Scene = dynamic(() => import("./Scene"), {
   ssr: false,
@@ -10,8 +12,19 @@ const Scene = dynamic(() => import("./Scene"), {
 
 export default function SceneWrapper() {
   const [enabled, setEnabled] = useState(false);
+  const pathname = usePathname();
+  const { setAssetsLoaded } = useTransition();
+
+  const isHome = pathname === "/" || /^\/(fr|en|zh)\/?$/.test(pathname);
 
   useEffect(() => {
+    if (!isHome) {
+      setAssetsLoaded(true);
+    }
+  }, [isHome, setAssetsLoaded]);
+
+  useEffect(() => {
+    if (!isHome) return;
     const reducedMotionMq = window.matchMedia("(prefers-reduced-motion: reduce)");
     // #region debug-point C:scene-wrapper-gate
     const reportDebug = (hypothesisId: string, msg: string, extra?: Record<string, unknown>) => {
@@ -55,7 +68,11 @@ export default function SceneWrapper() {
     return () => {
       reducedMotionMq.removeListener(update);
     };
-  }, []);
+  }, [isHome]);
+
+  if (!isHome) {
+    return <div className="fixed inset-0 z-[-1] bg-[#2A1C15]" />;
+  }
 
   if (!enabled) {
     return <div className="fixed inset-0 z-[-1] bg-[#2A1C15]" />;

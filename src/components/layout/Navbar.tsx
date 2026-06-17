@@ -26,10 +26,8 @@ export default function Navbar() {
     () => [
       { name: t("home"), href: "/" },
       { name: t("expertise"), href: "/expertise" },
-      { name: t("projects"), href: "/work" },
+      { name: t("work"), href: "/work" },
       { name: t("help"), href: "/help" },
-      { name: t("about"), href: "/studio" },
-      { name: t("blog"), href: "/blog" },
       { name: t("contact"), href: "/contact" },
     ],
     [t]

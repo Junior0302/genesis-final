@@ -61,7 +61,7 @@
     },
     "SeoSection": {
       "title": "Solutions informatiques et digitales pour particuliers et professionnels",
-      "text": "Genesis Connect accompagne les particuliers, indépendants, artisans, commerçants, associations et entreprises dans leurs besoins numériques.\n\nCréation de sites internet, développement web, maintenance informatique, cybersécurité, référencement local, réseaux, solutions cloud et expériences 3D immersives : nous concevons des solutions performantes, élégantes et durables.\n\nNotre approche associe technologie, design et stratégie afin de créer des expériences numériques capables de générer de la visibilité, de la confiance et de la croissance."
+      "text": "Genesis Connect accompagne les entreprises, entrepreneurs, artisans, commerçants, associations et organisations dans la création d'expériences numériques premium, le développement web, la visibilité en ligne, l'infrastructure informatique et l'optimisation digitale.\n\nNous combinons design, technologie, stratégie et innovation afin de créer des plateformes élégantes, performantes et durables."
     },
     "Complementary": {
       "title": "Savoir-faire complémentaire",
@@ -107,6 +107,20 @@
     },
     "DirectContact": {
       "title": "Contact Direct"
+    },
+    "Services": {
+      "title": "Services recherchés",
+      "items": {
+        "website": "Site internet",
+        "dev": "Développement web",
+        "seo": "SEO",
+        "support": "Dépannage informatique",
+        "maintenance": "Maintenance",
+        "cyber": "Cybersécurité",
+        "network": "Réseau",
+        "cloud": "Cloud",
+        "exp3d": "Expérience 3D"
+      }
     },
     "Location": {
       "title": "Localisation",
@@ -321,6 +335,11 @@
     "support": "Auto-entrepreneur"
   },
   "Footer": {
+    "pages": "Pages",
+    "about": "À propos",
+    "blog": "Blog",
+    "privacy": "Confidentialité",
+    "cookies": "Cookies",
     "location": "Localisation",
     "based_in": "Basé en France. Opère dans le monde entier.",
     "contact": "Contact",

@@ -16,13 +16,13 @@ export default function HelpPage() {
       title: "Soutenir les projets qui méritent d'exister.",
       description:
         "Genesis Connect souhaite aider les nouveaux entrepreneurs, petites entreprises, associations et structures a faible budget avec un accompagnement numerique clair, humain et realiste.",
-      visionTitle: "Notre vision",
-      visionText:
-        "Nous croyons qu'une petite structure doit pouvoir acceder a des solutions informatiques, web et SEO solides, meme avec des moyens limites. L'objectif n'est pas de vendre du superflu, mais de poser une base utile, durable et evolutive.",
+      whyTitle: "Pourquoi Genesis Connect aide certains projets",
+      whyText:
+        "Chez Genesis Connect, nous savons que certaines idees ont du potentiel mais peu de moyens. Le programme Help est ne de cette conviction : rendre la technologie accessible, utile et durable pour les petites structures.",
       engagementTitle: "Notre engagement",
       engagementText:
         "Nous cherchons a proposer un accompagnement proportionne au contexte du projet : diagnostic, priorisation, cadre simple, solutions pragmatiques, et niveau d'exigence professionnel.",
-      eligibilityTitle: "Profils eligibles",
+      eligibilityTitle: "Qui peut candidater",
       eligibility: [
         "Nouveaux entrepreneurs en phase de lancement",
         "Petites entreprises avec besoin de structuration numerique",
@@ -36,26 +36,18 @@ export default function HelpPage() {
         "SEO local, Google Business Profile et visibilite locale",
         "Organisation cloud, Microsoft 365, Google Workspace et collaboration",
       ],
-      conditionsTitle: "Conditions de candidature",
+      applyTitle: "Comment candidater",
+      applySteps: [
+        "Prepare un email structure avec les informations ci-dessous.",
+        "Explique ton besoin principal et ton contexte (budget / delais / contraintes).",
+        "Envoie ta demande via le bouton email ci-dessous.",
+      ],
+      criteriaTitle: "Critères de sélection",
       conditions: [
         "Le besoin doit etre reel, concret et explicable.",
         "Le projet doit avoir une utilite claire ou un potentiel de structuration durable.",
         "Le budget n'a pas besoin d'etre eleve, mais il doit etre annonce honnêtement.",
         "Les delais, les contraintes et les attentes doivent etre precises.",
-      ],
-      blocks: [
-        {
-          title: "Diagnostic & Priorités",
-          text: "On identifie les points bloquants, l’objectif principal et les actions qui ont le plus d’impact dès maintenant.",
-        },
-        {
-          title: "Plan d’action",
-          text: "Une feuille de route simple : étapes, livrables, outils, et organisation — sans complexité inutile.",
-        },
-        {
-          title: "Suivi & Ajustements",
-          text: "On avance par itérations : retours, corrections, et optimisation pour garder une progression constante.",
-        },
       ],
       formTitle: "Informations a fournir",
       formLead:
@@ -63,10 +55,11 @@ export default function HelpPage() {
       formItems: [
         "Nom",
         "Prenom",
-        "Nom de l'entreprise",
+        "Entreprise",
         "Secteur d'activite",
+        "Presentation du projet",
         "Histoire du projet",
-        "Besoin principal",
+        "Besoins",
         "Objectifs",
         "Budget disponible",
         "Delais souhaites",
@@ -95,16 +88,16 @@ export default function HelpPage() {
     },
     en: {
       eyebrow: "Help",
-      title: "Making technology accessible, useful and sustainable.",
+      title: "Supporting projects that deserve to exist.",
       description:
         "Genesis Connect wants to support new founders, small businesses, associations and low-budget structures with clear, human and realistic digital guidance.",
-      visionTitle: "Our vision",
-      visionText:
-        "Small organizations should still have access to reliable IT, web and SEO foundations. The goal is not to oversell, but to build what is useful, durable and realistic.",
+      whyTitle: "Why Genesis Connect supports some projects",
+      whyText:
+        "Some ideas have real potential but limited means. The Help program exists to make technology accessible, useful and sustainable for small organizations.",
       engagementTitle: "Our commitment",
       engagementText:
         "We aim to provide support that matches the real context of the project: diagnosis, prioritization, pragmatic solutions and professional standards.",
-      eligibilityTitle: "Eligible profiles",
+      eligibilityTitle: "Who can apply",
       eligibility: [
         "New entrepreneurs launching a project",
         "Small businesses needing digital structure",
@@ -118,26 +111,18 @@ export default function HelpPage() {
         "Local SEO, Google Business Profile and local visibility",
         "Cloud setup, Microsoft 365, Google Workspace and team collaboration",
       ],
-      conditionsTitle: "Eligibility conditions",
+      applyTitle: "How to apply",
+      applySteps: [
+        "Prepare a structured email with the information below.",
+        "Explain your main need and constraints (budget / timeline / context).",
+        "Send your request using the email button below.",
+      ],
+      criteriaTitle: "Selection criteria",
       conditions: [
         "The need must be real, concrete and explainable.",
         "The project should have clear usefulness or long-term structuring value.",
         "The budget does not have to be high, but it must be stated honestly.",
         "Timelines, constraints and expectations should be clearly defined.",
-      ],
-      blocks: [
-        {
-          title: "Diagnosis & Priorities",
-          text: "We identify blockers, your main goal, and the actions with the highest immediate impact.",
-        },
-        {
-          title: "Action Plan",
-          text: "A simple roadmap: steps, deliverables, tools, and organization — without unnecessary complexity.",
-        },
-        {
-          title: "Follow-up & Iteration",
-          text: "We move forward in iterations: feedback, fixes, and optimization to keep momentum.",
-        },
       ],
       formTitle: "Information to provide",
       formLead:
@@ -145,10 +130,11 @@ export default function HelpPage() {
       formItems: [
         "First name",
         "Last name",
-        "Company name",
+        "Company",
         "Business sector",
+        "Project overview",
         "Project story",
-        "Main need",
+        "Needs",
         "Objectives",
         "Available budget",
         "Desired timeline",
@@ -177,16 +163,16 @@ export default function HelpPage() {
     },
     zh: {
       eyebrow: "帮助",
-      title: "让技术更可及、更有用、更可持续。",
+      title: "支持值得存在的项目。",
       description:
         "Genesis Connect 希望为创业者、小企业、协会与预算有限的组织提供清晰、务实且有人情味的数字支持。",
-      visionTitle: "我们的愿景",
-      visionText:
-        "预算有限并不意味着不能拥有可靠的 IT、网站与 SEO 基础。我们的目标不是过度销售，而是帮助你建立真正有用、能长期发展的数字基础。",
+      whyTitle: "为什么 Genesis Connect 会支持部分项目",
+      whyText:
+        "有些想法很有潜力，但资源有限。Help 计划的目标是让技术更可及、更有用、更可持续，帮助小组织建立真正有效的数字基础。",
       engagementTitle: "我们的承诺",
       engagementText:
         "我们会根据项目真实情况提供相称的支持：诊断、优先级判断、务实方案与专业执行标准。",
-      eligibilityTitle: "适合申请的对象",
+      eligibilityTitle: "谁可以申请",
       eligibility: [
         "处于启动阶段的新创业者",
         "需要数字化结构梳理的小企业",
@@ -200,36 +186,25 @@ export default function HelpPage() {
         "本地 SEO、Google Business Profile 与本地可见度",
         "云协作、Microsoft 365、Google Workspace 与组织效率",
       ],
-      conditionsTitle: "申请条件",
+      applyTitle: "如何申请",
+      applySteps: ["按下方信息准备一封结构化邮件。", "说明你的主要需求与限制（预算/时间/背景）。", "使用下方按钮发送申请。"],
+      criteriaTitle: "筛选标准",
       conditions: [
         "需求必须真实、具体、可解释。",
         "项目应具备明确价值或长期结构化意义。",
         "预算不必很高，但必须真实透明。",
         "时间、限制与期望应尽量明确。",
       ],
-      blocks: [
-        {
-          title: "诊断与优先级",
-          text: "明确主要目标与阻碍点，优先做最有立即影响力的动作。",
-        },
-        {
-          title: "行动计划",
-          text: "给出简单清晰的路线图：步骤、交付物、工具与组织方式。",
-        },
-        {
-          title: "跟进与迭代",
-          text: "通过反馈与优化持续推进，保证节奏稳定与结果可见。",
-        },
-      ],
       formTitle: "需要提供的信息",
       formLead:
         "为了更有效地评估你的申请，我们需要足够的背景信息来理解项目与需求。",
       formItems: [
         "姓名",
-        "公司名称",
+        "公司/组织",
         "行业",
+        "项目介绍",
         "项目故事",
-        "主要需求",
+        "需求",
         "目标",
         "可用预算",
         "期望时间",
@@ -268,9 +243,9 @@ export default function HelpPage() {
         : "Genesis Connect 支持申请";
   const mailBody =
     safeLocale === "fr"
-      ? `Nom :\nPrenom :\nEntreprise :\nSecteur :\nPresentation du projet :\nBesoins :\nObjectifs :\nBudget :\nDelais :\nInformations complementaires :`
+      ? `Nom :\nPrenom :\nEntreprise :\nSecteur :\nPresentation :\nObjectifs :\nBesoins :\nBudget :\nDelais :\nInformations complementaires :`
       : safeLocale === "en"
-        ? `Last name :\nFirst name :\nCompany :\nIndustry :\nProject overview :\nNeeds :\nObjectives :\nBudget :\nTimeline :\nAdditional information :`
+        ? `Last name :\nFirst name :\nCompany :\nIndustry :\nOverview :\nObjectives :\nNeeds :\nBudget :\nTimeline :\nAdditional information :`
         : `姓名：\n公司：\n行业：\n项目介绍：\n需求：\n目标：\n预算：\n时间安排：\n补充信息：`;
   const mailtoHref = `mailto:${businessEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
 
@@ -287,25 +262,18 @@ export default function HelpPage() {
 
         <div className="mt-14 grid gap-6 md:grid-cols-2">
           <section className="rounded-[32px] border border-[#FAF9F6]/10 bg-[#241710] p-8">
-            <p className="text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/55">{page.visionTitle}</p>
-            <p className="mt-5 text-base leading-8 text-[#FAF9F6]/75">{page.visionText}</p>
+            <p className="text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/55">{page.whyTitle}</p>
+            <p className="mt-5 text-base leading-8 text-[#FAF9F6]/75">{page.whyText}</p>
+            <ul className="mt-6 space-y-3 text-sm leading-7 text-[#FAF9F6]/72 md:text-base">
+              {page.supportProjects.map((item) => (
+                <li key={item}>- {item}</li>
+              ))}
+            </ul>
           </section>
           <section className="rounded-[32px] border border-[#FAF9F6]/10 bg-[#241710] p-8">
             <p className="text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/55">{page.engagementTitle}</p>
             <p className="mt-5 text-base leading-8 text-[#FAF9F6]/75">{page.engagementText}</p>
           </section>
-        </div>
-
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {page.blocks.map((block) => (
-            <div
-              key={block.title}
-              className="flex h-full flex-col rounded-[32px] border border-[#FAF9F6]/10 bg-[#241710] p-8"
-            >
-              <h2 className="font-serif text-2xl">{block.title}</h2>
-              <p className="mt-5 text-sm leading-7 text-[#FAF9F6]/72 md:text-base">{block.text}</p>
-            </div>
-          ))}
         </div>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
@@ -318,15 +286,23 @@ export default function HelpPage() {
             </ul>
           </section>
           <section className="rounded-[32px] border border-[#FAF9F6]/10 bg-[#241710] p-8">
-            <p className="text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/55">{page.supportTitle}</p>
+            <p className="text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/55">{page.applyTitle}</p>
             <ul className="mt-5 space-y-3 text-sm leading-7 text-[#FAF9F6]/72 md:text-base">
-              {page.supportProjects.map((item) => (
+              {page.applySteps.map((item) => (
                 <li key={item}>- {item}</li>
               ))}
             </ul>
+            <div className="mt-8">
+              <a
+                href={mailtoHref}
+                className="inline-flex items-center rounded-full border border-[#FAF9F6]/18 px-6 py-3 text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/78 transition-colors hover:border-[#FAF9F6]/30 hover:text-[#FAF9F6]"
+              >
+                {safeLocale === "fr" ? "Envoyer un email" : safeLocale === "en" ? "Send an email" : "发送邮件"}
+              </a>
+            </div>
           </section>
           <section className="rounded-[32px] border border-[#FAF9F6]/10 bg-[#241710] p-8">
-            <p className="text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/55">{page.conditionsTitle}</p>
+            <p className="text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/55">{page.criteriaTitle}</p>
             <ul className="mt-5 space-y-3 text-sm leading-7 text-[#FAF9F6]/72 md:text-base">
               {page.conditions.map((item) => (
                 <li key={item}>- {item}</li>

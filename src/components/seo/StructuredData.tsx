@@ -38,6 +38,8 @@ const pageLabels: Record<SeoLocale, Record<string, string>> = {
     "/formation": "Formation",
     "/abonnement": "Abonnement",
     "/legal": "Mentions legales",
+    "/privacy": "Confidentialité",
+    "/cookies": "Cookies",
     "/blog": "Blog",
   },
   en: {
@@ -59,6 +61,8 @@ const pageLabels: Record<SeoLocale, Record<string, string>> = {
     "/formation": "Training",
     "/abonnement": "Subscription",
     "/legal": "Legal",
+    "/privacy": "Privacy",
+    "/cookies": "Cookies",
     "/blog": "Blog",
   },
   zh: {
@@ -80,6 +84,8 @@ const pageLabels: Record<SeoLocale, Record<string, string>> = {
     "/formation": "培训",
     "/abonnement": "订阅",
     "/legal": "法律信息",
+    "/privacy": "隐私",
+    "/cookies": "Cookies",
     "/blog": "博客",
   },
 };

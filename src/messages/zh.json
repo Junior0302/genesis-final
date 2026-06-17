@@ -61,7 +61,7 @@
     },
     "SeoSection": {
       "title": "面向个人与企业的 IT 与数字解决方案",
-      "text": "Genesis Connect 为个人、创业者、手工业者、商家、协会与企业提供数字化支持。\n\n我们涵盖网站建设、Web 开发、IT 维护、网络安全、本地 SEO、网络与 Wi‑Fi、云解决方案以及沉浸式 3D 数字体验：打造兼具性能、审美与长期价值的解决方案。\n\n我们的方式融合技术、设计与策略，构建能够带来可见度、信任与增长的数字体验。"
+      "text": "Genesis Connect 为企业、创业者、手工业者、商家、协会与组织提供高端数字体验、Web 开发、线上可见度、IT 基础设施与数字化优化。\n\n我们融合设计、技术、策略与创新，打造优雅、高性能且可长期演进的平台。"
     },
     "Complementary": {
       "title": "补充工艺",
@@ -107,6 +107,20 @@
     },
     "DirectContact": {
       "title": "直接联系"
+    },
+    "Services": {
+      "title": "需要的服务",
+      "items": {
+        "website": "网站",
+        "dev": "Web 开发",
+        "seo": "SEO",
+        "support": "IT 故障处理",
+        "maintenance": "维护",
+        "cyber": "网络安全",
+        "network": "网络",
+        "cloud": "云",
+        "exp3d": "3D 体验"
+      }
     },
     "Location": {
       "title": "位置",
@@ -321,6 +335,11 @@
     "support": "个体创业"
   },
   "Footer": {
+    "pages": "页面",
+    "about": "关于",
+    "blog": "博客",
+    "privacy": "隐私",
+    "cookies": "Cookies",
     "location": "位置",
     "based_in": "总部位于法国。服务全球。",
     "contact": "联系",

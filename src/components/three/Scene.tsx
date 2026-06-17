@@ -49,16 +49,23 @@ export default function Scene() {
     // #endregion debug-point D:scene-progress
   }, [pathname, progress, reportDebug, setAssetsLoaded]);
 
-  const isContact = /\/contact$/.test(pathname);
+  const isHome = pathname === "/" || /^\/(fr|en|zh)\/?$/.test(pathname);
   useEffect(() => {
     // #region debug-point C:scene-home-gate
     reportDebug("C", "[DEBUG] scene home gate evaluated", {
-      isContact,
+      isHome,
       pathname,
     });
     // #endregion debug-point C:scene-home-gate
-  }, [isContact, pathname, reportDebug]);
-  if (isContact) return null;
+  }, [isHome, pathname, reportDebug]);
+
+  useEffect(() => {
+    if (!isHome) {
+      setAssetsLoaded(true);
+    }
+  }, [isHome, setAssetsLoaded]);
+
+  if (!isHome) return null;
 
   return (
     <Canvas

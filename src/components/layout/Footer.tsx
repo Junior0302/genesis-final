@@ -30,6 +30,16 @@ export default function Footer() {
              <a href="mailto:hello@genesisconnectstudio.com" className="text-base font-serif hover:text-[#D4AF37] transition-colors">hello@genesisconnectstudio.com</a>
         </div>
 
+        <div className="flex flex-col gap-2">
+             <h4 className="text-[10px] uppercase tracking-[0.2em] text-[#FAF9F6]/40 mb-1">{t('pages')}</h4>
+             <div className="flex flex-col gap-2 text-xs uppercase tracking-widest text-[#FAF9F6]/60">
+                <TransitionLink href="/studio" className="hover:text-[#FAF9F6] transition-colors">{t('about')}</TransitionLink>
+                <TransitionLink href="/blog" className="hover:text-[#FAF9F6] transition-colors">{t('blog')}</TransitionLink>
+                <TransitionLink href="/privacy" className="hover:text-[#FAF9F6] transition-colors">{t('privacy')}</TransitionLink>
+                <TransitionLink href="/cookies" className="hover:text-[#FAF9F6] transition-colors">{t('cookies')}</TransitionLink>
+             </div>
+        </div>
+
         {/* COL 3: SOCIALS & LEGAL */}
         <div className="flex flex-col gap-4">
              <h4 className="text-[10px] uppercase tracking-[0.2em] text-[#FAF9F6]/40 mb-1">{t('connect')}</h4>

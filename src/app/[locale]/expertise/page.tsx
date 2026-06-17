@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLocale, useTranslations } from "next-intl";
 import TransitionLink from "@/components/ui/TransitionLink";
-import { targetCities } from "@/lib/seo";
 
 // Register ScrollTrigger
 if (typeof window !== "undefined") {
@@ -90,85 +89,24 @@ export default function ExpertisePage() {
             { title: "3D 沉浸式体验", href: "/expertise/experiences-3d", desc: "高端互动世界、沉浸叙事与品牌级数字体验。" },
           ];
 
-  const serviceDetails =
+  const cta =
     locale === "fr"
-      ? [
-          {
-            title: "Depannage informatique",
-            text: "Intervention rapide pour incidents poste de travail, lenteurs, blocages logiciels, pannes PC, reparation ordinateur, reparation PC et remise en service d'environnements professionnels.",
-          },
-          {
-            title: "Maintenance informatique",
-            text: "Maintenance preventive et corrective, supervision legere, nettoyage, mises a jour, fiabilisation du parc et reduction des interruptions d'activite.",
-          },
-          {
-            title: "Assistance a distance",
-            text: "Support informatique reactif a distance pour utilisateurs, dirigeants, associations et petites equipes avec resolution claire et documentee.",
-          },
-          {
-            title: "Installation de materiel",
-            text: "Installation informatique de postes, imprimantes, peripheriques, migrations et configuration complete des outils de travail.",
-          },
-          {
-            title: "Installation de reseaux & Wi-Fi",
-            text: "Installation reseau, installation Wi-Fi, optimisation de couverture, securisation des acces et organisation simple des equipements connectes.",
-          },
-          {
-            title: "Cybersécurité & sauvegarde",
-            text: "Protection des acces, hygiene numerique, sauvegarde de donnees, reprise simple, bonnes pratiques et reduction des risques pour petites structures.",
-          },
-          {
-            title: "Solutions cloud",
-            text: "Microsoft 365, Google Workspace, partage documentaire, collaboration, structuration cloud et transformation numerique pragmatique.",
-          },
-          {
-            title: "Creation de sites internet & developpement web",
-            text: "Creation de site internet, developpement web, architecture performante et experiences premium concues pour la conversion et la credibilite.",
-          },
-          {
-            title: "Referencement SEO local & AI Search",
-            text: "SEO local, Google Business Profile, schema.org, optimisation GEO, LLM SEO et AI Search Optimization pour mieux ressortir dans Google, Bing, ChatGPT, Gemini et Perplexity.",
-          },
-          {
-            title: "Accompagnement numerique",
-            text: "Conseil, cadrage, priorisation et accompagnement des entrepreneurs, associations et petites entreprises qui veulent evoluer proprement.",
-          },
-        ]
+      ? {
+          title: "Parlons de votre besoin.",
+          text: "Choisissez un domaine ci-dessus et contactez-nous pour cadrer un plan clair, premium et réaliste.",
+          button: "Contacter",
+        }
       : locale === "en"
-        ? [
-            { title: "IT troubleshooting", text: "Fast support for workstation issues, software incidents, PC failures, slow devices and day-to-day technical blockers." },
-            { title: "IT maintenance", text: "Preventive and corrective maintenance, updates, device cleanup and reliability improvements for small organizations." },
-            { title: "Remote support", text: "Responsive remote assistance for users, founders and lean teams with clear, documented actions." },
-            { title: "Hardware setup", text: "Deployment and setup of workstations, printers, peripherals and digital tools." },
-            { title: "Network & Wi-Fi setup", text: "LAN, Wi-Fi and access configuration with secure and practical connectivity for growing teams." },
-            { title: "Cybersecurity & backup", text: "Access protection, backup routines, essential security hygiene and data protection for small structures." },
-            { title: "Cloud solutions", text: "Microsoft 365, Google Workspace, collaboration and practical cloud structuring." },
-            { title: "Website creation & web development", text: "High-quality websites and web platforms designed for credibility, performance and conversion." },
-            { title: "Local SEO & AI search", text: "Local SEO, Google Business Profile, structured data, GEO SEO and AI Search Optimization." },
-            { title: "Digital guidance", text: "Strategic digital support for founders, associations and small businesses." },
-          ]
-        : [
-            { title: "IT 故障处理", text: "快速处理工作站、软件、PC 与日常技术问题。" },
-            { title: "IT 维护", text: "预防性与纠正性维护，提升设备稳定性与持续可用性。" },
-            { title: "远程支持", text: "面向创业者、小团队与组织的快速远程协助。" },
-            { title: "设备安装", text: "工作站、打印机、外设与数字工具的部署配置。" },
-            { title: "网络与 Wi-Fi 部署", text: "LAN、Wi-Fi 与访问管理的实用、安全配置。" },
-            { title: "网络安全与备份", text: "访问保护、备份策略、数据保护与基础安全卫生。" },
-            { title: "云解决方案", text: "Microsoft 365、Google Workspace 与协作型云环境搭建。" },
-            { title: "网站建设与 Web 开发", text: "兼顾品牌形象、性能与转化的网站与平台开发。" },
-            { title: "本地 SEO 与 AI 搜索优化", text: "本地 SEO、Google Business Profile、结构化数据、GEO SEO 与 AI 搜索优化。" },
-            { title: "数字化陪伴", text: "面向创业者、小企业与协会的数字化支持与优先级梳理。" },
-          ];
-
-  const localSeoText =
-    locale === "fr"
-      ? `Nous structurons des contenus capables de ressortir sur des requetes comme ${targetCities
-          .slice(0, 6)
-          .map((city) => `depannage informatique ${city}`)
-          .join(", ")} mais aussi maintenance informatique, creation de site internet, technicien informatique, assistance informatique, SEO local et transformation numerique.`
-      : locale === "en"
-        ? "We structure content to rank for local IT support, maintenance, website creation and local SEO queries, while also improving visibility for AI-based search engines."
-        : "我们会围绕本地 IT 支持、维护、建站、本地 SEO 以及 AI 搜索场景来组织内容与结构。";
+        ? {
+            title: "Let’s discuss your needs.",
+            text: "Pick a domain above and contact us to scope a clear, premium and realistic plan.",
+            button: "Contact",
+          }
+        : {
+            title: "聊聊你的需求。",
+            text: "从上面的领域中选择方向，然后联系我们，一起梳理清晰、务实且高端的方案。",
+            button: "联系",
+          };
 
   const faqItems =
     locale === "fr"
@@ -307,7 +245,7 @@ export default function ExpertisePage() {
       <section className="min-h-screen px-8 md:px-24 py-24">
         <div className="reveal-text mx-auto max-w-7xl">
           <h2 className="text-xs uppercase tracking-[0.2em] text-[#FAF9F6]/40 mb-12 border-b border-[#FAF9F6]/10 pb-4 inline-block">
-            {locale === "fr" ? "Expertise" : locale === "en" ? "Expertise" : "专业服务"}
+            {locale === "fr" ? "Notre Expertise" : locale === "en" ? "Our Expertise" : "我们的专业领域"}
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
             {hubCards.map((card) => (
@@ -342,135 +280,23 @@ export default function ExpertisePage() {
         </div>
       </section>
 
-      {/* 3. CORE EXPERTISE */}
-      <section className="min-h-screen px-8 md:px-24 py-24">
-        <h2 className="reveal-text text-xs uppercase tracking-[0.2em] text-[#FAF9F6]/40 mb-20 border-b border-[#FAF9F6]/10 pb-4 inline-block">
-            {t('CoreExpertise.title')}
-        </h2>
-        
-        <div className="stagger-container grid grid-cols-1 gap-24">
-            
-            {/* ITEM 1 */}
-            <div className="stagger-item group flex flex-col md:flex-row gap-8 md:gap-24 border-b border-[#FAF9F6]/10 pb-16">
-                <div className="md:w-1/3">
-                    <h3 className="text-4xl md:text-5xl font-serif text-[#FAF9F6] mb-4 group-hover:text-[#D4AF37] transition-colors duration-500">
-                        {t('CoreExpertise.Item1.title')}
-                    </h3>
-                </div>
-                <div className="md:w-2/3 md:pt-4">
-                    <p className="text-xl text-[#FAF9F6]/80 mb-4 font-light">{t('CoreExpertise.Item1.subtitle')}</p>
-                    <p className="text-[#FAF9F6]/60 font-light leading-relaxed max-w-2xl">
-                        {t('CoreExpertise.Item1.description')}
-                    </p>
-                </div>
-            </div>
-
-            {/* ITEM 2 */}
-            <div className="stagger-item group flex flex-col md:flex-row gap-8 md:gap-24 border-b border-[#FAF9F6]/10 pb-16">
-                <div className="md:w-1/3">
-                    <h3 className="text-4xl md:text-5xl font-serif text-[#FAF9F6] mb-4 group-hover:text-[#D4AF37] transition-colors duration-500">
-                        {t('CoreExpertise.Item2.title')}
-                    </h3>
-                </div>
-                <div className="md:w-2/3 md:pt-4">
-                    <p className="text-xl text-[#FAF9F6]/80 mb-4 font-light">{t('CoreExpertise.Item2.subtitle')}</p>
-                    <p className="text-[#FAF9F6]/60 font-light leading-relaxed max-w-2xl">
-                        {t('CoreExpertise.Item2.description')}
-                    </p>
-                </div>
-            </div>
-
-            {/* ITEM 3 */}
-            <div className="stagger-item group flex flex-col md:flex-row gap-8 md:gap-24 pb-8">
-                <div className="md:w-1/3">
-                    <h3 className="text-4xl md:text-5xl font-serif text-[#FAF9F6] mb-4 group-hover:text-[#D4AF37] transition-colors duration-500">
-                        {t('CoreExpertise.Item3.title')}
-                    </h3>
-                </div>
-                <div className="md:w-2/3 md:pt-4">
-                    <p className="text-xl text-[#FAF9F6]/80 mb-4 font-light">{t('CoreExpertise.Item3.subtitle')}</p>
-                    <p className="text-[#FAF9F6]/60 font-light leading-relaxed max-w-2xl">
-                        {t('CoreExpertise.Item3.description')}
-                    </p>
-                </div>
-            </div>
-
-        </div>
-      </section>
-
-      {/* 4. STRATEGIC EVOLUTION */}
-      <section className="min-h-[60vh] px-8 md:px-24 py-24 bg-[#251812]">
-        <div className="flex flex-col md:flex-row gap-16 md:gap-32">
-            <div className="md:w-1/3 reveal-text">
-                <h2 className="text-xs uppercase tracking-[0.2em] text-[#FAF9F6]/40 mb-8 border-b border-[#FAF9F6]/10 pb-4 inline-block">
-                    {t('StrategicEvolution.title')}
-                </h2>
-                <h3 className="text-3xl md:text-4xl font-serif text-[#FAF9F6] mb-6">
-                    {t('StrategicEvolution.heading')}
-                </h3>
-            </div>
-            <div className="md:w-2/3 reveal-text md:pt-20">
-                <p className="text-xl text-[#FAF9F6]/80 mb-6 font-light">{t('StrategicEvolution.subtitle')}</p>
-                <p className="text-[#FAF9F6]/60 font-light leading-relaxed max-w-2xl">
-                    {t('StrategicEvolution.description')}
-                </p>
-            </div>
-        </div>
-      </section>
-
-      {/* 5. COMPLEMENTARY CRAFT */}
-      <section className="min-h-screen px-8 md:px-24 py-24">
-        <div className="mb-24 reveal-text">
-            <h2 className="text-xs uppercase tracking-[0.2em] text-[#FAF9F6]/40 mb-4 border-b border-[#FAF9F6]/10 pb-4 inline-block">
-                {t('ComplementaryCraft.title')}
-            </h2>
-            <p className="text-sm uppercase tracking-widest text-[#FAF9F6]/40">
-                {t('ComplementaryCraft.subtitle')}
-            </p>
-        </div>
-
-        <div className="stagger-container grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
-            
-            <div className="stagger-item">
-                <h3 className="text-2xl font-serif text-[#FAF9F6] mb-6">{t('ComplementaryCraft.Items.VisualAssets.title')}</h3>
-                <p className="text-[#FAF9F6]/60 font-light leading-relaxed">
-                    {t('ComplementaryCraft.Items.VisualAssets.description')}
-                </p>
-            </div>
-
-            <div className="stagger-item">
-                <h3 className="text-2xl font-serif text-[#FAF9F6] mb-6">{t('ComplementaryCraft.Items.BrandIdentity.title')}</h3>
-                <p className="text-[#FAF9F6]/60 font-light leading-relaxed">
-                    {t('ComplementaryCraft.Items.BrandIdentity.description')}
-                </p>
-            </div>
-
-            <div className="stagger-item">
-                <h3 className="text-2xl font-serif text-[#FAF9F6] mb-6">{t('ComplementaryCraft.Items.VideoMotion.title')}</h3>
-                <p className="text-[#FAF9F6]/60 font-light leading-relaxed">
-                    {t('ComplementaryCraft.Items.VideoMotion.description')}
-                </p>
-            </div>
-
-        </div>
-      </section>
-
-      <section className="px-8 py-24 md:px-24 bg-[#251812]">
-        <div className="reveal-text mx-auto max-w-6xl">
-          <h2 className="text-xs uppercase tracking-[0.2em] text-[#FAF9F6]/40 mb-6 border-b border-[#FAF9F6]/10 pb-4 inline-block">
-            {locale === "fr" ? "Services expertise" : locale === "en" ? "Service expertise" : "专业服务"}
+      <section className="min-h-[45vh] flex flex-col justify-center items-center text-center px-8 py-24 bg-[#251812]">
+        <div className="reveal-text max-w-4xl">
+          <h2 className="text-xs uppercase tracking-[0.4em] mb-12 text-[#FAF9F6]/40">
+            {locale === "fr" ? "Contact" : locale === "en" ? "Contact" : "联系"}
           </h2>
-          <p className="max-w-4xl text-base md:text-lg leading-8 text-[#FAF9F6]/70">
-            {localSeoText}
+          <p className="text-3xl md:text-5xl font-serif text-[#FAF9F6] leading-tight mb-8">
+            {cta.title}
           </p>
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {serviceDetails.map((service) => (
-              <div key={service.title} className="rounded-[28px] border border-[#FAF9F6]/10 bg-[#2A1C15]/60 p-8">
-                <h3 className="font-serif text-2xl text-[#FAF9F6]">{service.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-[#FAF9F6]/72 md:text-base">{service.text}</p>
-              </div>
-            ))}
-          </div>
+          <p className="text-lg font-light text-[#FAF9F6]/70 max-w-2xl mx-auto leading-relaxed mb-10">
+            {cta.text}
+          </p>
+          <TransitionLink
+            href="/contact"
+            className="inline-flex items-center rounded-full border border-[#FAF9F6]/20 px-7 py-3 text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/85 transition-colors hover:border-[#FAF9F6]/35 hover:text-[#FAF9F6]"
+          >
+            {cta.button}
+          </TransitionLink>
         </div>
       </section>
 
@@ -480,10 +306,12 @@ export default function ExpertisePage() {
             FAQ
           </h2>
           <div className="space-y-8">
-            {faqItems.map((item) => (
+            {faqItems.slice(0, 3).map((item) => (
               <div key={item.question} className="border-b border-[#FAF9F6]/10 pb-8">
                 <h3 className="font-serif text-2xl text-[#FAF9F6]">{item.question}</h3>
-                <p className="mt-3 max-w-4xl text-sm leading-7 text-[#FAF9F6]/72 md:text-base">{item.answer}</p>
+                <p className="mt-3 max-w-4xl text-sm leading-7 text-[#FAF9F6]/72 md:text-base">
+                  {item.answer}
+                </p>
               </div>
             ))}
           </div>
