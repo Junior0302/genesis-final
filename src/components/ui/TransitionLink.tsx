@@ -3,6 +3,7 @@
 import { Link } from "@/i18n/routing";
 import { ReactNode, ComponentProps } from "react";
 import { useRouter } from "@/i18n/routing";
+import { useOptionalTransition } from "@/context/TransitionContext";
 
 type IntlLinkProps = ComponentProps<typeof Link>;
 
@@ -22,11 +23,26 @@ export default function TransitionLink({
   ...props 
 }: TransitionLinkProps) {
   const router = useRouter();
+  const transition = useOptionalTransition();
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (onClick) onClick(e);
+    if (e.defaultPrevented) return;
+
+    const isModifiedClick =
+      e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey;
+    const target = (props as { target?: string }).target;
+    if (isModifiedClick || target === "_blank") return;
+
+    const hrefString = typeof href === "string" ? href : href.pathname ?? href.toString();
+    const isExternal = /^https?:\/\//i.test(hrefString);
+    if (isExternal) return;
 
     if (!beforeNavigate) {
+      if (transition) {
+        e.preventDefault();
+        transition.navigate(hrefString);
+      }
       return;
     }
 
@@ -34,7 +50,7 @@ export default function TransitionLink({
 
     void (async () => {
       await beforeNavigate();
-      router.push(href.toString());
+      router.push(hrefString);
     })();
   };
 

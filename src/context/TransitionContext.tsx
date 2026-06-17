@@ -44,6 +44,8 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   const [transitionText, setTransitionText] = useState("");
   const overlayRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
+  const navigateTimeoutRef = useRef<number | null>(null);
+  const animateOutTimeoutRef = useRef<number | null>(null);
 
   // INTRO STATE MACHINE
   const [currentState, setCurrentState] = useState<IntroState>('LOADING_ASSETS');
@@ -113,6 +115,19 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
       return () => clearTimeout(t);
     }
   }, [pathname, assetsLoaded]);
+
+  useEffect(() => {
+    return () => {
+      if (navigateTimeoutRef.current !== null) {
+        window.clearTimeout(navigateTimeoutRef.current);
+        navigateTimeoutRef.current = null;
+      }
+      if (animateOutTimeoutRef.current !== null) {
+        window.clearTimeout(animateOutTimeoutRef.current);
+        animateOutTimeoutRef.current = null;
+      }
+    };
+  }, []);
 
   // 2. ORCHESTRATION DES ETATS (State Machine Logic)
   useGSAP(() => {
@@ -337,7 +352,8 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   };
 
   const navigate = (href: string) => {
-    if (isAnimating || href === pathname) return;
+    const targetPath = href.split(/[?#]/)[0] || "/";
+    if (isAnimating || targetPath === pathname) return;
 
     // Ensure audio is initialized on navigation click
     initAudio();
@@ -347,7 +363,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
       void r.prefetch(href);
     }
 
-    const text = getTransitionText(pathname, href);
+    const text = getTransitionText(pathname, targetPath);
     setTransitionText(text);
     setIsAnimating(true);
     
@@ -355,13 +371,22 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     // Timing exact: Au moment où la phrase apparaît
     playSound("click");
 
+    if (navigateTimeoutRef.current !== null) {
+      window.clearTimeout(navigateTimeoutRef.current);
+      navigateTimeoutRef.current = null;
+    }
+    if (animateOutTimeoutRef.current !== null) {
+      window.clearTimeout(animateOutTimeoutRef.current);
+      animateOutTimeoutRef.current = null;
+    }
+
     // DELAY BEFORE TRANSITION STARTS (For calm effect)
-    setTimeout(() => {
+    navigateTimeoutRef.current = window.setTimeout(() => {
         const tl = gsap.timeline({
         onComplete: () => {
             router.push(href);
             // Wait for next page to mount before animating out
-            setTimeout(() => {
+            animateOutTimeoutRef.current = window.setTimeout(() => {
                 animateOut();
             }, 300); // Increased mount wait (was 100)
         }
@@ -632,4 +657,8 @@ export function useTransition() {
     throw new Error("useTransition must be used within a TransitionProvider");
   }
   return context;
+}
+
+export function useOptionalTransition() {
+  return useContext(TransitionContext);
 }

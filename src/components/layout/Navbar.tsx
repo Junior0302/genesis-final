@@ -35,7 +35,6 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const menuTimelineRef = useRef<gsap.core.Timeline | null>(null);
-  const previousPathnameRef = useRef(pathname);
 
   const switchLocale = (newLocale: string) => {
     const path = pathname === "/" ? "" : pathname;
@@ -43,10 +42,8 @@ export default function Navbar() {
   };
 
   useEffect(() => {
-    if (previousPathnameRef.current !== pathname) {
-      setIsOpen(false);
-      previousPathnameRef.current = pathname;
-    }
+    const id = window.requestAnimationFrame(() => setIsOpen(false));
+    return () => window.cancelAnimationFrame(id);
   }, [pathname]);
 
   useEffect(() => {
