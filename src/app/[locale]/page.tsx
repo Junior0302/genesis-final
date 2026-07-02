@@ -376,8 +376,8 @@ export default function Home() {
                {t('CTA.text')}
              </p>
              <div className="group relative inline-block cursor-none">
-                <a href="mailto:hello@genesisconnectstudio.com" className="text-5xl md:text-7xl lg:text-8xl font-serif text-[#FAF9F6] hover:text-[#D4AF37] transition-colors duration-500 tracking-[-0.04em]">
-                    {t('CTA.button')}
+                <a href="mailto:contact@genesisconnectstudio.com" className="text-5xl md:text-7xl lg:text-8xl font-serif text-[#FAF9F6] hover:text-[#D4AF37] transition-colors duration-500 tracking-[-0.04em]">
+                  contact@genesisconnectstudio.com
                 </a>
                 <div className="absolute -bottom-4 left-0 w-full h-[1px] bg-[#FAF9F6]/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
              </div>

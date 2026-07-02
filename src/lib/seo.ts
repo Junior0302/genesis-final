@@ -5,7 +5,8 @@ export type SeoLocale = "fr" | "en" | "zh";
 export const siteUrl =
   process.env.NEXT_PUBLIC_APP_URL ?? "https://www.genesisconnectstudio.com";
 export const siteName = "Genesis Connect";
-export const businessEmail = "hello@genesisconnectstudio.com";
+export const businessEmail = "contact@genesisconnectstudio.com";
+export const helpEmail = "hello@genesisconnectstudio.com";
 export const businessPhone = "+33 0 00 00 00 00";
 
 export type ServedLocation = {

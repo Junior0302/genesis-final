@@ -2,7 +2,7 @@
 
 import { useLocale } from "next-intl";
 import TransitionLink from "@/components/ui/TransitionLink";
-import { businessEmail } from "@/lib/seo";
+import { helpEmail } from "@/lib/seo";
 
 type Locale = "fr" | "en" | "zh";
 
@@ -247,7 +247,7 @@ export default function HelpPage() {
       : safeLocale === "en"
         ? `Last name :\nFirst name :\nCompany :\nIndustry :\nOverview :\nObjectives :\nNeeds :\nBudget :\nTimeline :\nAdditional information :`
         : `姓名：\n公司：\n行业：\n项目介绍：\n需求：\n目标：\n预算：\n时间安排：\n补充信息：`;
-  const mailtoHref = `mailto:${businessEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+  const mailtoHref = `mailto:${helpEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
 
   return (
     <main className="min-h-screen bg-[#2A1C15] px-6 pb-20 pt-36 text-[#FAF9F6] md:px-12">
@@ -358,7 +358,7 @@ export default function HelpPage() {
               href={mailtoHref}
               className="inline-flex items-center rounded-full border border-[#FAF9F6]/12 px-7 py-3 text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/70 transition-colors hover:border-[#FAF9F6]/25 hover:text-[#FAF9F6]"
             >
-              {businessEmail}
+              {helpEmail}
             </a>
           </div>
         </div>
