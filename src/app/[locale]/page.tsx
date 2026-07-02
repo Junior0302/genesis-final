@@ -222,45 +222,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 5. CORE EXPERTISE (FRONT -> z-20) */}
-        <section className="relative z-20 min-h-screen flex flex-col justify-center items-center md:items-start px-6 md:px-24 py-24">
-          <div className="max-w-5xl w-full mx-auto text-center md:text-left">
-            <h2 className="reveal-text text-[11px] uppercase tracking-[0.24em] text-[#FAF9F6]/60 mb-16 border-b border-[#FAF9F6]/10 pb-4 inline-block">
-              {t('Expertise.label')}
-            </h2>
-            <ul className="expertise-list space-y-10 w-full">
-              {[
-                  {
-                      title: t('Expertise.items.websites.title'),
-                      desc: t('Expertise.items.websites.desc')
-                  },
-                  {
-                      title: t('Expertise.items.platforms.title'),
-                      desc: t('Expertise.items.platforms.desc')
-                  },
-                  {
-                      title: t('Expertise.items.performance.title'),
-                      desc: t('Expertise.items.performance.desc')
-                  }
-              ].map((item, i) => (
-                <li key={i} className="expertise-item group flex flex-col md:flex-row md:items-start justify-between gap-6 border-b border-[#FAF9F6]/10 py-10 hover:border-[#FAF9F6]/30 transition-colors cursor-none">
-                  <div className="md:w-[52%]">
-                      <div className="flex items-baseline gap-5 mb-3 md:mb-0">
-                          <span className="text-sm font-sans tracking-widest opacity-52 group-hover:opacity-100 transition-opacity duration-500">0{i+1}</span>
-                          <h3 className="text-3xl md:text-[2.6rem] lg:text-[3.2rem] font-serif leading-[1.03] tracking-[-0.03em] text-[#FAF9F6] group-hover:text-[#D4AF37] transition-colors duration-500">{item.title}</h3>
-                      </div>
-                  </div>
-                  <div className="md:w-[34%]">
-                      <p className="text-[#FAF9F6]/78 font-light leading-[1.8] text-base md:text-lg lg:text-[1.1rem] group-hover:text-[#FAF9F6] transition-colors duration-500">
-                          {item.desc}
-                      </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
         {/* SPACER (Breathing room) */}
         <section className="h-[30vh] w-full" />
 

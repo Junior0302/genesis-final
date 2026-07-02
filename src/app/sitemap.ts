@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { trainings } from "@/lib/trainings";
+import { serviceSlugs } from "@/lib/servicesSiteContent";
 import { localeUrl, type SeoLocale } from "@/lib/seo";
 
 const locales: SeoLocale[] = ["fr", "en", "zh"];
@@ -7,16 +8,11 @@ const locales: SeoLocale[] = ["fr", "en", "zh"];
 const staticRoutes = [
   "",
   "/studio",
-  "/expertise",
-  "/expertise/creation-sites-internet",
-  "/expertise/developpement-web-applications",
-  "/expertise/depannage-informatique",
-  "/expertise/maintenance-informatique",
-  "/expertise/cybersecurite",
-  "/expertise/reseaux-wifi",
-  "/expertise/seo-visibilite-locale",
-  "/expertise/solutions-cloud",
-  "/expertise/experiences-3d",
+  "/services",
+  "/services/domaines",
+  "/services/a-propos",
+  "/services/faq",
+  "/services/contact",
   "/work",
   "/contact",
   "/help",
@@ -60,5 +56,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ])
   );
 
-  return [...staticEntries, ...trainingEntries];
+  const serviceEntries = locales.flatMap((locale) =>
+    serviceSlugs.map((slug) => ({
+      url: localeUrl(locale, `/services/domaines/${slug}`),
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    }))
+  );
+
+  return [...staticEntries, ...trainingEntries, ...serviceEntries];
 }

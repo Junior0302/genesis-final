@@ -25,7 +25,6 @@ export default function Navbar() {
   const navItems = useMemo<MenuItem[]>(
     () => [
       { name: t("home"), href: "/" },
-      { name: t("expertise"), href: "/expertise" },
       { name: t("work"), href: "/work" },
       { name: t("help"), href: "/help" },
       { name: t("contact"), href: "/contact" },
