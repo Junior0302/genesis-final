@@ -1,4 +1,6 @@
 import { externalSites } from "@/lib/externalSites";
+import Reveal from "@/components/ui/Reveal";
+import { businessEmail } from "@/lib/seo";
 
 export default async function FormationPage({
   params,
@@ -66,7 +68,7 @@ export default async function FormationPage({
     <div className="w-full min-h-screen bg-[#2A1C15] text-[#FAF9F6]">
       <section className="px-8 pb-20 pt-32 md:px-16 md:pt-40">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-          <div>
+          <Reveal>
             <p className="text-xs uppercase tracking-[0.35em] text-[#FAF9F6]/40">
               {page.eyebrow}
             </p>
@@ -87,15 +89,18 @@ export default async function FormationPage({
                 {page.primaryCta}
               </a>
               <a
-                href="mailto:hello@genesisconnectstudio.com"
+                href={`mailto:${businessEmail}`}
                 className="inline-flex items-center justify-center rounded-full border border-[#FAF9F6]/20 px-7 py-4 text-xs uppercase tracking-[0.24em] text-[#FAF9F6] transition-colors hover:border-[#FAF9F6]/45 hover:bg-[#FAF9F6]/6"
               >
                 {page.secondaryCta}
               </a>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="rounded-[32px] border border-[#FAF9F6]/10 bg-[#251812]/92 p-8 shadow-[0_20px_80px_rgba(0,0,0,0.22)] backdrop-blur-sm md:p-10">
+          <Reveal
+            delay={120}
+            className="rounded-[32px] border border-[#FAF9F6]/10 bg-[#251812]/92 p-8 shadow-[0_20px_80px_rgba(0,0,0,0.22)] backdrop-blur-sm md:p-10"
+          >
             <p className="text-[11px] uppercase tracking-[0.24em] text-[#FAF9F6]/42">
               {page.eyebrow}
             </p>
@@ -109,7 +114,7 @@ export default async function FormationPage({
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
     </div>

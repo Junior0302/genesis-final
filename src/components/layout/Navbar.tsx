@@ -150,8 +150,8 @@ export default function Navbar() {
         ref={navRef}
         className={`fixed top-0 left-0 w-full z-[80] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) border-b content-offset ${
           isScrolled
-            ? "py-4 px-6 md:px-12 bg-[#2A1C15]/60 backdrop-blur-2xl backdrop-saturate-150 border-[#FAF9F6]/5 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]"
-            : "py-6 px-6 md:py-8 md:px-12 bg-transparent border-transparent"
+            ? "py-5 px-6 md:px-12 bg-[#2A1C15]/78 backdrop-blur-2xl backdrop-saturate-150 border-[#FAF9F6]/8 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]"
+            : "py-7 px-6 md:py-9 md:px-12 bg-[#2A1C15]/28 backdrop-blur-xl border-[#FAF9F6]/[0.04]"
         } flex justify-between items-center pointer-events-none`}
       >
         {isScrolled && (
@@ -173,7 +173,7 @@ export default function Navbar() {
           transitionPreset="fast"
           onClick={() => handleMobileNavigate("/")}
         >
-          <Logo className="transition-all duration-500 text-xl" />
+          <Logo className="transition-all duration-500 text-2xl" />
         </TransitionLink>
 
         <TransitionLink
@@ -181,17 +181,18 @@ export default function Navbar() {
           className="hidden md:block nav-logo pointer-events-auto text-[#FAF9F6] hover:opacity-80 transition-opacity relative z-[60] opacity-100"
           aria-label="Genesis Connect Home"
         >
-          <Logo className={`transition-all duration-500 ${isScrolled ? "text-xl" : "text-2xl"}`} />
+          <Logo className={`transition-all duration-500 ${isScrolled ? "text-2xl" : "text-3xl"}`} />
         </TransitionLink>
 
-        <nav className="hidden md:flex flex-row items-center gap-10 pointer-events-auto">
+        <nav className="hidden md:flex flex-row items-center gap-12 pointer-events-auto">
           {navItems.map((item) => (
             <TransitionLink
               key={item.href}
               href={item.href}
-              className={`group relative text-[#FAF9F6] text-[0.8rem] tracking-[0.2em] uppercase transition-all duration-300 ease-out ${
-                pathname === item.href ? "opacity-100 font-medium" : "opacity-70 hover:opacity-100"
+              className={`group relative text-[#FAF9F6] text-[0.98rem] tracking-[0.18em] uppercase transition-all duration-300 ease-out ${
+                pathname === item.href ? "opacity-100 font-medium" : "opacity-82 hover:opacity-100"
               }`}
+              aria-current={pathname === item.href ? "page" : undefined}
             >
               {item.name}
               <span
@@ -203,13 +204,15 @@ export default function Navbar() {
             </TransitionLink>
           ))}
 
-          <div className="flex gap-3 border-l border-[#FAF9F6]/20 pl-6 ml-2">
+          <div className="flex gap-4 border-l border-[#FAF9F6]/20 pl-7 ml-2">
             {["fr", "en", "zh"].map((l) => (
               <button
                 key={l}
+                type="button"
                 onClick={() => switchLocale(l)}
-                className={`text-[0.7rem] uppercase tracking-widest transition-colors ${
-                  locale === l ? "text-[#FAF9F6] font-bold" : "text-[#FAF9F6]/50 hover:text-[#FAF9F6]"
+                aria-pressed={locale === l}
+                className={`text-[0.9rem] uppercase tracking-[0.18em] transition-colors ${
+                  locale === l ? "text-[#FAF9F6] font-bold" : "text-[#FAF9F6]/68 hover:text-[#FAF9F6]"
                 }`}
               >
                 {l === "zh" ? "中文" : l}
@@ -219,13 +222,16 @@ export default function Navbar() {
         </nav>
 
         <button
+          type="button"
           className={`md:hidden pointer-events-auto transition-all duration-300 z-50 relative group p-2 -mr-2 ${
             isOpen ? "text-[#FAF9F6]" : "text-[#FAF9F6]"
           }`}
           onClick={handleMenuToggle}
           aria-label="Toggle menu"
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation"
         >
-          <div className="relative w-8 h-8 flex items-center justify-center">
+          <div className="relative w-9 h-9 flex items-center justify-center">
             <span
               className={`absolute transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isOpen ? "opacity-0 rotate-90 scale-50" : "opacity-100 rotate-0 scale-100"
@@ -261,7 +267,7 @@ export default function Navbar() {
         </div>
 
         <div className="relative z-10 flex h-full w-full flex-col px-6 pt-28 pb-10">
-          <nav className="flex flex-1 flex-col items-center justify-center gap-10 overflow-y-auto">
+          <nav id="mobile-navigation" className="flex flex-1 flex-col items-center justify-center gap-10 overflow-y-auto">
             {navItems.map((item) => (
               <TransitionLink
                 key={item.href}
@@ -269,6 +275,7 @@ export default function Navbar() {
                 transitionPreset="fast"
                 className="mobile-link group relative text-[#FAF9F6] text-4xl md:text-5xl font-serif tracking-tight opacity-0 hover:text-[#FAF9F6]/80 transition-colors"
                 onClick={() => handleMobileNavigate(item.href)}
+                aria-current={pathname === item.href ? "page" : undefined}
               >
                 <span className="relative z-10">{item.name}</span>
                 <span className="absolute left-0 top-1/2 w-full h-[1px] bg-[#FAF9F6]/30 -translate-y-1/2 scale-x-0 group-hover:scale-x-110 transition-transform duration-500 ease-expo" />
@@ -280,7 +287,9 @@ export default function Navbar() {
             {["fr", "en", "zh"].map((l) => (
               <button
                 key={l}
+                type="button"
                 onClick={() => switchLocale(l)}
+                aria-pressed={locale === l}
                 className={`text-sm uppercase tracking-widest transition-colors ${
                   locale === l
                     ? "text-[#FAF9F6] font-bold border-b border-[#FAF9F6]"

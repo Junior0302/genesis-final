@@ -1,4 +1,6 @@
 import { externalSites } from "@/lib/externalSites";
+import Reveal from "@/components/ui/Reveal";
+import { businessEmail } from "@/lib/seo";
 
 export default async function AbonnementPage({
   params,
@@ -68,7 +70,7 @@ export default async function AbonnementPage({
     <div className="w-full min-h-screen bg-[#2A1C15] text-[#FAF9F6]">
       <section className="px-8 pb-16 pt-32 md:px-16 md:pt-40 md:pb-20">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-          <div>
+          <Reveal>
             <p className="text-xs uppercase tracking-[0.35em] text-[#FAF9F6]/40">
               {page.eyebrow}
             </p>
@@ -88,15 +90,18 @@ export default async function AbonnementPage({
                 {page.primaryCta}
               </a>
               <a
-                href="mailto:hello@genesisconnectstudio.com"
+                href={`mailto:${businessEmail}`}
                 className="inline-flex items-center justify-center rounded-full border border-[#FAF9F6]/20 px-7 py-4 text-xs uppercase tracking-[0.24em] text-[#FAF9F6] transition-colors hover:border-[#FAF9F6]/45 hover:bg-[#FAF9F6]/6"
               >
                 {page.secondaryCta}
               </a>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="rounded-[34px] border border-[#FAF9F6]/10 bg-[#251812] p-8 md:p-10">
+          <Reveal
+            delay={120}
+            className="rounded-[34px] border border-[#FAF9F6]/10 bg-[#251812] p-8 md:p-10"
+          >
             <p className="text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/40">
               {page.label}
             </p>
@@ -110,7 +115,7 @@ export default async function AbonnementPage({
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
     </div>

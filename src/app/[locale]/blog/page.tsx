@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Reveal from "@/components/ui/Reveal";
 import { siteUrl } from "@/lib/seo";
 
 type SupportedLocale = "fr" | "en" | "zh";
@@ -120,7 +121,7 @@ export default async function BlogPage({
   return (
     <section className="min-h-screen bg-[#2A1C15] px-6 pb-24 pt-32 text-[#FAF9F6] md:px-12 md:pt-40">
       <div className="mx-auto flex max-w-7xl flex-col gap-16">
-        <div className="max-w-4xl">
+        <Reveal className="max-w-4xl">
           <p className="text-xs uppercase tracking-[0.32em] text-[#FAF9F6]/42">
             {page.eyebrow}
           </p>
@@ -130,12 +131,13 @@ export default async function BlogPage({
           <p className="mt-8 max-w-3xl text-base leading-relaxed text-[#FAF9F6]/72 md:text-lg">
             {page.intro}
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {page.cards.map((card) => (
-            <article
+          {page.cards.map((card, index) => (
+            <Reveal
               key={card}
+              delay={index * 80}
               className="rounded-[28px] border border-[#FAF9F6]/10 bg-[#241710]/80 p-8 shadow-[0_20px_70px_rgba(0,0,0,0.16)]"
             >
               <p className="text-sm uppercase tracking-[0.24em] text-[#D4AF37]">
@@ -144,12 +146,12 @@ export default async function BlogPage({
               <h2 className="mt-6 font-serif text-2xl leading-tight text-[#FAF9F6]">
                 {card}
               </h2>
-            </article>
+            </Reveal>
           ))}
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
-          <section className="rounded-[28px] border border-[#FAF9F6]/10 bg-[#241710]/80 p-8 shadow-[0_20px_70px_rgba(0,0,0,0.16)]">
+          <Reveal className="rounded-[28px] border border-[#FAF9F6]/10 bg-[#241710]/80 p-8 shadow-[0_20px_70px_rgba(0,0,0,0.16)]">
             <p className="text-sm uppercase tracking-[0.24em] text-[#D4AF37]">{page.categoriesLabel}</p>
             <div className="mt-6 flex flex-wrap gap-3">
               {page.categories.map((category) => (
@@ -161,15 +163,18 @@ export default async function BlogPage({
                 </span>
               ))}
             </div>
-          </section>
-          <section className="rounded-[28px] border border-[#FAF9F6]/10 bg-[#241710]/80 p-8 shadow-[0_20px_70px_rgba(0,0,0,0.16)]">
+          </Reveal>
+          <Reveal
+            delay={100}
+            className="rounded-[28px] border border-[#FAF9F6]/10 bg-[#241710]/80 p-8 shadow-[0_20px_70px_rgba(0,0,0,0.16)]"
+          >
             <p className="text-sm uppercase tracking-[0.24em] text-[#D4AF37]">{page.recommendedLabel}</p>
             <ul className="mt-6 space-y-3 text-sm leading-7 text-[#FAF9F6]/72 md:text-base">
               {page.recommended.map((item) => (
                 <li key={item}>- {item}</li>
               ))}
             </ul>
-          </section>
+          </Reveal>
         </div>
       </div>
     </section>

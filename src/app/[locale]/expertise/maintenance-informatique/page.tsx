@@ -68,32 +68,32 @@ export default async function MaintenanceInformatiquePage({
   return (
     <main className="min-h-screen bg-[#2A1C15] px-6 pb-20 pt-36 text-[#FAF9F6] md:px-12">
       <div className="mx-auto max-w-6xl">
-        <p className="text-xs uppercase tracking-[0.3em] text-[#FAF9F6]/45">{page.eyebrow}</p>
-        <h1 className="mt-6 font-serif text-4xl leading-tight md:text-6xl">{page.title}</h1>
-        <p className="mt-6 max-w-3xl text-base leading-8 text-[#FAF9F6]/70 md:text-lg">{page.intro}</p>
+        <p className="text-[11px] uppercase tracking-[0.24em] text-[#FAF9F6]/60">{page.eyebrow}</p>
+        <h1 className="mt-6 font-serif text-5xl leading-[0.98] tracking-[-0.03em] md:text-7xl">{page.title}</h1>
+        <p className="mt-6 max-w-3xl text-lg leading-[1.85] text-[#FAF9F6]/88 md:text-[1.22rem]">{page.intro}</p>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {page.sections.map((section) => (
             <section key={section.title} className="rounded-[32px] border border-[#FAF9F6]/10 bg-[#241710] p-8">
-              <h2 className="font-serif text-2xl">{section.title}</h2>
-              <p className="mt-5 text-sm leading-7 text-[#FAF9F6]/72 md:text-base">{section.text}</p>
+              <h2 className="font-serif text-[2rem] leading-[1.08] tracking-[-0.02em]">{section.title}</h2>
+              <p className="mt-5 text-base leading-[1.8] text-[#FAF9F6]/84 md:text-[1.08rem]">{section.text}</p>
             </section>
           ))}
         </div>
 
         <section className="mt-14 rounded-[32px] border border-[#FAF9F6]/10 bg-[#241710] p-10">
-          <p className="text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/55">{page.faqTitle}</p>
+          <p className="text-[11px] uppercase tracking-[0.24em] text-[#FAF9F6]/62">{page.faqTitle}</p>
           <div className="mt-8 space-y-6">
             {page.faqs.map((item) => (
               <div key={item.q} className="border-b border-[#FAF9F6]/10 pb-6 last:border-b-0">
-                <h3 className="font-serif text-2xl text-[#FAF9F6]">{item.q}</h3>
-                <p className="mt-3 max-w-4xl text-sm leading-7 text-[#FAF9F6]/72 md:text-base">{item.a}</p>
+                <h3 className="font-serif text-[2rem] leading-[1.08] tracking-[-0.02em] text-[#FAF9F6]">{item.q}</h3>
+                <p className="mt-4 max-w-4xl text-base leading-[1.8] text-[#FAF9F6]/84 md:text-[1.08rem]">{item.a}</p>
               </div>
             ))}
           </div>
         </section>
 
-        <p className="mt-10 text-sm text-[#FAF9F6]/55">{page.localText}</p>
+        <p className="mt-10 text-base leading-[1.75] text-[#FAF9F6]/72">{page.localText}</p>
 
         <div className="mt-10 flex flex-wrap gap-4">
           <Link

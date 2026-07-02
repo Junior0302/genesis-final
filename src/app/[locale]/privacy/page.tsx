@@ -1,5 +1,8 @@
 type Locale = "fr" | "en" | "zh";
 
+import Reveal from "@/components/ui/Reveal";
+import { businessEmail } from "@/lib/seo";
+
 export default async function PrivacyPage({
   params,
 }: {
@@ -89,29 +92,33 @@ export default async function PrivacyPage({
   return (
     <main className="min-h-screen bg-[#2A1C15] px-6 pb-20 pt-36 text-[#FAF9F6] md:px-12">
       <div className="mx-auto max-w-6xl">
-        <div className="max-w-3xl">
+        <Reveal className="max-w-3xl">
           <p className="text-xs uppercase tracking-[0.3em] text-[#FAF9F6]/45">{page.eyebrow}</p>
           <h1 className="mt-6 font-serif text-4xl leading-tight md:text-6xl">{page.title}</h1>
           <p className="mt-6 max-w-3xl text-base leading-8 text-[#FAF9F6]/70 md:text-lg">{page.intro}</p>
-        </div>
+        </Reveal>
 
         <div className="mt-14 grid gap-6 md:grid-cols-2">
-          {page.sections.map((section) => (
-            <section key={section.title} className="rounded-[32px] border border-[#FAF9F6]/10 bg-[#241710] p-8">
+          {page.sections.map((section, index) => (
+            <Reveal
+              key={section.title}
+              delay={index * 80}
+              className="rounded-[32px] border border-[#FAF9F6]/10 bg-[#241710] p-8"
+            >
               <h2 className="font-serif text-2xl">{section.title}</h2>
               <p className="mt-5 text-sm leading-7 text-[#FAF9F6]/72 md:text-base">{section.text}</p>
-            </section>
+            </Reveal>
           ))}
         </div>
 
-        <div className="mt-12">
+        <Reveal delay={120} className="mt-12">
           <a
-            href="mailto:hello@genesisconnectstudio.com"
+            href={`mailto:${businessEmail}`}
             className="inline-flex items-center rounded-full border border-[#FAF9F6]/20 px-7 py-3 text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/85 transition-colors hover:border-[#FAF9F6]/35 hover:text-[#FAF9F6]"
           >
             {page.contact}
           </a>
-        </div>
+        </Reveal>
       </div>
     </main>
   );

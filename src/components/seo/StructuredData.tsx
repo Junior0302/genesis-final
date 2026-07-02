@@ -13,6 +13,7 @@ import {
   siteUrl,
   type SeoLocale,
 } from "@/lib/seo";
+import { socialProfileUrls } from "@/lib/socialLinks";
 
 type FaqItem = {
   question: string;
@@ -385,6 +386,7 @@ export default function StructuredData() {
     email: businessEmail,
     telephone: businessPhone,
     logo: absoluteUrl("/images/favicon/10.png"),
+    sameAs: socialProfileUrls,
     knowsAbout: [
       ...serviceCatalog.map((service) => service.name),
       "developpement web",
@@ -414,6 +416,7 @@ export default function StructuredData() {
     url: siteUrl,
     email: businessEmail,
     telephone: businessPhone,
+    sameAs: socialProfileUrls,
     address: {
       "@type": "PostalAddress",
       streetAddress: "29 rue Tronchet",

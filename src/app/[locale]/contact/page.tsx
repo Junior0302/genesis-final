@@ -1,5 +1,6 @@
 "use client";
 
+import { businessEmail } from "@/lib/seo";
 import { useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -19,7 +20,7 @@ export default function ContactPage() {
 
   const mailtoHref = useMemo(
     () =>
-      `mailto:hello@genesisconnectstudio.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`,
+      `mailto:${businessEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`,
     [mailBody, mailSubject]
   );
 
@@ -184,7 +185,7 @@ export default function ContactPage() {
                   {t("Hero.button")}
                 </p>
                 <p className="break-words text-2xl font-serif text-[#FAF9F6] md:text-3xl">
-                  hello@genesisconnectstudio.com
+                  {businessEmail}
                 </p>
               </a>
             </div>

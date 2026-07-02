@@ -3,11 +3,11 @@
     "title": "Home",
     "description": "Welcome to Genesis Connect",
     "Hero": {
-      "kicker": "Premium digital studio | Web, SEO, cybersecurity, cloud",
+      "kicker": "Web, SEO, cybersecurity, cloud",
       "title": "Genesis\nConnect",
-      "subtitle": "Technology serving your image, visibility and performance.",
+      "subtitle": "Technology serving your image and visibility.",
       "tagline": "Websites, web development, local SEO, cybersecurity, cloud solutions and premium digital experiences.",
-      "description": "Genesis Connect helps companies, founders and organizations with elegant, fast and durable digital experiences designed to be understood in seconds and remembered for the long term.",
+      "description": "Genesis Connect builds clear, fast and credible digital experiences for companies, founders and organizations.",
       "cta": "Start a project",
       "highlights": {
         "who": "A premium studio for companies, brands and ambitious organizations.",
@@ -84,11 +84,12 @@
       "main_title": "Crafting digital legacies.",
       "subtitle": "One pixel at a time.",
       "description": "We partner with visionary brands to create immersive digital experiences that defy expectations and stand the test of time.",
+      "viewProject": "View project",
       "projects": {
-        "p1": { "name": "Maison Velour", "type": "E-commerce experience" },
-        "p2": { "name": "Archi.Studio", "type": "Architectural portfolio" },
-        "p3": { "name": "Lumina Tech", "type": "Corporate digital platform" },
-        "p4": { "name": "Vogue Paris", "type": "Digital campaign experience" },
+        "p1": { "name": "Blessing Pearl", "type": "Premium brand website" },
+        "p2": { "name": "TNS Drink", "type": "Beverage brand website" },
+        "p3": { "name": "Floral Lemon", "type": "Immersive editorial website" },
+        "p4": { "name": "Motorvalor", "type": "Premium automotive platform" },
         "p5": { "name": "TNS Website", "type": "Company Website" }
       }
     },
@@ -238,34 +239,34 @@
   },
   "WorkPage": {
     "Hero": {
-      "title": "Selected<br/>Works",
+      "title": "Selected\nWorks",
       "subtitle": "A collection of immersive digital experiences crafted with precision, emotion, and restraint.",
       "description": "From high-end e-commerce to architectural portfolios, we partner with brands to create digital legacies that stand the test of time."
     },
     "Projects": {
       "Project1": {
-        "title": "Project One",
-        "category": "Immersive website experience",
-        "industry": "Luxury digital platform",
-        "desc": "A refined digital experience designed to elevate brand presence through depth, motion, and restraint."
+        "title": "Blessing Pearl",
+        "category": "Premium brand website",
+        "industry": "Brand & identity",
+        "desc": "A clean brand website designed to present the universe, build trust, and reinforce perception through a polished user experience."
       },
       "Project2": {
-        "title": "Project Two",
-        "category": "Web & app experience",
-        "industry": "Architectural portfolio",
-        "desc": "A minimal, performance-driven platform crafted to showcase content with clarity and elegance."
+        "title": "TNS Drink",
+        "category": "Beverage brand website",
+        "industry": "Food & beverage",
+        "desc": "A direct and high-impact digital presence built to highlight the offer, clarify the message, and support discovery."
       },
       "Project3": {
-        "title": "Project Three",
-        "category": "Corporate digital platform",
-        "industry": "Technology & innovation",
-        "desc": "A structured and immersive digital environment designed for usability, performance, and scale."
+        "title": "Floral Lemon",
+        "category": "Immersive editorial website",
+        "industry": "Lifestyle & brand",
+        "desc": "A light editorial interface focused on rhythm, visual atmosphere, and an elegant presentation of content."
       },
       "Project4": {
-        "title": "Project Four",
-        "category": "Digital campaign experience",
-        "industry": "Fashion & luxury",
-        "desc": "A cinematic digital experience combining storytelling, motion, and visual precision."
+        "title": "Motorvalor",
+        "category": "Premium automotive platform",
+        "industry": "Automotive",
+        "desc": "A stronger digital showcase focused on visual impact, offer clarity, and a more premium overall perception."
       },
       "Project5": {
         "title": "TNS Website",

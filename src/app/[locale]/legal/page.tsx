@@ -115,7 +115,7 @@ export default function LegalPage() {
                         {t.rich('Articles.Hosting.text2', {
                           strong: (chunks) => <strong>{chunks}</strong>,
                           br: () => <br/>,
-                          link: (chunks) => <a href="https://vercel.com" target="_blank" className="hover:text-[#D4AF37] transition-colors">{chunks}</a>
+                          link: (chunks) => <a href="https://vercel.com" target="_blank" rel="noreferrer" className="hover:text-[#D4AF37] transition-colors">{chunks}</a>
                         })}
                     </p>
                 </div>

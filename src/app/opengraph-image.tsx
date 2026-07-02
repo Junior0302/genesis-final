@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Genesis Connect - services informatiques et digitaux";
+export const alt = "Genesis Connect - studio numerique premium, web, SEO, cloud et cybersécurité";
 export const size = {
   width: 1200,
   height: 630,
@@ -28,7 +28,7 @@ export default function OpenGraphImage() {
         <div style={{ display: "flex", fontSize: 34, letterSpacing: "-1px" }}>Genesis Connect</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20, maxWidth: 900 }}>
           <div style={{ display: "flex", fontSize: 72, lineHeight: 1.05 }}>
-            Support informatique, creation web, SEO local et AI Search.
+            Studio numerique premium. Web, SEO, cloud et cybersécurité.
           </div>
           <div
             style={{
@@ -38,8 +38,8 @@ export default function OpenGraphImage() {
               color: "rgba(250,249,246,0.75)",
             }}
           >
-            Maintenance informatique, installation Wi-Fi, cybersécurité, sauvegarde, cloud et
-            accompagnement des petites structures.
+            Sites internet, developpement web, support informatique, visibilite locale et
+            experiences digitales concues pour etre claires, rapides et credibles.
           </div>
         </div>
       </div>

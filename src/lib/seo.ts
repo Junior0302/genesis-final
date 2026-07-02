@@ -472,6 +472,7 @@ const verification = process.env.GOOGLE_SITE_VERIFICATION
 export const defaultSEO: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: siteName,
+  themeColor: "#2A1C15",
   title: {
     default:
       "Genesis Connect | Depannage informatique, maintenance, site internet et SEO local",
@@ -507,12 +508,12 @@ export const defaultSEO: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
       { url: "/images/favicon/9.png", type: "image/png", sizes: "192x192" },
       { url: "/images/favicon/10.png", type: "image/png", sizes: "512x512" },
     ],
-    apple: [{ url: "/images/favicon/10.png", sizes: "512x512", type: "image/png" }],
-    shortcut: ["/favicon.ico"],
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "512x512" }],
+    shortcut: ["/icon.png"],
   },
   manifest: "/manifest.webmanifest",
   openGraph: {
@@ -529,7 +530,7 @@ export const defaultSEO: Metadata = {
         url: absoluteUrl("/opengraph-image"),
         width: 1200,
         height: 630,
-        alt: `${siteName} - services informatiques et digitaux`,
+        alt: `${siteName} - studio numerique premium, web, SEO, cloud et cybersécurité`,
       },
     ],
   },

@@ -111,10 +111,8 @@ export default function StudioPage() {
       <section className="min-h-[60vh] flex items-center px-8 md:px-24 py-24">
         <div className="reveal-text flex flex-col md:flex-row gap-12 md:items-baseline">
             <div className="md:w-1/3">
-                <h2 className="text-4xl md:text-6xl font-serif leading-tight">
-                    {t.rich('GlobalLocation.heading', {
-                      br: () => <br/>
-                    })}
+                <h2 className="whitespace-pre-line text-4xl md:text-6xl font-serif leading-tight">
+                    {t('GlobalLocation.heading')}
                 </h2>
             </div>
             <div className="md:w-2/3 md:pl-24">
@@ -159,10 +157,8 @@ export default function StudioPage() {
             <div className="philosophy-item flex flex-col gap-6">
                 <span className="text-sm font-sans tracking-widest opacity-30">03</span>
                 <h3 className="text-3xl md:text-4xl font-serif text-[#FAF9F6]">{t('Philosophy.Item3.title')}</h3>
-                <p className="text-[#FAF9F6]/60 font-light leading-relaxed">
-                    {t.rich('Philosophy.Item3.text', {
-                      br: () => <br/>
-                    })}
+                <p className="text-[#FAF9F6]/60 font-light leading-relaxed whitespace-pre-line">
+                    {t('Philosophy.Item3.text')}
                 </p>
             </div>
 

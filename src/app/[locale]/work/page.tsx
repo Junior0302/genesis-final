@@ -4,6 +4,8 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useSoundContext } from "@/context/SoundContext";
+import { createBlurPlaceholder } from "@/lib/imagePlaceholders";
+import { projectLinks } from "@/lib/projectLinks";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
@@ -25,6 +27,7 @@ export default function WorkPage() {
     desc: string;
     color: string;
     imageSrc?: string;
+    imageAlt?: string;
     url?: string;
   };
 
@@ -35,6 +38,9 @@ export default function WorkPage() {
       category: t('Projects.Project1.category'),
       industry: t('Projects.Project1.industry'),
       desc: t('Projects.Project1.desc'),
+      imageSrc: "/images/project/Capture d’écran_2-7-2026_14820_blessing-pearl.vercel.app.jpeg",
+      imageAlt: `${t('Projects.Project1.title')} - ${t('Projects.Project1.category')}`,
+      url: projectLinks.blessingPearl,
       color: "bg-[#3A2C25]"
     },
     {
@@ -43,7 +49,10 @@ export default function WorkPage() {
       category: t('Projects.Project2.category'),
       industry: t('Projects.Project2.industry'),
       desc: t('Projects.Project2.desc'),
-      color: "bg-[#253A30]"
+      imageSrc: "/images/tnsprojetimg.png",
+      imageAlt: `${t('Projects.Project2.title')} - ${t('Projects.Project2.category')}`,
+      url: projectLinks.tnsDrink,
+      color: "bg-[#2B2E36]"
     },
     {
       id: "03",
@@ -51,7 +60,10 @@ export default function WorkPage() {
       category: t('Projects.Project3.category'),
       industry: t('Projects.Project3.industry'),
       desc: t('Projects.Project3.desc'),
-      color: "bg-[#252A3A]"
+      imageSrc: "/images/project/Capture d’écran_2-7-2026_1493_floral-lemon.vercel.app.jpeg",
+      imageAlt: `${t('Projects.Project3.title')} - ${t('Projects.Project3.category')}`,
+      url: projectLinks.floralLemon,
+      color: "bg-[#253A30]"
     },
     {
       id: "04",
@@ -59,19 +71,13 @@ export default function WorkPage() {
       category: t('Projects.Project4.category'),
       industry: t('Projects.Project4.industry'),
       desc: t('Projects.Project4.desc'),
-      color: "bg-[#3A2525]"
-    },
-    {
-      id: "05",
-      title: t('Projects.Project5.title'),
-      category: t('Projects.Project5.category'),
-      industry: t('Projects.Project5.industry'),
-      desc: t('Projects.Project5.desc'),
-      imageSrc: "/images/tnsprojetimg.png",
-      url: "https://tnsdigitalefrance.fr",
-      color: "bg-[#2B2E36]"
+      imageSrc: "/images/project/Capture d’écran_2-7-2026_14126_motorvalor-seven.vercel.app.jpeg",
+      imageAlt: `${t('Projects.Project4.title')} - ${t('Projects.Project4.category')}`,
+      url: projectLinks.motorvalor,
+      color: "bg-[#252A3A]"
     }
   ];
+  const projectBlurPlaceholder = createBlurPlaceholder("#1A100C", "#3A2C25");
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -136,10 +142,8 @@ export default function WorkPage() {
       {/* 1. HERO REVEAL (Initial Load) */}
       <section className="min-h-[100svh] flex flex-col justify-center items-center pr-6 md:px-12 pt-20 pb-0">
         <div className="max-w-7xl w-full mx-auto flex flex-col justify-center h-full">
-            <h1 className="hero-title text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-serif leading-[0.9] mb-4 md:mb-6 tracking-tight mix-blend-difference text-[#FAF9F6]">
-                {t.rich('Hero.title', {
-                  br: () => <br/>
-                })}
+            <h1 className="hero-title whitespace-pre-line text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-serif leading-[0.9] mb-4 md:mb-6 tracking-tight mix-blend-difference text-[#FAF9F6]">
+                {t('Hero.title')}
             </h1>
             <div className="hero-desc w-full md:w-2/3 lg:w-1/2 backdrop-blur-sm md:backdrop-blur-none bg-[#2A1C15]/10 md:bg-transparent py-2">
                 <p className="text-sm md:text-2xl font-serif text-[#FAF9F6] mb-2 md:mb-5 leading-tight">
@@ -174,9 +178,11 @@ export default function WorkPage() {
                         {project.imageSrc ? (
                           <Image
                             src={project.imageSrc}
-                            alt={project.title}
+                            alt={project.imageAlt ?? `${project.title} - ${project.category}`}
                             fill
-                            priority={project.id === "05"}
+                            priority={project.id === "01"}
+                            placeholder="blur"
+                            blurDataURL={projectBlurPlaceholder}
                             sizes="(min-width: 768px) 66vw, 100vw"
                             className="object-cover opacity-85 group-hover:opacity-95 transition-all duration-700 ease-out scale-100 group-hover:scale-105"
                           />

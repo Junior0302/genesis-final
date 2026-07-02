@@ -3,11 +3,11 @@
     "title": "首页",
     "description": "欢迎来到 Genesis Connect",
     "Hero": {
-      "kicker": "高端数字工作室 | Web、SEO、网络安全、云",
+      "kicker": "Web、SEO、网络安全、云",
       "title": "Genesis\nConnect",
-      "subtitle": "让技术服务于品牌形象、可见度与业务表现。",
+      "subtitle": "让技术服务于品牌形象与可见度。",
       "tagline": "网站建设、Web 开发、本地 SEO、网络安全、云解决方案与高端数字体验。",
-      "description": "Genesis Connect 为企业、创业者与组织打造优雅、快速且可持续的数字体验，让访客在几秒内理解您是谁、您做什么以及为什么值得信任。",
+      "description": "Genesis Connect 为企业、创业者与组织打造清晰、快速且可信的数字体验。",
       "cta": "启动项目",
       "highlights": {
         "who": "面向企业、品牌与高要求组织的高端数字工作室。",
@@ -84,11 +84,12 @@
       "main_title": "塑造数字遗产。",
       "subtitle": "一次一个像素。",
       "description": "我们与富有远见的品牌合作，创造出超越预期并经受住时间考验的沉浸式数字体验。",
+      "viewProject": "查看项目",
       "projects": {
-        "p1": { "name": "Maison Velour", "type": "电子商务体验" },
-        "p2": { "name": "Archi.Studio", "type": "建筑作品集" },
-        "p3": { "name": "Lumina Tech", "type": "企业数字平台" },
-        "p4": { "name": "Vogue Paris", "type": "数字营销体验" },
+        "p1": { "name": "Blessing Pearl", "type": "高端品牌网站" },
+        "p2": { "name": "TNS Drink", "type": "饮品品牌网站" },
+        "p3": { "name": "Floral Lemon", "type": "沉浸式编辑网站" },
+        "p4": { "name": "Motorvalor", "type": "高端汽车品牌平台" },
         "p5": { "name": "TNS 网站", "type": "企业官网" }
       }
     },
@@ -197,7 +198,7 @@
   },
   "StudioPage": {
     "Hero": {
-      "title": "从想法<br/>到影响。",
+      "title": "从想法\n到影响。",
       "subtitle": "Genesis Connect 是一个沉浸式数字工作室，为高端和奢侈品牌打造高端数字体验。",
       "description": "我们设计精致的网站、沉浸式 3D 环境和性能驱动的数字平台，优雅、技术和意图在此融合，创造持久的影响。"
     },
@@ -209,7 +210,7 @@
       "text": "每个项目都始于一个单一的想法 —— 并演变成一个以精确、深度和目的构建的有意义的数字形象。"
     },
     "GlobalLocation": {
-      "heading": "总部位于法国。<br/>全球工作。",
+      "heading": "总部位于法国。\n全球工作。",
       "text": "植根于法国设计文化，Genesis Connect 与寻求数字表达独特性的奢侈品牌、有远见的创始人、创意工作室和机构在国际上合作。",
       "sub1": "我们的方法是全球性的。",
       "sub2": "我们的标准毫不妥协。"
@@ -218,7 +219,7 @@
       "title": "我们的理念",
       "Item1": {
         "title": "精确",
-        "text": "每个像素都经过精心放置。<br/>我们以严谨、平衡和对细节的关注进行设计，确保每个元素都有其用途。"
+        "text": "每个像素都经过精心放置。\n我们以严谨、平衡和对细节的关注进行设计，确保每个元素都有其用途。"
       },
       "Item2": {
         "title": "沉浸",
@@ -226,7 +227,7 @@
       },
       "Item3": {
         "title": "性能",
-        "text": "真正的美必须表现完美。<br/>我们构建快速、结构化、优化并专为长期数字性能设计的平台。"
+        "text": "真正的美必须表现完美。\n我们构建快速、结构化、优化并专为长期数字性能设计的平台。"
       }
     },
     "Commitment": {
@@ -238,34 +239,34 @@
   },
   "WorkPage": {
     "Hero": {
-      "title": "精选<br/>作品",
+      "title": "精选\n作品",
       "subtitle": "一系列以精确、情感和克制打造的沉浸式数字体验。",
       "description": "从高端电子商务到建筑作品集，我们与品牌合作，创造经得起时间考验的数字遗产。"
     },
     "Projects": {
       "Project1": {
-        "title": "项目一",
-        "category": "沉浸式网站体验",
-        "industry": "奢侈数字平台",
-        "desc": "通过深度、动态和克制提升品牌形象的精致数字体验。"
+        "title": "Blessing Pearl",
+        "category": "高端品牌网站",
+        "industry": "品牌与形象",
+        "desc": "一个简洁的品牌网站，用于展示品牌世界观、建立信任，并通过精致体验强化整体形象。"
       },
       "Project2": {
-        "title": "项目二",
-        "category": "Web与App体验",
-        "industry": "建筑作品集",
-        "desc": "一个专注于性能的极简平台，旨在清晰优雅地展示内容。"
+        "title": "TNS Drink",
+        "category": "饮品品牌网站",
+        "industry": "食品与饮品",
+        "desc": "一个直接且有冲击力的数字呈现，用于突出产品、澄清信息并帮助用户快速了解品牌。"
       },
       "Project3": {
-        "title": "项目三",
-        "category": "企业数字平台",
-        "industry": "技术与创新",
-        "desc": "专为可用性、性能和规模设计的结构化沉浸式数字环境。"
+        "title": "Floral Lemon",
+        "category": "沉浸式编辑网站",
+        "industry": "生活方式与品牌",
+        "desc": "一个更轻盈的编辑型界面，强调节奏、视觉氛围以及内容呈现的优雅感。"
       },
       "Project4": {
-        "title": "项目四",
-        "category": "数字营销活动体验",
-        "industry": "时尚与奢侈品",
-        "desc": "融合叙事、动效与视觉精度的电影级数字体验。"
+        "title": "Motorvalor",
+        "category": "高端汽车品牌平台",
+        "industry": "汽车",
+        "desc": "一个更有张力的数字展示空间，突出视觉冲击、信息清晰度以及更高级的品牌感知。"
       },
       "Project5": {
         "title": "TNS 网站",

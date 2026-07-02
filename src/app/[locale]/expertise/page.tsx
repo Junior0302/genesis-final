@@ -213,14 +213,14 @@ export default function ExpertisePage() {
       {/* 1. HERO / VISION */}
       <section className="min-h-[100svh] flex flex-col justify-center items-center pr-6 md:px-12 pt-20 pb-0">
         <div className="max-w-7xl w-full mx-auto flex flex-col justify-center h-full">
-            <h1 className="hero-title text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-serif leading-[0.9] mb-4 md:mb-6 tracking-tight mix-blend-difference text-[#FAF9F6] whitespace-pre-line">
+            <h1 className="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif leading-[0.92] mb-5 md:mb-7 tracking-[-0.03em] text-[#FAF9F6] whitespace-pre-line">
                 {t('Hero.title')}
             </h1>
-            <div className="hero-desc w-full md:w-2/3 lg:w-1/2 backdrop-blur-sm md:backdrop-blur-none bg-[#2A1C15]/10 md:bg-transparent py-2">
-                <p className="text-sm md:text-2xl font-serif text-[#FAF9F6] mb-2 md:mb-5 leading-tight whitespace-pre-line">
+            <div className="hero-desc w-full md:w-[44rem] lg:w-[48rem] rounded-[30px] border border-[#FAF9F6]/12 bg-[#241710]/72 px-7 py-8 shadow-[0_24px_80px_rgba(0,0,0,0.2)] backdrop-blur-2xl md:px-10 md:py-10">
+                <p className="text-xl md:text-[2rem] font-serif text-[#FAF9F6] mb-4 md:mb-6 leading-[1.12] whitespace-pre-line">
                     {t('Hero.subtitle')}
                 </p>
-                <div className="space-y-2 md:space-y-4 text-xs md:text-lg font-light text-[#FAF9F6]/60 leading-relaxed max-w-xl">
+                <div className="space-y-3 md:space-y-4 text-lg md:text-[1.22rem] font-light text-[#FAF9F6]/90 leading-[1.82] max-w-2xl">
                     <p>
                         {t('Hero.description')}
                     </p>
@@ -231,12 +231,12 @@ export default function ExpertisePage() {
 
       {/* 2. EXPERTISE INTRO */}
       <section className="min-h-[50vh] flex flex-col justify-center items-center text-center px-8 py-24 bg-[#251812]">
-        <div className="reveal-text max-w-4xl">
-             <h2 className="text-xs uppercase tracking-[0.4em] mb-12 text-[#FAF9F6]/40">{t('Intro.title')}</h2>
-             <p className="text-3xl md:text-5xl font-serif text-[#FAF9F6] leading-tight mb-8">
+        <div className="reveal-text max-w-5xl">
+             <h2 className="text-[11px] uppercase tracking-[0.32em] mb-10 text-[#FAF9F6]/60">{t('Intro.title')}</h2>
+             <p className="text-4xl md:text-6xl font-serif text-[#FAF9F6] leading-[1.02] mb-8 tracking-[-0.03em]">
                {t('Intro.heading')}
              </p>
-             <p className="text-lg font-light text-[#FAF9F6]/70 max-w-2xl mx-auto leading-relaxed">
+             <p className="text-lg md:text-[1.2rem] font-light text-[#FAF9F6]/84 max-w-3xl mx-auto leading-[1.85]">
                 {t('Intro.text')}
              </p>
         </div>
@@ -244,7 +244,7 @@ export default function ExpertisePage() {
 
       <section className="min-h-screen px-8 md:px-24 py-24">
         <div className="reveal-text mx-auto max-w-7xl">
-          <h2 className="text-xs uppercase tracking-[0.2em] text-[#FAF9F6]/40 mb-12 border-b border-[#FAF9F6]/10 pb-4 inline-block">
+          <h2 className="text-[11px] uppercase tracking-[0.24em] text-[#FAF9F6]/60 mb-12 border-b border-[#FAF9F6]/10 pb-4 inline-block">
             {locale === "fr" ? "Notre Expertise" : locale === "en" ? "Our Expertise" : "我们的专业领域"}
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
@@ -257,17 +257,17 @@ export default function ExpertisePage() {
                 <div className="absolute inset-0 opacity-[0.06] pointer-events-none mix-blend-overlay" />
                 <div className="flex h-full min-h-[260px] flex-col justify-between">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.24em] text-[#D4AF37]">
+                    <p className="text-[11px] uppercase tracking-[0.24em] text-[#D4AF37]">
                       Genesis Connect
                     </p>
-                    <h3 className="mt-6 font-serif text-2xl leading-tight text-[#FAF9F6]">
+                    <h3 className="mt-6 font-serif text-[2rem] leading-[1.08] tracking-[-0.02em] text-[#FAF9F6]">
                       {card.title}
                     </h3>
-                    <p className="mt-4 text-sm leading-7 text-[#FAF9F6]/70">
+                    <p className="mt-5 text-base md:text-[1.08rem] leading-[1.8] text-[#FAF9F6]/84">
                       {card.desc}
                     </p>
                   </div>
-                  <div className="mt-10 inline-flex items-center text-xs uppercase tracking-[0.24em] text-[#FAF9F6]/70">
+                  <div className="mt-10 inline-flex items-center text-[11px] uppercase tracking-[0.24em] text-[#FAF9F6]/80">
                     {locale === "fr" ? "Découvrir" : locale === "en" ? "Explore" : "了解更多"}
                     <span className="ml-3 inline-block transition-transform duration-300 group-hover:translate-x-1">
                       →
@@ -281,14 +281,14 @@ export default function ExpertisePage() {
       </section>
 
       <section className="min-h-[45vh] flex flex-col justify-center items-center text-center px-8 py-24 bg-[#251812]">
-        <div className="reveal-text max-w-4xl">
-          <h2 className="text-xs uppercase tracking-[0.4em] mb-12 text-[#FAF9F6]/40">
+        <div className="reveal-text max-w-5xl">
+          <h2 className="text-[11px] uppercase tracking-[0.32em] mb-10 text-[#FAF9F6]/60">
             {locale === "fr" ? "Contact" : locale === "en" ? "Contact" : "联系"}
           </h2>
-          <p className="text-3xl md:text-5xl font-serif text-[#FAF9F6] leading-tight mb-8">
+          <p className="text-4xl md:text-6xl font-serif text-[#FAF9F6] leading-[1.02] mb-8 tracking-[-0.03em]">
             {cta.title}
           </p>
-          <p className="text-lg font-light text-[#FAF9F6]/70 max-w-2xl mx-auto leading-relaxed mb-10">
+          <p className="text-lg md:text-[1.2rem] font-light text-[#FAF9F6]/84 max-w-3xl mx-auto leading-[1.85] mb-10">
             {cta.text}
           </p>
           <TransitionLink
@@ -302,14 +302,14 @@ export default function ExpertisePage() {
 
       <section className="px-8 py-24 md:px-24">
         <div className="reveal-text mx-auto max-w-5xl">
-          <h2 className="text-xs uppercase tracking-[0.2em] text-[#FAF9F6]/40 mb-10 border-b border-[#FAF9F6]/10 pb-4 inline-block">
+          <h2 className="text-[11px] uppercase tracking-[0.24em] text-[#FAF9F6]/60 mb-10 border-b border-[#FAF9F6]/10 pb-4 inline-block">
             FAQ
           </h2>
           <div className="space-y-8">
             {faqItems.slice(0, 3).map((item) => (
               <div key={item.question} className="border-b border-[#FAF9F6]/10 pb-8">
-                <h3 className="font-serif text-2xl text-[#FAF9F6]">{item.question}</h3>
-                <p className="mt-3 max-w-4xl text-sm leading-7 text-[#FAF9F6]/72 md:text-base">
+                <h3 className="font-serif text-[2rem] leading-[1.12] tracking-[-0.02em] text-[#FAF9F6]">{item.question}</h3>
+                <p className="mt-4 max-w-4xl text-base md:text-[1.08rem] leading-[1.85] text-[#FAF9F6]/84">
                   {item.answer}
                 </p>
               </div>
